@@ -9,6 +9,7 @@ import { Problem } from '@/components/sections/Problem'
 import { CustomerJourney } from '@/components/CustomerJourney/CustomerJourney'
 import { MultiChannel } from '@/components/sections/MultiChannel'
 import { SocialProof } from '@/components/sections/SocialProof'
+import { PerformanceGuarantee } from '@/components/sections/PerformanceGuarantee'
 import { Comparison } from '@/components/sections/Comparison'
 import { FAQ } from '@/components/sections/FAQ'
 import { Packages } from '@/components/sections/Packages'
@@ -45,6 +46,9 @@ export default function Home() {
 
       {/* Social Proof - Customer Logos & Trust */}
       <SocialProof />
+
+      {/* Performance Guarantee - Pay-for-Performance Model */}
+      <PerformanceGuarantee />
 
       {/* Comparison Table */}
       <Comparison />

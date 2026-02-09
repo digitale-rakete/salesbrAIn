@@ -11,9 +11,34 @@ const faqs = [
       'Nach dem Kickoff-Meeting beginnt die Research-Phase (Woche 1-2), gefolgt von der Setup-Phase (Woche 2-3). Nach 2-3 Wochen geht dein System live und beginnt, Kontakte zu generieren. Die ersten qualifizierten Termine kannst du ab Woche 5 erwarten.',
   },
   {
-    question: 'Was kostet SalesbrAIn pro Monat?',
+    question: 'Was genau bedeutet "Pay-for-Performance"?',
     answer:
-      'Die monatlichen Kosten liegen zwischen CHF 2\'490 und CHF 4\'990, abhängig vom gewählten Paket und den benötigten Kanälen. Im Gegensatz zu Agenturen (CHF 5\'000+) oder dem Zeitaufwand eines eigenen CRM-Systems bietet SalesbrAIn das beste Preis-Leistungs-Verhältnis.',
+      'Unser Preismodell besteht aus zwei Teilen:\n\n1. Basis-Investition: CHF 499-1,499/Monat (je nach Paket) – Deckt alle Kosten: LinkedIn Automation, E-Mail Outreach, KI-Validierung, Dashboard, Reports\n\n2. Performance-Fee: CHF 450 pro Kampagne – Wird NUR fällig wenn wir deine individuellen Erfolgsziele erreichen. Ziele nicht erreicht? Keine Performance-Fee (CHF 0).\n\nDas bedeutet: Du zahlst mehr nur wenn wir liefern. Dein Erfolg ist unsere einzige Messlatte.',
+  },
+  {
+    question: 'Wie wird mein Erfolg gemessen?',
+    answer:
+      'Jedes Unternehmen ist anders. Deshalb definieren wir im Onboarding gemeinsam deine individuellen Erfolgskriterien:\n\nMögliche KPIs:\n• Anzahl qualifizierte Meetings pro Monat (z.B. 15-30 Termine)\n• Response-Rate auf Outreach (z.B. 10%+ positive Antworten)\n• Anzahl generierte Leads (z.B. 50+ MQLs)\n• Oder deine eigenen, spezifischen Ziele\n\nBasierend auf deinen Jahreszielen berechnen wir die benötigten KPIs und definieren eine realistische Mindestanzahl an "Chancen" (Opportunities) pro Kampagne.\n\nTransparenz: Du siehst den Fortschritt jederzeit live im Dashboard.',
+  },
+  {
+    question: 'Was passiert wenn ich meine Ziele nicht erreiche?',
+    answer:
+      'Ganz einfach: Du zahlst keine Performance-Fee.\n\nWenn wir die gemeinsam definierten Erfolgsziele nicht erreichen, fällt die CHF 450 Performance-Fee nicht an. Du zahlst nur die Basis-Investition, die alle operativen Kosten deckt.\n\nDas ist unser Commitment an deinen Erfolg. Im Gegensatz zu Agenturen, die pauschal CHF 5,000+/Monat verlangen – egal ob du Ergebnisse siehst – teilen wir den Erfolg mit dir.',
+  },
+  {
+    question: 'Wann wird die Performance-Fee fällig?',
+    answer:
+      'Die Performance-Fee von CHF 450 wird pro erfolgreiche Kampagne fällig.\n\nTiming:\n• Am Ende jeder Kampagne (typischerweise monatlich oder quartalsweise)\n• NUR wenn die vorher definierten Erfolgskriterien erreicht wurden\n• Nach Absprache: Kann auch gestaffelt werden (z.B. Teilzahlung bei Teilzielerreichung)\n\nWichtig: Die Performance-Fee ist ZUSÄTZLICH zur Basis-Investition, aber nur zahlbar bei Erfolg. Keine versteckten Kosten, keine Überraschungen.',
+  },
+  {
+    question: 'Gibt es eine Geld-zurück-Garantie?',
+    answer:
+      'Unser Performance-Modell IST deine Garantie:\n\nStatt Geld-zurück bieten wir:\n• Zero-Risk Performance-Fee: Zahlst du nur bei Erfolg\n• Transparente Zieldefinition: Im Onboarding gemeinsam festgelegt\n• Live-Dashboard: Siehst du jederzeit den Fortschritt\n• Wöchentliche Reports: Bleibst du informiert\n• Quartals-Strategiegespräche: Optimieren wir gemeinsam\n\nDas bedeutet: Wenn wir nicht liefern, zahlst du keine Extra-Kosten. Dein Erfolg ist unser einziger Anreiz.',
+  },
+  {
+    question: 'Was kostet SalesbrAIn?',
+    answer:
+      'Unser Preismodell ist erfolgsbasiert und transparent:\n\n1. Basis-Investition:\n• Basis-Paket: Ab CHF 499/Monat\n• Wachstums-Paket: Ab CHF 799/Monat\n• Professional-Paket: Ab CHF 1,499/Monat\n\n2. Setup-Gebühr: CHF 990 (einmalig)\n• Inkl. Ist-Analyse, Standortanalyse, Zielgruppen-Recherche\n\n3. Performance-Fee: CHF 450 pro erfolgreiche Kampagne\n• Wird NUR fällig wenn wir deine Erfolgsziele erreichen\n• Ziele nicht erreicht? CHF 0\n\nGenaue Details und individuelles Angebot im persönlichen Gespräch. Jedes Unternehmen ist einzigartig – wir erstellen ein massgeschneidertes Angebot für deine Bedürfnisse.',
   },
   {
     question: 'Brauche ich technisches Know-how?',

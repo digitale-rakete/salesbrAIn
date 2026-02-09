@@ -56,7 +56,7 @@ const comparisonData = [
     feature: 'Monatliche Kosten',
     crm: 'CHF 100-500',
     agentur: 'CHF 5\'000+',
-    salesbrain: 'CHF 2\'490-4\'990',
+    salesbrain: 'CHF 499-1\'499',
   },
   {
     feature: 'Zeitaufwand für dich',
