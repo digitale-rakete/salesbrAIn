@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Salesbrain Dashboard — Redesign Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"/>
+<style>
+:root {
+  --paper: #fafaf7;
+  --bone: #f2f2ef;
+  --fog: #e6e6e2;
+  --mist: #d1d1cd;
+  --silver: #9a9aa0;
+  --titanium: #5f5f66;
+  --graphite: #2a2a30;
+  --ink: #15151a;
+  --void: #08080b;
+  --swiss: #E1001A;
+  --swiss-soft: rgba(225,0,26,0.08);
+  --swiss-softer: rgba(225,0,26,0.04);
+  --hair: rgba(20,20,26,0.10);
+  --hair-strong: rgba(20,20,26,0.18);
+  --display: "Space Grotesk", sans-serif;
+  --body: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --radius: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bone); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; height: 100%; }
+body { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ---- SHELL ---- */
+.shell { display: flex; flex: 1; height: 100vh; overflow: hidden; }
+
+/* ---- SIDEBAR ---- */
+.sidebar {
+  width: 240px; flex-shrink: 0;
+  background: var(--paper);
+  border-right: 1px solid var(--hair);
+  display: flex; flex-direction: column;
+  padding: 20px 0;
+}
+.sb-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 12px;
+}
+.sb-logo svg { flex-shrink: 0; }
+.sb-logo span {
+  font-family: var(--display); font-size: 16px; font-weight: 500;
+  color: var(--ink); letter-spacing: -0.02em;
+}
+.sb-logo span b { color: var(--swiss); font-weight: 700; }
+
+.sb-nav { padding: 0 12px; flex: 1; }
+.sb-nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 14px; color: var(--titanium);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  position: relative;
+  text-decoration: none;
+}
+.sb-nav-item:hover { background: var(--bone); color: var(--ink); }
+.sb-nav-item.active {
+  background: var(--swiss-soft);
+  color: var(--swiss);
+  font-weight: 500;
+}
+.sb-nav-item .icon {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+.sb-nav-item .badge {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: var(--swiss);
+  color: white;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sb-section-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--silver);
+  padding: 20px 12px 8px;
+}
+
+/* Activity feed */
+.sb-activity { padding: 0 12px; }
+.sb-act-item {
+  display: flex; gap: 10px; padding: 8px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 12px; color: var(--titanium);
+  line-height: 1.4;
+}
+.sb-act-item .act-icon {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mist); margin-top: 5px; flex-shrink: 0;
+}
+.sb-act-item .act-icon.red { background: var(--swiss); }
+.sb-act-item b { color: var(--ink); font-weight: 500; }
+.sb-act-item .act-time {
+  font-family: var(--mono); font-size: 9px; color: var(--silver);
+  margin-top: 2px;
+}
+
+/* User pill */
+.sb-user {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid var(--hair);
+  display: flex; align-items: center; gap: 10px;
+}
+.sb-user-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--swiss); color: white;
+  font-family: var(--display); font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.sb-user-info { font-size: 13px; }
+.sb-user-info .name { font-weight: 500; color: var(--ink); }
+.sb-user-info .role { font-size: 11px; color: var(--silver); }
+
+/* ---- MAIN ---- */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+  flex-shrink: 0;
+}
+.topbar-left {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  color: var(--titanium);
+}
+.topbar-left select {
+  font-family: var(--mono); font-size: 11px;
+  background: var(--bone); border: 1px solid var(--hair);
+  padding: 6px 10px; border-radius: var(--radius);
+  color: var(--ink); cursor: pointer;
+}
+.topbar-stats {
+  display: flex; gap: 20px;
+  font-family: var(--mono); font-size: 11px; color: var(--titanium);
+}
+.topbar-stats .ts { display: flex; align-items: center; gap: 6px; }
+.topbar-stats .ts .dot { width: 8px; height: 8px; border-radius: 50%; }
+.topbar-stats .ts .v { color: var(--ink); font-weight: 500; }
+.topbar-right {
+  display: flex; align-items: center; gap: 12px;
+}
+.topbar-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: var(--radius);
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  color: var(--ink); cursor: pointer;
+  transition: background 0.15s;
+}
+.topbar-btn:hover { background: var(--bone); }
+.topbar-btn.primary {
+  background: var(--swiss); color: white; border-color: var(--swiss);
+}
+.topbar-btn.primary:hover { background: var(--swiss-deep, #B50015); }
+
+/* ---- CONTENT AREA ---- */
+.content { flex: 1; overflow-y: auto; }
+
+/* ---- THE BRAIN (Chat) ---- */
+.brain-view {
+  display: flex; flex-direction: column;
+  height: 100%;
+  padding: 0;
+}
+.brain-center {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px;
+  gap: 32px;
+}
+.brain-greeting {
+  font-family: var(--display);
+  font-size: 28px; font-weight: 400;
+  color: var(--titanium);
+  letter-spacing: -0.02em;
+}
+.brain-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: center;
+  max-width: 600px;
+}
+.brain-chips .bc-label {
+  width: 100%;
+  text-align: center;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--silver);
+  margin-bottom: 4px;
+}
+.brain-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--hair);
+  border-radius: 40px;
+  font-size: 13px; color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--paper);
+}
+.brain-chip:hover {
+  border-color: var(--swiss);
+  background: var(--swiss-softer);
+}
+.brain-chip .chip-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+
+.brain-input-bar {
+  padding: 16px 32px 24px;
+  border-top: 1px solid var(--hair);
+  background: var(--paper);
+}
+.brain-input {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bone);
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  padding: 14px 18px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.brain-input .bi-icon {
+  color: var(--silver); font-size: 18px; flex-shrink: 0;
+}
+.brain-input input {
+  flex: 1; border: none; background: none; outline: none;
+  font-family: var(--body); font-size: 14px; color: var(--ink);
+}
+.brain-input input::placeholder { color: var(--silver); }
+.brain-input .bi-send {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--swiss); color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; border: none;
+  font-size: 16px;
+  transition: transform 0.15s;
+}
+.brain-input .bi-send:hover { transform: scale(1.08); }
+
+/* ---- OPPORTUNITIES ---- */
+.opp-view { padding: 28px 32px; height: 100%; overflow-y: auto; }
+.opp-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.opp-header h2 {
+  font-family: var(--display); font-size: 28px; font-weight: 500;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 12px;
+}
+.opp-header .opp-meta {
+  font-family: var(--mono); font-size: 11px; color: var(--titanium);
+  letter-spacing: 0.08em;
+}
+
+.opp-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: flex-start;
+}
+.opp-col {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.opp-col-head {
+  padding: 16px;
+  border-bottom: 1px solid var(--hair);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.opp-col-head .oc-title {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+}
+.opp-col-head .oc-title .oc-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.opp-col-head .oc-count {
+  font-family: var(--mono); font-size: 11px; color: var(--swiss); font-weight: 500;
+}
+.opp-col-head .oc-total {
+  font-family: var(--display); font-size: 22px; font-weight: 500;
+  letter-spacing: -0.02em; margin-top: 4px;
+}
+.opp-col-body { padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+
+.opp-card {
+  background: var(--bone);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.opp-card:hover {
+  border-color: var(--swiss);
+  box-shadow: 0 2px 12px rgba(225,0,26,0.08);
+}
+.opp-card .oc-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 8px;
+}
+.opp-card .oc-company {
+  font-family: var(--display); font-size: 14px; font-weight: 500;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+.opp-card .oc-score {
+  display: flex; align-items: center; gap: 4px;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 20px;
+}
+.opp-card .oc-score.hot { background: var(--swiss-soft); color: var(--swiss); }
+.opp-card .oc-score.warm { background: rgba(234,160,40,0.12); color: #b87a00; }
+.opp-card .oc-score.cool { background: rgba(80,140,200,0.12); color: #3a7aaa; }
+.opp-card .oc-contact {
+  font-size: 12px; color: var(--titanium); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.opp-card .oc-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 8px; border-top: 1px solid var(--hair);
+}
+.opp-card .oc-value {
+  font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--swiss);
+}
+.opp-card .oc-date {
+  font-family: var(--mono); font-size: 10px; color: var(--silver);
+}
+
+/* ---- VIEW TOGGLE (hidden by default, controlled by JS) ---- */
+.view-hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-logo">
+      <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span>salesbr<b>AI</b>n</span>
+    </div>
+
+    <div class="sb-nav">
+      <a class="sb-nav-item active" data-view="brain" onclick="switchView('brain')">
+        <span class="icon">🧠</span>
+        The Brain
+      </a>
+      <a class="sb-nav-item" data-view="opp" onclick="switchView('opp')">
+        <span class="icon">✦</span>
+        Chancen
+      </a>
+      <a class="sb-nav-item">
+        <span class="icon">👤</span>
+        Kontakte
+      </a>
+      <a class="sb-nav-item">
+        <span class="icon">✉</span>
+        Posteingang
+        <span class="badge">8</span>
+      </a>
+      <a class="sb-nav-item">
+        <span class="icon">📊</span>
+        Kampagnen
+      </a>
+    </div>
+
+    <div class="sb-section-label">Aktivitätsverlauf</div>
+    <div class="sb-activity">
+      <div class="sb-act-item">
+        <div class="act-icon red"></div>
+        <div>Nachricht an <b>Nitharsina Sr.</b> gesendet<div class="act-time">vor 7 Stunden</div></div>
+      </div>
+      <div class="sb-act-item">
+        <div class="act-icon"></div>
+        <div><b>Lovric Alen</b> hat Profil besucht<div class="act-time">vor 1 Tag</div></div>
+      </div>
+      <div class="sb-act-item">
+        <div class="act-icon red"></div>
+        <div>Nachricht an <b>Hubert Boog</b> gesendet<div class="act-time">vor 2 Tagen</div></div>
+      </div>
+      <div class="sb-act-item">
+        <div class="act-icon"></div>
+        <div>Nachricht von <b>Hubert Boog</b><div class="act-time">vor 3 Tagen</div></div>
+      </div>
+      <div class="sb-act-item">
+        <div class="act-icon"></div>
+        <div>Nachricht von <b>Hubert Boog</b><div class="act-time">vor 3 Tagen</div></div>
+      </div>
+    </div>
+
+    <div class="sb-user">
+      <div class="sb-user-avatar">EM</div>
+      <div class="sb-user-info">
+        <div class="name">Eduard Mirdita</div>
+        <div class="role">Administrator</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <select><option>Diese Woche</option><option>Dieser Monat</option><option>Letzte 30 Tage</option></select>
+        <div class="topbar-stats">
+          <div class="ts"><div class="dot" style="background:#ea9f28;"></div><span class="v">12</span> Hot</div>
+          <div class="ts"><div class="dot" style="background:var(--swiss);"></div><span class="v">34</span> Kontakte</div>
+          <div class="ts"><div class="dot" style="background:#4a9a5a;"></div><span class="v">8</span> Won</div>
+          <div class="ts"><span>↗ 22%</span></div>
+          <div class="ts"><span>⌀ 4.2d</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-btn">⊞ Analysen</button>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- THE BRAIN VIEW -->
+      <div class="brain-view" id="brainView">
+        <div class="brain-center">
+          <div class="brain-greeting">Wie kann ich Ihnen helfen?</div>
+          <div class="brain-chips">
+            <div class="bc-label">Wählen Sie eine Schnellaktion oder fragen Sie mich alles über Ihre Kampagne</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:var(--swiss);"></span>Kampagnen Performance</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:#ea9f28;"></span>Heisse Kontakte</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:#4a9a5a;"></span>E-Mail Statistiken</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:#5a8aca;"></span>Opportunities Status</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:var(--titanium);"></span>Vergleichsrapport</div>
+            <div class="brain-chip"><span class="chip-dot" style="background:#b86ad8;"></span>Top Performer</div>
+          </div>
+        </div>
+        <div class="brain-input-bar">
+          <div class="brain-input">
+            <span class="bi-icon">💬</span>
+            <input type="text" placeholder="Fragen Sie den Brain nach Ihren Kampagnen, Kontakten oder Strategien..."/>
+            <button class="bi-send">↑</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPPORTUNITIES VIEW -->
+      <div class="opp-view view-hidden" id="oppView">
+        <div class="opp-header">
+          <div>
+            <h2><span style="color:var(--swiss);">✦</span> Opportunities</h2>
+            <div class="opp-meta">11 aktive Opportunities · CHF 443'000 Gesamtwert</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="topbar-btn">⊞ Filter</button>
+            <button class="topbar-btn primary">+ Opportunity</button>
+          </div>
+        </div>
+
+        <div class="opp-board">
+          <!-- Qualified -->
+          <div class="opp-col">
+            <div class="opp-col-head">
+              <div>
+                <div class="oc-title"><span class="oc-dot" style="background:#5a8aca;"></span>Qualified <span class="oc-count">3</span></div>
+                <div class="oc-total">CHF 127'000</div>
+              </div>
+            </div>
+            <div class="opp-col-body">
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">TechCorp Solutions</div>
+                  <div class="oc-score hot">85</div>
+                </div>
+                <div class="oc-contact">👤 Sarah Johnson · VP of Sales</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 45'000</span>
+                  <span class="oc-date">Jan 26</span>
+                </div>
+              </div>
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">SwissFintech AG</div>
+                  <div class="oc-score hot">94</div>
+                </div>
+                <div class="oc-contact">👤 Anna Müller · Head of Operations</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 67'000</span>
+                  <span class="oc-date">Jan 26</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scheduled -->
+          <div class="opp-col">
+            <div class="opp-col-head">
+              <div>
+                <div class="oc-title"><span class="oc-dot" style="background:#ea9f28;"></span>Scheduled <span class="oc-count">3</span></div>
+                <div class="oc-total">CHF 123'500</div>
+              </div>
+            </div>
+            <div class="opp-col-body">
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Digital Innovations</div>
+                  <div class="oc-score hot">92</div>
+                </div>
+                <div class="oc-contact">👤 Michael Chen · CEO</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 32'000</span>
+                  <span class="oc-date">Jan 25</span>
+                </div>
+              </div>
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Alpine Consulting</div>
+                  <div class="oc-score warm">72</div>
+                </div>
+                <div class="oc-contact">👤 Thomas Weber · Managing Director</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 18'500</span>
+                  <span class="oc-date">Jan 25</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Won -->
+          <div class="opp-col">
+            <div class="opp-col-head">
+              <div>
+                <div class="oc-title"><span class="oc-dot" style="background:#4a9a5a;"></span>Won <span class="oc-count">3</span></div>
+                <div class="oc-total">CHF 108'000</div>
+              </div>
+            </div>
+            <div class="opp-col-body">
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Growth Marketing Co</div>
+                  <div class="oc-score warm">88</div>
+                </div>
+                <div class="oc-contact">👤 Emily Rodriguez · Head of Growth</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 28'000</span>
+                  <span class="oc-date">Jan 24</span>
+                </div>
+              </div>
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Zurich Innovations</div>
+                  <div class="oc-score hot">91</div>
+                </div>
+                <div class="oc-contact">👤 Lisa Schneider · Product Manager</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 42'000</span>
+                  <span class="oc-date">Jan 24</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rearranged -->
+          <div class="opp-col">
+            <div class="opp-col-head">
+              <div>
+                <div class="oc-title"><span class="oc-dot" style="background:var(--silver);"></span>Rearranged <span class="oc-count">2</span></div>
+                <div class="oc-total">CHF 84'500</div>
+              </div>
+            </div>
+            <div class="opp-col-body">
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Future Systems Ltd</div>
+                  <div class="oc-score cool">76</div>
+                </div>
+                <div class="oc-contact">👤 David Kim · CTO</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 55'000</span>
+                  <span class="oc-date">Jan 23</span>
+                </div>
+              </div>
+              <div class="opp-card">
+                <div class="oc-top">
+                  <div class="oc-company">Bern Technologies</div>
+                  <div class="oc-score cool">68</div>
+                </div>
+                <div class="oc-contact">👤 Marc Huber · IT Director</div>
+                <div class="oc-bottom">
+                  <span class="oc-value">CHF 29'500</span>
+                  <span class="oc-date">Jan 22</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function switchView(view) {
+  document.getElementById('brainView').classList.toggle('view-hidden', view !== 'brain');
+  document.getElementById('oppView').classList.toggle('view-hidden', view !== 'opp');
+  document.querySelectorAll('.sb-nav-item[data-view]').forEach(el => {
+    el.classList.toggle('active', el.dataset.view === view);
+  });
+}
+</script>
+
+</body>
+</html>

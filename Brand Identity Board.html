@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440" />
+<title>Salesbrain — Brand Identity Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+<style>
+  :root {
+    --void: #050507;
+    --ink: #0b0b0e;
+    --coal: #14141a;
+    --graphite: #1d1d24;
+    --steel: #2a2a33;
+    --titanium: #6b6b75;
+    --silver: #9a9aa3;
+    --mercury: #c8c8cf;
+    --signal: #f5f5f7;
+    --white: #ffffff;
+    --hair: rgba(255,255,255,0.08);
+    --hair-strong: rgba(255,255,255,0.18);
+
+    --display: "Space Grotesk", "Helvetica Neue", sans-serif;
+    --body: "Inter", "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--void); color: var(--signal); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  body { min-width: 1440px; }
+
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 0 120px;
+  }
+
+  /* ----------------- STAR FIELD (re-usable) ----------------- */
+  .starfield {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6), transparent 50%),
+      radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 45% 80%, rgba(255,255,255,0.8), transparent 50%),
+      radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.4), transparent 50%),
+      radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.3), transparent 50%),
+      radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,0.5), transparent 50%),
+      radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.3), transparent 50%),
+      radial-gradient(2px 2px at 30% 55%, rgba(255,255,255,0.7), transparent 50%),
+      radial-gradient(1px 1px at 65% 25%, rgba(255,255,255,0.4), transparent 50%);
+    background-size: 100% 100%;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  /* ----------------- TELEMETRY / HEADER ----------------- */
+  .telemetry {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(5,5,7,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hair);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--titanium);
+    text-transform: uppercase;
+  }
+  .telemetry-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto 1fr;
+    gap: 32px;
+    padding: 10px 40px;
+    align-items: center;
+  }
+  .telemetry-row .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--signal);
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 6px rgba(255,255,255,0.6);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .telemetry b { color: var(--signal); font-weight: 500; }
+
+  /* ----------------- HERO ----------------- */
+  .hero {
+    position: relative;
+    height: 780px;
+    border-bottom: 1px solid var(--hair);
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255,255,255,0.06), transparent 70%),
+      linear-gradient(180deg, #020203 0%, #08080c 60%, #0b0b10 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  }
+  .hero-inner {
+    position: relative;
+    height: 100%;
+    padding: 96px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .hero-top .label-l { max-width: 360px; line-height: 1.8; }
+  .hero-top .crosshair {
+    width: 56px; height: 56px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 50%;
+    position: relative;
+  }
+  .hero-top .crosshair::before,
+  .hero-top .crosshair::after {
+    content: ""; position: absolute; background: var(--hair-strong);
+  }
+  .hero-top .crosshair::before { left: 50%; top: -10px; bottom: -10px; width: 1px; transform: translateX(-50%); }
+  .hero-top .crosshair::after { top: 50%; left: -10px; right: -10px; height: 1px; transform: translateY(-50%); }
+
+  .hero-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 168px;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--signal);
+    text-transform: uppercase;
+  }
+  .hero-title .ai {
+    display: inline-block;
+    background: linear-gradient(180deg, #fff 0%, #8d8d96 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    font-weight: 500;
+  }
+  .hero-title .slash { color: var(--titanium); font-weight: 300; }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 64px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--silver); text-transform: uppercase;
+  }
+  .hero-bottom .cell .k { color: var(--titanium); display: block; margin-bottom: 6px; font-size: 9px; }
+  .hero-bottom .cell .v { color: var(--signal); font-size: 13px; letter-spacing: 0.04em; }
+
+  /* planet in hero */
+  .planet-hero {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-40%);
+    width: 540px;
+    height: 540px;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* ----------------- SECTION ----------------- */
+  section.band {
+    position: relative;
+    padding: 120px 64px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .section-index {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--titanium);
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--signal);
+    font-weight: 400;
+  }
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--titanium);
+    text-transform: uppercase;
+  }
+
+  /* ----------------- MOODBOARD ----------------- */
+  .moodboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr;
+    grid-template-rows: 280px 280px;
+    gap: 2px;
+    background: var(--hair);
+  }
+  .mood-tile {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .mood-tile .placeholder-stripes {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(255,255,255,0.025) 0 2px,
+        transparent 2px 20px);
+  }
+  .mood-tile .mt-label {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .mood-tile .mt-label b { color: var(--signal); font-weight: 500; }
+  .mood-tile .mt-badge {
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    border: 1px solid var(--hair-strong);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+  .mt-large { grid-column: span 1; grid-row: span 2; }
+
+  /* fake imagery made of CSS — rocket silhouette, earth curve, trails */
+  .mood-rocket {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 160% 80% at 50% 120%, rgba(120,120,140,0.3), transparent 60%),
+      linear-gradient(180deg, #000 0%, #0a0a10 100%);
+  }
+  .mood-rocket::before {
+    /* rocket body */
+    content: "";
+    position: absolute;
+    left: 50%; bottom: -40px;
+    transform: translateX(-50%);
+    width: 60px; height: 360px;
+    background: linear-gradient(90deg, #2a2a33 0%, #9a9aa3 50%, #2a2a33 100%);
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: 0 0 60px rgba(255,255,255,0.08);
+  }
+  .mood-rocket::after {
+    /* flame */
+    content: "";
+    position: absolute;
+    left: 50%; bottom: -120px;
+    transform: translateX(-50%);
+    width: 36px; height: 160px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.9) 0%, rgba(200,200,220,0.3) 40%, transparent 80%);
+    filter: blur(6px);
+  }
+  .mood-earth {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 150%, rgba(90,90,110,0.7) 0%, rgba(40,40,50,0.8) 30%, transparent 50%),
+      linear-gradient(180deg, #000 0%, #0a0a10 100%);
+  }
+  .mood-earth::before {
+    /* atmosphere glow */
+    content: "";
+    position: absolute;
+    left: 50%; bottom: -50%;
+    transform: translateX(-50%);
+    width: 140%; height: 140%;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 48%, rgba(180,180,200,0.15) 50%, transparent 55%);
+  }
+
+  .mood-orbit {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, #0a0a10, #000);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .orbit-ring {
+    position: absolute;
+    border: 1px solid var(--hair-strong);
+    border-radius: 50%;
+  }
+  .orbit-ring.r1 { width: 70%; height: 70%; }
+  .orbit-ring.r2 { width: 50%; height: 50%; border-color: var(--hair); }
+  .orbit-ring.r3 { width: 30%; height: 30%; }
+  .orbit-dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--signal);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255,255,255,0.8);
+  }
+  .orbit-dot.d1 { top: 15%; left: 50%; }
+  .orbit-dot.d2 { top: 50%; right: 25%; }
+
+  .mood-texture {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, #1a1a20 0%, #3a3a42 50%, #1a1a20 100%),
+      repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,0.15) 2px 3px);
+    background-blend-mode: multiply;
+  }
+  .mood-grid {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px),
+      #050508;
+    background-size: 24px 24px;
+  }
+  .mood-grid::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.12), transparent 50%);
+  }
+
+  /* ----------------- LOGO CONCEPTS ----------------- */
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--hair);
+  }
+  .logo-card {
+    background: var(--ink);
+    padding: 56px 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: 360px;
+  }
+  .logo-card.inverse {
+    background: var(--signal);
+    color: var(--void);
+  }
+  .logo-card .logo-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--titanium);
+  }
+  .logo-card.inverse .logo-top { color: #6a6a72; }
+  .logo-card .logo-top b { color: var(--signal); }
+  .logo-card.inverse .logo-top b { color: var(--void); }
+  .logo-canvas {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px 0;
+  }
+  .logo-caption {
+    border-top: 1px solid var(--hair);
+    padding-top: 16px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium);
+    text-transform: uppercase;
+  }
+  .logo-card.inverse .logo-caption { border-top-color: rgba(0,0,0,0.1); color: #6a6a72; }
+
+  /* ----------------- COLORS ----------------- */
+  .palette {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+    height: 320px;
+  }
+  .swatch {
+    position: relative;
+    padding: 24px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .swatch .name { font-size: 14px; letter-spacing: -0.01em; text-transform: none; font-family: var(--display); font-weight: 400; }
+  .swatch .meta { display: grid; gap: 4px; font-size: 9px; letter-spacing: 0.14em; }
+  .swatch .meta span { opacity: 0.65; }
+  .swatch.light { color: var(--void); }
+  .swatch.dark  { color: var(--signal); }
+
+  /* ----------------- TYPE ----------------- */
+  .type-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+  }
+  .type-card {
+    background: var(--ink);
+    padding: 48px;
+    min-height: 420px;
+    display: flex; flex-direction: column;
+    gap: 32px;
+  }
+  .type-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .type-head b { color: var(--signal); }
+  .type-spec { flex: 1; }
+  .type-spec .big {
+    font-size: 112px; line-height: 0.9; letter-spacing: -0.04em;
+    color: var(--signal); font-weight: 400;
+  }
+  .type-spec .mid {
+    font-size: 28px; color: var(--mercury); margin-top: 12px;
+    letter-spacing: -0.015em;
+  }
+  .type-card.body .type-spec .big { font-family: var(--body); font-weight: 300; font-size: 84px; }
+  .type-card.body .type-spec .mid { font-family: var(--body); }
+  .type-card.display .type-spec .big { font-family: var(--display); }
+  .type-card.display .type-spec .mid { font-family: var(--display); }
+  .type-card.mono .type-spec .big { font-family: var(--mono); font-weight: 400; font-size: 56px; }
+  .type-card.mono .type-spec .mid { font-family: var(--mono); font-size: 22px; }
+
+  .type-scale {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--hair);
+    border-top: 1px solid var(--hair);
+  }
+  .scale-cell {
+    background: var(--ink);
+    padding: 16px 12px;
+    font-family: var(--mono); font-size: 9px;
+    color: var(--titanium); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .scale-cell b { display: block; color: var(--signal); font-size: 10px; margin-top: 4px; }
+
+  /* ----------------- VISUAL LANGUAGE ----------------- */
+  .vl-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+  }
+  .vl-card {
+    background: var(--ink);
+    padding: 32px;
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+  }
+  .vl-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .vl-head b { color: var(--signal); }
+  .vl-body { font-family: var(--mono); font-size: 10px; line-height: 1.8; color: var(--silver); letter-spacing: 0.05em; }
+
+  .vl-ticker {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+    margin-top: 16px;
+  }
+  .vl-ticker .t { border-top: 1px solid var(--hair); padding-top: 8px; }
+  .vl-ticker .t .l { color: var(--titanium); font-size: 9px; letter-spacing: 0.15em; }
+  .vl-ticker .t .v { color: var(--signal); font-size: 13px; letter-spacing: -0.01em; font-family: var(--display); }
+
+  /* ----------------- APPLICATIONS ----------------- */
+  .apps {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+  }
+  .app-card {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+  }
+  .app-label {
+    position: absolute; bottom: 20px; left: 32px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    z-index: 2;
+  }
+  .app-label b { color: var(--signal); }
+  .app-ref {
+    position: absolute; top: 20px; right: 20px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium);
+  }
+
+  /* Hero preview */
+  .preview-hero {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 60%, rgba(180,180,200,0.12), transparent 60%),
+      linear-gradient(180deg, #04040a 0%, #0a0a12 100%);
+  }
+  .preview-hero .nav {
+    position: absolute; top: 24px; left: 32px; right: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 10px; color: var(--titanium);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .preview-hero .nav-links { display: flex; gap: 28px; }
+  .preview-hero .nav-cta {
+    border: 1px solid var(--hair-strong);
+    padding: 8px 14px;
+    color: var(--signal);
+  }
+  .preview-hero .ph-title {
+    font-family: var(--display); font-weight: 400;
+    font-size: 76px; line-height: 0.95; letter-spacing: -0.035em;
+    color: var(--signal);
+    max-width: 520px;
+  }
+  .preview-hero .ph-title em { font-style: normal; color: var(--titanium); }
+  .preview-hero .ph-sub {
+    font-family: var(--body); font-size: 15px; color: var(--silver);
+    margin-top: 24px; max-width: 440px; line-height: 1.55;
+  }
+  .preview-hero .ph-cta {
+    margin-top: 40px;
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--signal); color: var(--void);
+    padding: 14px 20px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    width: fit-content;
+  }
+  .preview-hero .ph-cta::after {
+    content: "→"; font-family: var(--display); font-size: 16px;
+  }
+  .preview-hero .ph-planet {
+    position: absolute;
+    right: -80px; top: 50%; transform: translateY(-50%);
+    width: 340px; height: 340px;
+    opacity: 0.9;
+  }
+
+  /* Dashboard preview */
+  .preview-dash {
+    position: absolute; inset: 0;
+    padding: 48px 32px 32px;
+    background: var(--ink);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .preview-dash .d-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--hair); padding-bottom: 12px;
+  }
+  .preview-dash .d-title {
+    font-family: var(--display); font-size: 22px; color: var(--signal);
+    letter-spacing: -0.02em;
+  }
+  .preview-dash .d-meta { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase; }
+  .preview-dash .d-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--hair);
+  }
+  .d-stat {
+    background: var(--ink); padding: 14px;
+  }
+  .d-stat .k { font-family: var(--mono); font-size: 8px; color: var(--titanium);
+    letter-spacing: 0.15em; text-transform: uppercase; }
+  .d-stat .v { font-family: var(--display); font-size: 28px; color: var(--signal);
+    letter-spacing: -0.02em; margin-top: 6px; }
+  .d-stat .trend { font-family: var(--mono); font-size: 9px; color: var(--mercury);
+    margin-top: 2px; letter-spacing: 0.08em; }
+
+  .d-chart {
+    flex: 1;
+    position: relative;
+    background:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px),
+      var(--ink);
+    background-size: 40px 40px;
+    border: 1px solid var(--hair);
+  }
+
+  .d-chart svg { width: 100%; height: 100%; }
+
+  .d-table {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1px; background: var(--hair);
+  }
+  .d-table > div {
+    background: var(--ink); padding: 8px 10px;
+    font-family: var(--mono); font-size: 10px; color: var(--signal);
+  }
+  .d-table .head > div,
+  .d-table > div.h {
+    color: var(--titanium); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+
+  /* ---- footer ---- */
+  .board-foot {
+    padding: 40px 64px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .board-foot b { color: var(--signal); }
+
+  /* iso line art helpers */
+  .iso-box {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+    margin-top: 18px;
+  }
+  .iso-box .c {
+    border: 1px solid var(--hair); padding: 10px;
+    font-family: var(--mono); font-size: 9px; color: var(--silver);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    min-height: 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .iso-box .c b { color: var(--signal); font-size: 14px; font-family: var(--display); letter-spacing: -0.01em; text-transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ====================================================== -->
+<!-- TELEMETRY BAR (sticky)                                  -->
+<!-- ====================================================== -->
+<div class="telemetry">
+  <div class="telemetry-row">
+    <span><span class="dot"></span>LIVE · BRAND IDENTITY · SALESBRAIN</span>
+    <span>MISSION <b>SB-02.26</b></span>
+    <span>LAT <b>47.3219° N</b></span>
+    <span>LNG <b>8.5417° E</b></span>
+    <span>VER <b>0.1 / EXPLORATORY</b></span>
+    <span style="text-align:right;">DIGITALE RAKETE GMBH</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ================================================== -->
+  <!-- HERO                                                -->
+  <!-- ================================================== -->
+  <div class="hero">
+    <div class="starfield"></div>
+    <div class="hero-grid"></div>
+
+    <!-- planet in hero -->
+    <svg class="planet-hero" viewBox="0 0 540 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="pg" cx="35%" cy="35%" r="75%">
+          <stop offset="0%" stop-color="#4a4a55"/>
+          <stop offset="60%" stop-color="#1a1a22"/>
+          <stop offset="100%" stop-color="#050508"/>
+        </radialGradient>
+        <linearGradient id="ring" x1="0" x2="1">
+          <stop offset="0%" stop-color="#f5f5f7" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#f5f5f7" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#f5f5f7" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- planet sphere -->
+      <circle cx="270" cy="270" r="180" fill="url(#pg)"/>
+      <!-- surface latitudes -->
+      <ellipse cx="270" cy="230" rx="175" ry="12" stroke="#1f1f26" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="260" rx="179" ry="8" stroke="#1f1f26" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="290" rx="178" ry="10" stroke="#1f1f26" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="320" rx="170" ry="10" stroke="#1f1f26" stroke-width="1" fill="none"/>
+      <!-- orbit ring front+back -->
+      <ellipse cx="270" cy="300" rx="240" ry="42" stroke="url(#ring)" stroke-width="1.5" fill="none" transform="rotate(-12 270 300)"/>
+      <ellipse cx="270" cy="300" rx="240" ry="42" stroke="#f5f5f7" stroke-width="2" stroke-opacity="0.9" fill="none" stroke-dasharray="220 600" transform="rotate(-12 270 300)"/>
+      <!-- highlight -->
+      <circle cx="220" cy="215" r="60" fill="white" opacity="0.05"/>
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-top">
+        <div class="label-l">
+          File /&nbsp;<b style="color:var(--signal)">salesbrain-brand-v0.1</b><br/>
+          Rebrand exploration · Zero-Gravity direction · Monochrome system.<br/>
+          Prepared for the digitale rakete GmbH founding team.
+        </div>
+        <div class="crosshair"></div>
+      </div>
+
+      <h1 class="hero-title">
+        SALESBR<span class="ai">AI</span>N<br/>
+        <span class="slash">— ORBIT / 01</span>
+      </h1>
+
+      <div class="hero-bottom">
+        <div class="cell">
+          <span class="k">// DIRECTION</span>
+          <span class="v">ZERO-GRAVITY · CINEMATIC MONOCHROME</span>
+        </div>
+        <div class="cell">
+          <span class="k">// PAYLOAD</span>
+          <span class="v">LOGO × TYPE × COLOR × VISUAL LANGUAGE × APPLICATIONS</span>
+        </div>
+        <div class="cell" style="text-align:right;">
+          <span class="k">// STATUS</span>
+          <span class="v">T-00:07:42 · READY FOR REVIEW</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================== -->
+  <!-- MOODBOARD                                           -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 01</div>
+      <h2 class="section-title">Moodboard<br/><span style="color:var(--titanium);">Cinematic Monochrome.</span></h2>
+      <div class="section-sub">Drop real renders &amp;<br/>astro-photography here</div>
+    </div>
+
+    <div class="moodboard">
+      <div class="mood-tile mt-large">
+        <div class="mood-rocket"></div>
+        <div class="starfield"></div>
+        <div class="mt-badge">01 · HERO</div>
+        <div class="mt-label">CORE IMAGE · <b>VERTICAL LAUNCH</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-earth"></div>
+        <div class="starfield" style="opacity:0.5;"></div>
+        <div class="mt-badge">02</div>
+        <div class="mt-label">HORIZON · <b>EARTH FROM ORBIT</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-orbit">
+          <div class="orbit-ring r1"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
+          <div class="orbit-dot d1"></div>
+          <div class="orbit-dot d2"></div>
+        </div>
+        <div class="mt-badge">03</div>
+        <div class="mt-label">DIAGRAM · <b>ORBITAL MECHANICS</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-texture"></div>
+        <div class="placeholder-stripes"></div>
+        <div class="mt-badge">04</div>
+        <div class="mt-label">MATERIAL · <b>BRUSHED TITANIUM</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-grid"></div>
+        <div class="mt-badge">05</div>
+        <div class="mt-label">SYSTEM · <b>TELEMETRY GRID</b></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- COLOR SYSTEM                                        -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 02</div>
+      <h2 class="section-title">Color System<br/><span style="color:var(--titanium);">Vacuum to Signal.</span></h2>
+      <div class="section-sub">Monochrome only · No chroma<br/>Depth through material, not hue</div>
+    </div>
+
+    <div class="palette">
+      <div class="swatch dark" style="background:#050507;">
+        <div>
+          <div class="meta" style="color:var(--titanium);"><span>// 01 — PRIMARY BACKGROUND</span></div>
+        </div>
+        <div>
+          <div class="name" style="margin-bottom:8px;">Void Black</div>
+          <div class="meta">
+            <span>HEX · #050507</span>
+            <span>RGB · 5 5 7</span>
+            <span>USAGE · Canvas, hero bg, night mode</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch dark" style="background:#14141a;">
+        <div class="meta" style="color:var(--titanium);"><span>// 02</span></div>
+        <div>
+          <div class="name">Coal</div>
+          <div class="meta"><span>HEX · #14141A</span><span>RGB · 20 20 26</span></div>
+        </div>
+      </div>
+      <div class="swatch dark" style="background:#2a2a33;">
+        <div class="meta" style="color:var(--titanium);"><span>// 03</span></div>
+        <div>
+          <div class="name">Steel</div>
+          <div class="meta"><span>HEX · #2A2A33</span><span>RGB · 42 42 51</span></div>
+        </div>
+      </div>
+      <div class="swatch dark" style="background:#6b6b75;">
+        <div class="meta"><span>// 04</span></div>
+        <div>
+          <div class="name">Titanium</div>
+          <div class="meta"><span>HEX · #6B6B75</span><span>RGB · 107 107 117</span></div>
+        </div>
+      </div>
+      <div class="swatch light" style="background:#9a9aa3;">
+        <div class="meta"><span>// 05</span></div>
+        <div>
+          <div class="name">Silver</div>
+          <div class="meta"><span>HEX · #9A9AA3</span><span>RGB · 154 154 163</span></div>
+        </div>
+      </div>
+      <div class="swatch light" style="background:#c8c8cf;">
+        <div class="meta"><span>// 06</span></div>
+        <div>
+          <div class="name">Mercury</div>
+          <div class="meta"><span>HEX · #C8C8CF</span><span>RGB · 200 200 207</span></div>
+        </div>
+      </div>
+      <div class="swatch light" style="background:#f5f5f7;">
+        <div class="meta"><span>// 07 — SIGNAL</span></div>
+        <div>
+          <div class="name">Signal White</div>
+          <div class="meta"><span>HEX · #F5F5F7</span><span>USAGE · CTA, text</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="iso-box" style="margin-top:32px;">
+      <div class="c">
+        <span>RATIO</span>
+        <b>86% Dark · 14% Light</b>
+      </div>
+      <div class="c">
+        <span>SEMANTICS</span>
+        <b>White = action &amp; truth. Grey = structure. Black = space.</b>
+      </div>
+      <div class="c">
+        <span>RULE</span>
+        <b>No accent color. Depth via material, grain &amp; glow.</b>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- TYPOGRAPHY                                          -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 03</div>
+      <h2 class="section-title">Typography<br/><span style="color:var(--titanium);">Precision &amp; Telemetry.</span></h2>
+      <div class="section-sub">Three voices. One system.</div>
+    </div>
+
+    <div class="type-board">
+      <div class="type-card display">
+        <div class="type-head">
+          <span>// DISPLAY · HEADLINES</span>
+          <span><b>Space Grotesk</b></span>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa Sg</div>
+          <div class="mid">Dein Vertrieb. Auf Autopilot.</div>
+        </div>
+        <div class="type-head">
+          <span>300 / 400 / 500 / 700</span>
+          <span>GOOGLE FONTS</span>
+        </div>
+      </div>
+
+      <div class="type-card body">
+        <div class="type-head">
+          <span>// BODY · READING</span>
+          <span><b>Inter</b></span>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa Rn</div>
+          <div class="mid">Aktiv in 3–4 Wochen. Verkauft 24/7.</div>
+        </div>
+        <div class="type-head">
+          <span>300 / 400 / 500 / 600 / 700</span>
+          <span>GOOGLE FONTS</span>
+        </div>
+      </div>
+
+      <div class="type-card mono" style="grid-column: span 2;">
+        <div class="type-head">
+          <span>// MONO · TELEMETRY · DATA · LABELS</span>
+          <span><b>JetBrains Mono</b></span>
+        </div>
+        <div class="type-spec" style="display:grid; grid-template-columns: 1fr 1fr; gap:32px; align-items:center;">
+          <div>
+            <div class="big">01:42:08</div>
+            <div class="mid">MISSION · SB-02.26 · LAT 47.3219° N</div>
+          </div>
+          <div style="border-left:1px solid var(--hair); padding-left:32px; font-family:var(--mono);">
+            <div style="font-size:11px; letter-spacing:0.18em; color:var(--titanium); text-transform:uppercase; margin-bottom:12px;">// SAMPLES</div>
+            <div style="font-size:12px; color:var(--silver); line-height:2; letter-spacing:0.05em;">
+              → CTR 4.82% · Reply 22.1%<br/>
+              → Domain warm · 94/100<br/>
+              → Next dispatch · T-00:14:20<br/>
+              → 1,284 contacts in orbit
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="type-scale">
+      <div class="scale-cell"><span>// DISPLAY XL</span><b>128px · 0.92 · -0.045</b></div>
+      <div class="scale-cell"><span>// DISPLAY</span><b>72px · 0.95 · -0.035</b></div>
+      <div class="scale-cell"><span>// H1</span><b>56px · 1.0 · -0.03</b></div>
+      <div class="scale-cell"><span>// H2</span><b>32px · 1.1 · -0.02</b></div>
+      <div class="scale-cell"><span>// BODY</span><b>16px · 1.55 · 0</b></div>
+      <div class="scale-cell"><span>// MONO / LABEL</span><b>10px · 1.8 · +0.15</b></div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- LOGO CONCEPTS                                       -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 04</div>
+      <h2 class="section-title">Logo System<br/><span style="color:var(--titanium);">Five Concepts.</span></h2>
+      <div class="section-sub">Same DNA: Planet · Orbit · Precision<br/>Different voices</div>
+    </div>
+
+    <div class="logos-grid">
+
+      <!-- CONCEPT 01 — ORBITAL MARK -->
+      <div class="logo-card">
+        <div class="logo-top">
+          <span>CONCEPT · 01</span>
+          <span><b>ORBITAL MARK</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- planet -->
+            <circle cx="40" cy="45" r="20" fill="#f5f5f7"/>
+            <!-- orbit -->
+            <ellipse cx="40" cy="45" rx="34" ry="10" stroke="#f5f5f7" stroke-width="1.5" fill="none" transform="rotate(-22 40 45)"/>
+            <!-- occluder for orbit back half to simulate 3d -->
+            <path d="M 20 48 A 34 10 -22 0 0 60 44" stroke="none" fill="none"/>
+            <!-- wordmark -->
+            <text x="82" y="56" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#f5f5f7" letter-spacing="-1">
+              salesbr<tspan font-weight="700">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>LOCKUP · HORIZONTAL</span>
+          <span>PURE WHITE</span>
+        </div>
+      </div>
+
+      <!-- CONCEPT 02 — LAUNCH VECTOR -->
+      <div class="logo-card">
+        <div class="logo-top">
+          <span>CONCEPT · 02</span>
+          <span><b>LAUNCH VECTOR</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- chevron/rocket nose -->
+            <path d="M 22 62 L 42 28 L 62 62 L 52 62 L 42 46 L 32 62 Z" fill="#f5f5f7"/>
+            <!-- trajectory dots -->
+            <circle cx="42" cy="22" r="2" fill="#f5f5f7"/>
+            <circle cx="42" cy="14" r="1.5" fill="#9a9aa3"/>
+            <circle cx="42" cy="8" r="1" fill="#6b6b75"/>
+            <text x="82" y="56" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="400" fill="#f5f5f7" letter-spacing="-1">
+              salesbr<tspan font-weight="700">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>MARK · CHEVRON</span>
+          <span>ASCENT</span>
+        </div>
+      </div>
+
+      <!-- CONCEPT 03 — APERTURE S -->
+      <div class="logo-card">
+        <div class="logo-top">
+          <span>CONCEPT · 03</span>
+          <span><b>APERTURE · S</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- concentric S inside circle -->
+            <circle cx="42" cy="45" r="24" stroke="#f5f5f7" stroke-width="1" fill="none"/>
+            <circle cx="42" cy="45" r="18" stroke="#9a9aa3" stroke-width="1" fill="none"/>
+            <path d="M 32 38 Q 32 32 42 32 L 52 32 M 52 52 Q 52 58 42 58 L 32 58 M 32 45 L 52 45" stroke="#f5f5f7" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <text x="82" y="56" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#f5f5f7" letter-spacing="-1">
+              salesbr<tspan font-weight="700">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>MARK · MONOGRAM</span>
+          <span>FOCUS · LENS</span>
+        </div>
+      </div>
+
+      <!-- CONCEPT 04 — VERTICAL / MISSION BADGE -->
+      <div class="logo-card">
+        <div class="logo-top">
+          <span>CONCEPT · 04</span>
+          <span><b>MISSION BADGE</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="230" height="230" viewBox="0 0 230 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- outer ring -->
+            <circle cx="115" cy="115" r="100" stroke="#f5f5f7" stroke-width="1" fill="none"/>
+            <circle cx="115" cy="115" r="90" stroke="#2a2a33" stroke-width="1" fill="none"/>
+            <!-- tick marks -->
+            <g stroke="#f5f5f7" stroke-width="1">
+              <line x1="115" y1="15" x2="115" y2="25"/>
+              <line x1="115" y1="205" x2="115" y2="215"/>
+              <line x1="15" y1="115" x2="25" y2="115"/>
+              <line x1="205" y1="115" x2="215" y2="115"/>
+            </g>
+            <!-- planet -->
+            <circle cx="115" cy="115" r="40" fill="#f5f5f7"/>
+            <!-- orbit -->
+            <ellipse cx="115" cy="115" rx="62" ry="18" stroke="#f5f5f7" stroke-width="1.5" fill="none" transform="rotate(-20 115 115)"/>
+            <!-- text along badge -->
+            <text x="115" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="4" fill="#9a9aa3">MISSION · SB-02.26</text>
+            <text x="115" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="6" fill="#9a9aa3">SALESBRAIN</text>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>MARK · CIRCULAR</span>
+          <span>STAMP · SEAL</span>
+        </div>
+      </div>
+
+      <!-- CONCEPT 05 — PURE WORDMARK -->
+      <div class="logo-card">
+        <div class="logo-top">
+          <span>CONCEPT · 05</span>
+          <span><b>WORDMARK</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="360" height="90" viewBox="0 0 360 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="180" y="56" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="44" font-weight="500" fill="#f5f5f7" letter-spacing="-2">
+              salesbr<tspan font-weight="700" fill="#f5f5f7">AI</tspan>n
+            </text>
+            <!-- dot over i -->
+            <circle cx="230" cy="26" r="3" fill="#f5f5f7"/>
+            <!-- thin orbit line under it -->
+            <path d="M 40 78 Q 180 90 320 78" stroke="#2a2a33" stroke-width="1" fill="none"/>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>TYPE ONLY</span>
+          <span>CONFIDENT</span>
+        </div>
+      </div>
+
+      <!-- CONCEPT 06 — INVERSE ON LIGHT -->
+      <div class="logo-card inverse">
+        <div class="logo-top">
+          <span>CONCEPT · ALL</span>
+          <span><b>INVERSE · ON LIGHT</b></span>
+        </div>
+        <div class="logo-canvas">
+          <svg width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="45" r="20" fill="#050507"/>
+            <ellipse cx="40" cy="45" rx="34" ry="10" stroke="#050507" stroke-width="1.5" fill="none" transform="rotate(-22 40 45)"/>
+            <text x="82" y="56" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#050507" letter-spacing="-1">
+              salesbr<tspan font-weight="700">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="logo-caption">
+          <span>LOCKUP · LIGHT BG</span>
+          <span>HIGH CONTRAST</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- VISUAL LANGUAGE                                     -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 05</div>
+      <h2 class="section-title">Visual Language<br/><span style="color:var(--titanium);">Telemetry &amp; Structure.</span></h2>
+      <div class="section-sub">The vocabulary that makes it feel like a mission<br/>not a SaaS landing page</div>
+    </div>
+
+    <div class="vl-grid">
+      <!-- COORDINATE CARD -->
+      <div class="vl-card">
+        <div class="vl-head">
+          <span>// PATTERN · 01</span>
+          <span><b>MISSION HEADERS</b></span>
+        </div>
+        <div class="vl-body">
+          Every page/section opens with a mission-style header:<br/>
+          <b style="color:var(--signal); font-family:var(--mono);">MISSION&nbsp;·&nbsp;SB-02.26</b><br/>
+          Indexed, timestamped, coordinated.
+        </div>
+        <div class="vl-ticker">
+          <div class="t"><div class="l">// T-MINUS</div><div class="v">00:14:20</div></div>
+          <div class="t"><div class="l">// ORBIT</div><div class="v">LEO · 420km</div></div>
+          <div class="t"><div class="l">// PAYLOAD</div><div class="v">1,284 leads</div></div>
+          <div class="t"><div class="l">// VELOCITY</div><div class="v">7.8 km/s</div></div>
+        </div>
+      </div>
+
+      <!-- GRID CARD -->
+      <div class="vl-card" style="padding:0; overflow:hidden;">
+        <div style="padding:32px 32px 0;">
+          <div class="vl-head">
+            <span>// PATTERN · 02</span>
+            <span><b>HAIRLINE GRID</b></span>
+          </div>
+        </div>
+        <div style="position:absolute; inset:70px 0 0; background:
+          linear-gradient(var(--hair) 1px, transparent 1px),
+          linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+          background-size:40px 40px;">
+          <!-- crosshair markers -->
+          <div style="position:absolute; left:40px; top:40px; width:20px; height:20px; border:1px solid var(--signal); transform: rotate(45deg);"></div>
+          <div style="position:absolute; right:60px; top:60px; width:8px; height:8px; background:var(--signal); border-radius:50%; box-shadow: 0 0 16px rgba(255,255,255,0.6);"></div>
+          <div style="position:absolute; right:40px; bottom:60px; width:12px; height:12px; border:1px solid var(--titanium);"></div>
+          <div style="position:absolute; left:80px; bottom:60px; font-family:var(--mono); font-size:10px; color:var(--titanium); letter-spacing:0.12em;">47.32° N · 8.54° E</div>
+          <div style="position:absolute; right:50px; top:130px; font-family:var(--mono); font-size:9px; color:var(--mercury); letter-spacing:0.12em; transform: rotate(-90deg); transform-origin: right top;">GRID · 40px</div>
+        </div>
+      </div>
+
+      <!-- PLANET ICONOGRAPHY -->
+      <div class="vl-card">
+        <div class="vl-head">
+          <span>// PATTERN · 03</span>
+          <span><b>ORBIT DIAGRAMS</b></span>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center; height:220px; position:relative;">
+          <svg width="240" height="200" viewBox="0 0 240 200" fill="none">
+            <circle cx="120" cy="100" r="16" fill="#f5f5f7"/>
+            <ellipse cx="120" cy="100" rx="90" ry="28" stroke="#2a2a33" stroke-width="1" fill="none"/>
+            <ellipse cx="120" cy="100" rx="70" ry="20" stroke="#6b6b75" stroke-width="1" fill="none"/>
+            <ellipse cx="120" cy="100" rx="50" ry="14" stroke="#9a9aa3" stroke-width="1" fill="none"/>
+            <!-- dots on orbits -->
+            <circle cx="210" cy="100" r="3" fill="#f5f5f7"/>
+            <circle cx="80" cy="85" r="2" fill="#9a9aa3"/>
+            <circle cx="160" cy="115" r="2" fill="#6b6b75"/>
+            <!-- labels -->
+            <text x="210" y="118" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1" fill="#9a9aa3">L1</text>
+            <text x="80" y="76" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1" fill="#9a9aa3">L2</text>
+          </svg>
+        </div>
+        <div class="vl-body" style="font-size:10px;">
+          Leads &amp; channels visualised as orbits.<br/>
+          Closer to center = closer to close.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- APPLICATIONS                                        -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index">SEC · 06</div>
+      <h2 class="section-title">In Anwendung<br/><span style="color:var(--titanium);">Hero &amp; Dashboard.</span></h2>
+      <div class="section-sub">Wie sich das System anfühlt<br/>wenn es Produkt wird</div>
+    </div>
+
+    <div class="apps">
+      <!-- Hero preview -->
+      <div class="app-card">
+        <div class="starfield" style="opacity:0.4;"></div>
+        <div class="preview-hero">
+          <div class="nav">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="10" fill="#f5f5f7"/>
+                <ellipse cx="20" cy="20" rx="17" ry="5" stroke="#f5f5f7" stroke-width="1" transform="rotate(-22 20 20)"/>
+              </svg>
+              <span style="color:var(--signal); letter-spacing:0.04em; font-size:12px;">salesbr<b style="font-weight:700;">AI</b>n</span>
+            </div>
+            <div class="nav-links">
+              <span>Mission</span><span>Journey</span><span>Cases</span><span>Packages</span>
+            </div>
+            <div class="nav-cta">Demo buchen →</div>
+          </div>
+
+          <div class="app-label">HERO · <b>LANDING</b></div>
+
+          <h3 class="ph-title">Dein Vertrieb.<br/><em>Auf Autopilot.</em></h3>
+          <p class="ph-sub">Der einzige KI-Agent mit 20 Jahren Schweizer Vertriebserfahrung. Aktiv in 3–4 Wochen, verkauft 24/7. Keine IT-Kenntnisse nötig.</p>
+          <a class="ph-cta">Mission starten</a>
+
+          <svg class="ph-planet" viewBox="0 0 340 340" fill="none">
+            <defs>
+              <radialGradient id="pg2" cx="35%" cy="35%" r="75%">
+                <stop offset="0%" stop-color="#4a4a55"/>
+                <stop offset="60%" stop-color="#1a1a22"/>
+                <stop offset="100%" stop-color="#050508"/>
+              </radialGradient>
+            </defs>
+            <circle cx="170" cy="170" r="110" fill="url(#pg2)"/>
+            <ellipse cx="170" cy="190" rx="150" ry="25" stroke="#f5f5f7" stroke-width="1.2" fill="none" transform="rotate(-15 170 190)" opacity="0.75"/>
+            <circle cx="140" cy="140" r="40" fill="white" opacity="0.05"/>
+          </svg>
+
+          <div style="position:absolute; bottom:20px; left:32px; right:32px; display:flex; justify-content:space-between; font-family:var(--mono); font-size:9px; letter-spacing:0.18em; color:var(--titanium); text-transform:uppercase; border-top:1px solid var(--hair); padding-top:14px;">
+            <span>Transparente Preise</span>
+            <span>Setup in 3-4 Wochen</span>
+            <span>Pay-for-Performance</span>
+            <span>Made in Switzerland</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard preview -->
+      <div class="app-card">
+        <div class="preview-dash">
+          <div class="app-label" style="position:static; margin-bottom:4px;">DASHBOARD · <b>MISSION CONTROL</b></div>
+          <div class="d-head">
+            <div class="d-title">Mission SB-02.26</div>
+            <div class="d-meta">LIVE · T+14:22:06</div>
+          </div>
+          <div class="d-stats">
+            <div class="d-stat"><div class="k">// LEADS IN ORBIT</div><div class="v">1,284</div><div class="trend">↗ +128 · 24h</div></div>
+            <div class="d-stat"><div class="k">// REPLY RATE</div><div class="v">22.1%</div><div class="trend">↗ +3.4pt · 7d</div></div>
+            <div class="d-stat"><div class="k">// HOT</div><div class="v">42</div><div class="trend">· qualified</div></div>
+          </div>
+
+          <div class="d-chart">
+            <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#f5f5f7" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#f5f5f7" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 0 110 L 40 100 L 80 105 L 120 85 L 160 92 L 200 70 L 240 75 L 280 55 L 320 48 L 360 38 L 400 22 L 400 140 L 0 140 Z" fill="url(#cg)"/>
+              <path d="M 0 110 L 40 100 L 80 105 L 120 85 L 160 92 L 200 70 L 240 75 L 280 55 L 320 48 L 360 38 L 400 22" stroke="#f5f5f7" stroke-width="1.5" fill="none"/>
+              <circle cx="400" cy="22" r="3" fill="#f5f5f7"/>
+              <circle cx="400" cy="22" r="7" fill="none" stroke="#f5f5f7" stroke-opacity="0.4"/>
+            </svg>
+            <div style="position:absolute; top:8px; left:8px; font-family:var(--mono); font-size:8px; color:var(--titanium); letter-spacing:0.15em;">// TRAJECTORY · 30d</div>
+          </div>
+
+          <div class="d-table">
+            <div class="h">Contact</div><div class="h">Channel</div><div class="h">Score</div><div class="h">Status</div>
+            <div>A. Keller · Helvetia</div><div>LINKEDIN</div><div style="color:var(--signal);">94</div><div style="color:var(--signal);">HOT</div>
+            <div>M. Tanner · SwissRe</div><div>EMAIL</div><div>81</div><div>WARM</div>
+            <div>R. Fischer · UBS</div><div>EMAIL</div><div>67</div><div>WARM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- FOOT                                                -->
+  <!-- ================================================== -->
+  <div class="board-foot">
+    <span>SALESBRAIN · BRAND IDENTITY · V0.1</span>
+    <span>PREPARED BY · <b>DIGITALE RAKETE GMBH</b></span>
+    <span>2026 · MISSION <b>SB-02.26</b></span>
+  </div>
+
+</div>
+
+</body>
+</html>

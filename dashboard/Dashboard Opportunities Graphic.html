@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1440"/>
+<title>Salesbrain Opportunities — Hero Graphic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"/>
+<style>
+:root {
+  --paper: #fafaf7;
+  --bone: #f2f2ef;
+  --fog: #e6e6e2;
+  --mist: #d1d1cd;
+  --silver: #9a9aa0;
+  --titanium: #5f5f66;
+  --graphite: #2a2a30;
+  --ink: #15151a;
+  --swiss: #E1001A;
+  --swiss-soft: rgba(225,0,26,0.08);
+  --hair: rgba(20,20,26,0.10);
+  --display: "Space Grotesk", sans-serif;
+  --body: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --r: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+.frame {
+  width: 1200px; height: 720px;
+  background: var(--bone);
+  border-radius: 16px;
+  overflow: hidden; display: flex;
+  box-shadow: 0 4px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06), 0 40px 120px rgba(225,0,26,0.08);
+  position: relative;
+}
+.frame::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 30% 40% at 70% 30%, rgba(225,0,26,0.03), transparent);
+  pointer-events: none; border-radius: 16px;
+}
+
+/* SIDEBAR (compact, Opp active) */
+.sb {
+  width: 56px; flex-shrink: 0;
+  background: var(--paper);
+  border-right: 1px solid var(--hair);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 16px 0;
+  gap: 4px;
+}
+.sb-logo-sm {
+  width: 32px; height: 32px; margin-bottom: 16px;
+}
+.sb-icon {
+  width: 36px; height: 36px; border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--titanium); cursor: default;
+  position: relative;
+}
+.sb-icon:hover { background: var(--bone); }
+.sb-icon.active { background: var(--swiss-soft); color: var(--swiss); }
+.sb-icon svg { width: 20px; height: 20px; }
+.sb-icon .badge {
+  position: absolute; top: 2px; right: 2px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--swiss); color: white;
+  font-family: var(--mono); font-size: 8px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.sb-spacer { flex: 1; }
+.sb-avatar-sm {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--swiss); color: white;
+  font-family: var(--display); font-size: 10px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* MAIN */
+.mn { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+}
+.opp-title {
+  font-family: var(--display); font-size: 24px; font-weight: 500;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 10px;
+}
+.opp-title .star { color: var(--swiss); }
+.opp-meta {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+  color: var(--titanium); margin-top: 2px;
+}
+.tb-actions { display: flex; gap: 8px; }
+.tb-btn {
+  padding: 7px 14px; border-radius: var(--r);
+  border: 1px solid var(--hair); background: var(--paper);
+  font-family: var(--mono); font-size: 10px; color: var(--ink);
+  display: flex; align-items: center; gap: 6px;
+}
+.tb-btn.primary { background: var(--swiss); color: white; border-color: var(--swiss); }
+
+/* BOARD */
+.board {
+  flex: 1; overflow: hidden;
+  padding: 20px 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.col {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.col-head {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--hair);
+}
+.col-title {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 500; color: var(--ink);
+}
+.col-title .cd { width: 10px; height: 10px; border-radius: 50%; }
+.col-title .cnt { color: var(--swiss); margin-left: auto; }
+.col-total {
+  font-family: var(--display); font-size: 20px; font-weight: 500;
+  letter-spacing: -0.02em; margin-top: 4px;
+}
+.col-body { padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+
+.card {
+  background: var(--bone); border: 1px solid var(--hair);
+  border-radius: var(--r); padding: 12px;
+  transition: border-color 0.2s;
+}
+.card:first-child { border-color: var(--swiss); box-shadow: 0 2px 12px rgba(225,0,26,0.06); }
+.card .c-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.card .c-name { font-family: var(--display); font-size: 13px; font-weight: 500; color: var(--ink); }
+.card .c-score {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 20px;
+}
+.c-score.hot { background: var(--swiss-soft); color: var(--swiss); }
+.c-score.warm { background: rgba(234,160,40,0.12); color: #b87a00; }
+.c-score.cool { background: rgba(80,140,200,0.12); color: #3a7aaa; }
+.card .c-contact { font-size: 11px; color: var(--titanium); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+.card .c-contact svg { width: 12px; height: 12px; flex-shrink: 0; }
+.card .c-bot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 6px; border-top: 1px solid var(--hair);
+}
+.card .c-val { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--swiss); }
+.card .c-date { font-family: var(--mono); font-size: 9px; color: var(--silver); }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <!-- SIDEBAR (collapsed) -->
+  <div class="sb">
+    <svg class="sb-logo-sm" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+      <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+      <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+      <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+    </svg>
+
+    <div class="sb-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><path d="M7 10.5c0-1.5 1.3-2.5 3-2.5s3 1 3 2.5"/><circle cx="8.5" cy="8" r="0.8" fill="currentColor"/><circle cx="11.5" cy="8" r="0.8" fill="currentColor"/></svg>
+    </div>
+    <div class="sb-icon active">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3l2 5h5l-4 3 1.5 5L10 13l-4.5 3L7 11 3 8h5z"/></svg>
+    </div>
+    <div class="sb-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3.5"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6"/></svg>
+    </div>
+    <div class="sb-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14"/></svg>
+      <span class="badge">8</span>
+    </div>
+    <div class="sb-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="5" height="7" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="13" width="5" height="4" rx="1"/><rect x="12" y="11" width="5" height="6" rx="1"/></svg>
+    </div>
+
+    <div class="sb-spacer"></div>
+    <div class="sb-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 1v3M10 16v3M1 10h3M16 10h3M3.9 3.9l2.1 2.1M14 14l2.1 2.1M16.1 3.9l-2.1 2.1M6 14l-2.1 2.1"/></svg>
+    </div>
+    <div class="sb-avatar-sm">MK</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="mn">
+    <div class="topbar">
+      <div>
+        <div class="opp-title"><span class="star">✦</span> Opportunities</div>
+        <div class="opp-meta">11 aktive Opportunities · CHF 443'000 Gesamtwert</div>
+      </div>
+      <div class="tb-actions">
+        <div class="tb-btn"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5h14M5 5v-1a1 1 0 011-1h2M8 10h4M6 14h8"/></svg> Filtern</div>
+        <div class="tb-btn primary">+ Neue Opportunity</div>
+      </div>
+    </div>
+
+    <div class="board">
+      <!-- QUALIFIED -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-title"><span class="cd" style="background:#5a8aca;"></span>Qualifiziert<span class="cnt">3</span></div>
+          <div class="col-total">CHF 127'000</div>
+        </div>
+        <div class="col-body">
+          <div class="card">
+            <div class="c-top"><div class="c-name">Helvetia Solutions</div><div class="c-score hot">85</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> L. Baumann · VP Sales</div>
+            <div class="c-bot"><span class="c-val">CHF 45'000</span><span class="c-date">Jan 26</span></div>
+          </div>
+          <div class="card">
+            <div class="c-top"><div class="c-name">Bernex Fintech AG</div><div class="c-score hot">94</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> A. Steiner · Operations</div>
+            <div class="c-bot"><span class="c-val">CHF 67'000</span><span class="c-date">Jan 26</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULED -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-title"><span class="cd" style="background:#ea9f28;"></span>Terminiert<span class="cnt">3</span></div>
+          <div class="col-total">CHF 123'500</div>
+        </div>
+        <div class="col-body">
+          <div class="card">
+            <div class="c-top"><div class="c-name">Nexora Digital</div><div class="c-score hot">92</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> P. Gerber · CEO</div>
+            <div class="c-bot"><span class="c-val">CHF 32'000</span><span class="c-date">Jan 25</span></div>
+          </div>
+          <div class="card">
+            <div class="c-top"><div class="c-name">Alpenblick Beratung</div><div class="c-score warm">72</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> T. Widmer · Director</div>
+            <div class="c-bot"><span class="c-val">CHF 18'500</span><span class="c-date">Jan 25</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WON -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-title"><span class="cd" style="background:#4a9a5a;"></span>Gewonnen<span class="cnt">3</span></div>
+          <div class="col-total">CHF 108'000</div>
+        </div>
+        <div class="col-body">
+          <div class="card">
+            <div class="c-top"><div class="c-name">Wachstum Marketing</div><div class="c-score warm">88</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> K. Frei · Head Growth</div>
+            <div class="c-bot"><span class="c-val">CHF 28'000</span><span class="c-date">Jan 24</span></div>
+          </div>
+          <div class="card">
+            <div class="c-top"><div class="c-name">Innovate Zürich</div><div class="c-score hot">91</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> R. Schmid · PM</div>
+            <div class="c-bot"><span class="c-val">CHF 42'000</span><span class="c-date">Jan 24</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REARRANGED -->
+      <div class="col">
+        <div class="col-head">
+          <div class="col-title"><span class="cd" style="background:var(--silver);"></span>Verschoben<span class="cnt">2</span></div>
+          <div class="col-total">CHF 84'500</div>
+        </div>
+        <div class="col-body">
+          <div class="card">
+            <div class="c-top"><div class="c-name">Zukunft Systems</div><div class="c-score cool">76</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> D. Roth · CTO</div>
+            <div class="c-bot"><span class="c-val">CHF 55'000</span><span class="c-date">Jan 23</span></div>
+          </div>
+          <div class="card">
+            <div class="c-top"><div class="c-name">Bern Technik AG</div><div class="c-score cool">68</div></div>
+            <div class="c-contact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3"/><path d="M4 17c0-3 2.7-5 6-5s6 2 6 5"/></svg> M. Hofer · IT Director</div>
+            <div class="c-bot"><span class="c-val">CHF 29'500</span><span class="c-date">Jan 22</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
