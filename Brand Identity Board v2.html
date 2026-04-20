@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440" />
+<title>Salesbrain — Brand Identity Board v0.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+<style>
+  :root {
+    /* Inverted: LIGHT is primary */
+    --paper: #fafaf7;       /* primary bg — subtle warm white */
+    --bone:  #f2f2ef;       /* secondary surface */
+    --fog:   #e6e6e2;       /* tertiary surface */
+    --mist:  #d1d1cd;       /* hairline-strong */
+    --silver:#9a9aa0;
+    --titanium:#5f5f66;
+    --graphite:#2a2a30;
+    --ink:   #15151a;       /* primary text */
+    --void:  #08080b;       /* strongest black */
+    --hair:  rgba(20,20,26,0.10);
+    --hair-strong: rgba(20,20,26,0.18);
+
+    /* Accent — Swiss Red, used sparingly */
+    --swiss: #E1001A;
+    --swiss-deep: #B50015;
+    --swiss-soft: rgba(225,0,26,0.08);
+
+    --display: "Space Grotesk", "Helvetica Neue", sans-serif;
+    --body: "Inter", "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  body { min-width: 1440px; }
+
+  .page { max-width: 1440px; margin: 0 auto; padding: 0 0 120px; }
+
+  /* ----------------- Dotted noise texture ----------------- */
+  .noise {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(rgba(20,20,26,0.05) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none; opacity: 0.4;
+  }
+
+  /* ----------------- TELEMETRY HEADER ----------------- */
+  .telemetry {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,250,247,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hair);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--titanium);
+    text-transform: uppercase;
+  }
+  .telemetry-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto 1fr;
+    gap: 32px;
+    padding: 10px 40px;
+    align-items: center;
+  }
+  .telemetry-row .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--swiss);
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 6px rgba(225,0,26,0.55);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .telemetry b { color: var(--ink); font-weight: 500; }
+
+  /* ----------------- HERO ----------------- */
+  .hero {
+    position: relative;
+    height: 780px;
+    border-bottom: 1px solid var(--hair);
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(225,0,26,0.05), transparent 70%),
+      linear-gradient(180deg, #fbfbf8 0%, #f2f2ef 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  }
+  .hero-inner {
+    position: relative;
+    height: 100%;
+    padding: 96px 64px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .hero-top .label-l { max-width: 380px; line-height: 1.8; }
+  .hero-top .label-l b { color: var(--ink); }
+  .hero-top .crosshair {
+    width: 56px; height: 56px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 50%;
+    position: relative;
+  }
+  .hero-top .crosshair::before,
+  .hero-top .crosshair::after {
+    content: ""; position: absolute; background: var(--hair-strong);
+  }
+  .hero-top .crosshair::before { left: 50%; top: -10px; bottom: -10px; width: 1px; transform: translateX(-50%); }
+  .hero-top .crosshair::after  { top: 50%; left: -10px; right: -10px; height: 1px; transform: translateY(-50%); }
+
+  .hero-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 168px;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .hero-title .ai {
+    display: inline-block;
+    color: var(--swiss);
+    font-weight: 600;
+  }
+  .hero-title .slash { color: var(--silver); font-weight: 300; }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 64px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .hero-bottom .cell .k { color: var(--silver); display: block; margin-bottom: 6px; font-size: 9px; }
+  .hero-bottom .cell .v { color: var(--ink); font-size: 13px; letter-spacing: 0.04em; }
+  .hero-bottom .cell .v .red { color: var(--swiss); }
+
+  .planet-hero {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-40%);
+    width: 520px;
+    height: 520px;
+    pointer-events: none;
+  }
+
+  /* ----------------- SECTION ----------------- */
+  section.band {
+    position: relative;
+    padding: 120px 64px;
+    border-bottom: 1px solid var(--hair);
+  }
+  section.band.dark {
+    background: var(--void);
+    color: var(--paper);
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  section.band.dark .section-title { color: var(--paper); }
+  section.band.dark .section-index,
+  section.band.dark .section-sub { color: var(--silver); }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 48px; align-items: end;
+    margin-bottom: 64px;
+  }
+  .section-index {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .section-index .rd { color: var(--swiss); }
+  .section-title {
+    font-family: var(--display);
+    font-size: 56px; line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink); font-weight: 400;
+  }
+  .section-title span.sub { color: var(--silver); }
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 10px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* ----------------- MOODBOARD ----------------- */
+  .moodboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr;
+    grid-template-rows: 280px 280px;
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+  }
+  .mood-tile {
+    background: var(--bone);
+    position: relative; overflow: hidden;
+  }
+  .mood-tile.dark { background: var(--void); }
+  .mood-tile .mt-label {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .mood-tile.dark .mt-label { color: var(--silver); }
+  .mood-tile .mt-label b { color: var(--ink); font-weight: 500; }
+  .mood-tile.dark .mt-label b { color: var(--paper); }
+  .mood-tile .mt-badge {
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    border: 1px solid var(--hair-strong);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+  .mood-tile.dark .mt-badge { color: var(--silver); border-color: rgba(255,255,255,0.18); }
+  .mood-tile .mt-badge.red { color: var(--swiss); border-color: var(--swiss); }
+  .mt-large { grid-column: span 1; grid-row: span 2; }
+
+  /* Hero mood — rocket silhouette on light */
+  .mood-rocket {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 140% 70% at 50% 120%, rgba(225,0,26,0.05), transparent 60%),
+      linear-gradient(180deg, #f5f5f2 0%, #e6e6e2 100%);
+  }
+  .mood-rocket::before {
+    content: "";
+    position: absolute; left: 50%; bottom: -40px; transform: translateX(-50%);
+    width: 60px; height: 360px;
+    background: linear-gradient(90deg, #888892 0%, #2a2a30 50%, #888892 100%);
+    border-radius: 30px 30px 10px 10px;
+  }
+  .mood-rocket::after {
+    /* red band on rocket */
+    content: "";
+    position: absolute; left: 50%; bottom: 200px; transform: translateX(-50%);
+    width: 60px; height: 10px;
+    background: var(--swiss);
+  }
+  .mood-rocket .trail {
+    position: absolute; left: 50%; bottom: -120px; transform: translateX(-50%);
+    width: 44px; height: 180px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(225,0,26,0.85) 0%, rgba(225,0,26,0.25) 40%, transparent 80%);
+    filter: blur(8px);
+  }
+
+  .mood-earth {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 150%, rgba(130,130,145,0.55) 0%, rgba(200,200,200,0.25) 30%, transparent 50%),
+      linear-gradient(180deg, #efefec 0%, #e6e6e2 100%);
+  }
+
+  .mood-orbit {
+    position: absolute; inset: 0;
+    background: var(--void);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .orbit-ring { position: absolute; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%; }
+  .orbit-ring.r1 { width: 70%; height: 70%; }
+  .orbit-ring.r2 { width: 50%; height: 50%; border-color: rgba(255,255,255,0.12); }
+  .orbit-ring.r3 { width: 30%; height: 30%; }
+  .orbit-dot {
+    position: absolute; width: 6px; height: 6px;
+    background: var(--paper); border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255,255,255,0.8);
+  }
+  .orbit-dot.d1 { top: 15%; left: 50%; }
+  .orbit-dot.d2 { top: 50%; right: 25%; background: var(--swiss); box-shadow: 0 0 10px rgba(225,0,26,0.8); }
+
+  .mood-texture {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, #d1d1cb 0%, #f0f0ec 50%, #d1d1cb 100%),
+      repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,0.06) 2px 3px);
+    background-blend-mode: multiply;
+  }
+  .mood-grid {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px),
+      var(--bone);
+    background-size: 24px 24px;
+  }
+  .mood-grid::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(225,0,26,0.12), transparent 50%);
+  }
+
+  /* ----------------- LOGO SYSTEM ----------------- */
+  .logo-master {
+    background: var(--paper);
+    border: 1px solid var(--hair);
+    padding: 80px 64px;
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-master-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  .logo-master-head b { color: var(--swiss); }
+  .logo-master-head .pill {
+    border: 1px solid var(--swiss);
+    color: var(--swiss);
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .logo-master-canvas {
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px 0;
+  }
+  .logo-master-legend {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: var(--hair);
+    margin-top: 56px;
+  }
+  .legend-cell {
+    background: var(--paper); padding: 18px 20px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .legend-cell b { display: block; color: var(--ink); font-size: 12px; letter-spacing: -0.01em; text-transform: none; font-family: var(--display); font-weight: 500; margin-top: 4px; }
+
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+  }
+  .logo-card {
+    background: var(--paper);
+    padding: 48px 36px 28px;
+    display: flex; flex-direction: column; gap: 24px;
+    min-height: 320px;
+  }
+  .logo-card.dark { background: var(--void); }
+  .logo-card.red  { background: var(--swiss); }
+  .logo-card .lc-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--titanium);
+  }
+  .logo-card .lc-head b { color: var(--ink); }
+  .logo-card.dark .lc-head { color: var(--silver); }
+  .logo-card.dark .lc-head b { color: var(--paper); }
+  .logo-card.red .lc-head { color: rgba(255,255,255,0.7); }
+  .logo-card.red .lc-head b { color: var(--paper); }
+  .lc-canvas { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+  .lc-foot {
+    border-top: 1px solid var(--hair);
+    padding-top: 14px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .logo-card.dark .lc-foot { border-top-color: rgba(255,255,255,0.10); color: var(--silver); }
+  .logo-card.red .lc-foot { border-top-color: rgba(255,255,255,0.30); color: rgba(255,255,255,0.8); }
+
+  /* ----------------- COLORS ----------------- */
+  .palette {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+    height: 320px;
+  }
+  .swatch {
+    position: relative;
+    padding: 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .swatch .name { font-size: 14px; letter-spacing: -0.01em; text-transform: none; font-family: var(--display); font-weight: 500; }
+  .swatch .meta { display: grid; gap: 3px; font-size: 9px; letter-spacing: 0.14em; }
+  .swatch .meta span { opacity: 0.7; }
+  .swatch.light { color: var(--ink); }
+  .swatch.dark  { color: var(--paper); }
+  .swatch.red { color: var(--paper); }
+  .swatch .tag { font-size: 9px; letter-spacing: 0.18em; color: inherit; opacity: 0.6; }
+  .swatch .tag.prim { color: var(--swiss); opacity: 1; font-weight: 600; }
+  .swatch.red .tag.prim { color: var(--paper); }
+  .swatch.dark .tag.prim { color: var(--swiss); }
+
+  .ratio-bar {
+    margin-top: 40px;
+    height: 56px;
+    display: grid;
+    grid-template-columns: 62fr 24fr 8fr 6fr;
+    background: var(--hair);
+    gap: 1px;
+    border: 1px solid var(--hair);
+  }
+  .ratio-bar .seg {
+    position: relative;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .ratio-bar .seg b { font-family: var(--display); font-size: 13px; letter-spacing: -0.01em; text-transform: none; font-weight: 500; }
+
+  /* ----------------- TYPOGRAPHY ----------------- */
+  .type-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+  }
+  .type-card {
+    background: var(--paper); padding: 48px;
+    min-height: 420px;
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .type-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .type-head b { color: var(--ink); }
+  .type-spec { flex: 1; }
+  .type-spec .big {
+    font-size: 112px; line-height: 0.9; letter-spacing: -0.04em;
+    color: var(--ink); font-weight: 400;
+  }
+  .type-spec .big .r { color: var(--swiss); }
+  .type-spec .mid {
+    font-size: 28px; color: var(--titanium); margin-top: 12px;
+    letter-spacing: -0.015em;
+  }
+  .type-card.body .type-spec .big { font-family: var(--body); font-weight: 300; font-size: 84px; }
+  .type-card.body .type-spec .mid { font-family: var(--body); }
+  .type-card.display .type-spec .big { font-family: var(--display); }
+  .type-card.display .type-spec .mid { font-family: var(--display); }
+  .type-card.mono .type-spec .big { font-family: var(--mono); font-weight: 400; font-size: 56px; }
+  .type-card.mono .type-spec .mid { font-family: var(--mono); font-size: 22px; }
+
+  .type-scale {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--hair);
+    border-top: 1px solid var(--hair);
+  }
+  .scale-cell {
+    background: var(--paper);
+    padding: 16px 12px;
+    font-family: var(--mono); font-size: 9px;
+    color: var(--titanium); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .scale-cell b { display: block; color: var(--ink); font-size: 10px; margin-top: 4px; }
+
+  /* ----------------- VISUAL LANGUAGE ----------------- */
+  .vl-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+  }
+  .vl-card {
+    background: var(--paper); padding: 32px;
+    min-height: 340px; position: relative; overflow: hidden;
+  }
+  .vl-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .vl-head b { color: var(--ink); }
+  .vl-body { font-family: var(--mono); font-size: 10px; line-height: 1.8; color: var(--titanium); letter-spacing: 0.05em; }
+  .vl-body b { color: var(--ink); }
+  .vl-body .r { color: var(--swiss); }
+
+  .vl-ticker {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+    margin-top: 16px;
+  }
+  .vl-ticker .t { border-top: 1px solid var(--hair); padding-top: 8px; }
+  .vl-ticker .t .l { color: var(--titanium); font-size: 9px; letter-spacing: 0.15em; font-family: var(--mono); text-transform: uppercase; }
+  .vl-ticker .t .v { color: var(--ink); font-size: 13px; letter-spacing: -0.01em; font-family: var(--display); font-weight: 500; }
+  .vl-ticker .t.red .v { color: var(--swiss); }
+
+  /* ----------------- APPLICATIONS ----------------- */
+  .apps {
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 2px;
+    background: var(--hair);
+    border: 1px solid var(--hair);
+  }
+  .app-card {
+    background: var(--paper);
+    position: relative; overflow: hidden;
+    min-height: 520px;
+  }
+  .app-label {
+    position: absolute; bottom: 20px; left: 32px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    color: var(--titanium); text-transform: uppercase;
+    z-index: 2;
+  }
+  .app-label b { color: var(--ink); }
+
+  /* Hero preview */
+  .preview-hero {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px;
+    background:
+      radial-gradient(ellipse 50% 40% at 82% 55%, rgba(225,0,26,0.04), transparent 70%),
+      linear-gradient(180deg, #fbfbf8 0%, #f2f2ef 100%);
+  }
+  .preview-hero .nav {
+    position: absolute; top: 24px; left: 32px; right: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 10px; color: var(--titanium);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .preview-hero .nav-links { display: flex; gap: 28px; }
+  .preview-hero .nav-cta {
+    background: var(--swiss); color: var(--paper);
+    padding: 9px 16px;
+    font-weight: 500;
+  }
+  .preview-hero .ph-title {
+    font-family: var(--display); font-weight: 400;
+    font-size: 76px; line-height: 0.95; letter-spacing: -0.035em;
+    color: var(--ink);
+    max-width: 520px;
+  }
+  .preview-hero .ph-title em { font-style: normal; color: var(--silver); }
+  .preview-hero .ph-title b { color: var(--swiss); font-weight: 500; }
+  .preview-hero .ph-sub {
+    font-family: var(--body); font-size: 15px; color: var(--titanium);
+    margin-top: 24px; max-width: 440px; line-height: 1.55;
+  }
+  .preview-hero .ph-cta {
+    margin-top: 40px;
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--ink); color: var(--paper);
+    padding: 14px 20px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    width: fit-content;
+  }
+  .preview-hero .ph-cta::after {
+    content: "→"; font-family: var(--display); font-size: 16px;
+  }
+  .preview-hero .ph-planet {
+    position: absolute;
+    right: -80px; top: 50%; transform: translateY(-50%);
+    width: 340px; height: 340px;
+  }
+
+  /* Dashboard preview */
+  .preview-dash {
+    position: absolute; inset: 0;
+    padding: 48px 32px 32px;
+    background: var(--bone);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .preview-dash .d-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--hair); padding-bottom: 12px;
+  }
+  .preview-dash .d-title {
+    font-family: var(--display); font-size: 22px; color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .preview-dash .d-meta { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase; }
+  .preview-dash .d-meta .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--swiss); margin-right: 6px; vertical-align: middle;
+    box-shadow: 0 0 6px rgba(225,0,26,0.4);
+  }
+  .preview-dash .d-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--hair);
+  }
+  .d-stat { background: var(--paper); padding: 14px; }
+  .d-stat .k { font-family: var(--mono); font-size: 8px; color: var(--titanium);
+    letter-spacing: 0.15em; text-transform: uppercase; }
+  .d-stat .v { font-family: var(--display); font-size: 28px; color: var(--ink);
+    letter-spacing: -0.02em; margin-top: 6px; font-weight: 500; }
+  .d-stat.hot .v { color: var(--swiss); }
+  .d-stat .trend { font-family: var(--mono); font-size: 9px; color: var(--titanium);
+    margin-top: 2px; letter-spacing: 0.08em; }
+  .d-stat .trend.up { color: var(--swiss); }
+
+  .d-chart {
+    flex: 1; position: relative;
+    background:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px),
+      var(--paper);
+    background-size: 40px 40px;
+    border: 1px solid var(--hair);
+  }
+  .d-chart svg { width: 100%; height: 100%; }
+
+  .d-table {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1px; background: var(--hair);
+  }
+  .d-table > div {
+    background: var(--paper); padding: 8px 10px;
+    font-family: var(--mono); font-size: 10px; color: var(--ink);
+  }
+  .d-table > div.h {
+    color: var(--titanium); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .d-table > div.red { color: var(--swiss); font-weight: 500; }
+
+  /* footer */
+  .board-foot {
+    padding: 40px 64px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+    color: var(--titanium); text-transform: uppercase;
+  }
+  .board-foot b { color: var(--ink); }
+  .board-foot .red { color: var(--swiss); }
+
+  .iso-box {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+    margin-top: 32px; background: var(--hair); border: 1px solid var(--hair);
+  }
+  .iso-box .c {
+    background: var(--paper);
+    padding: 18px 22px;
+    font-family: var(--mono); font-size: 9px; color: var(--titanium);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    min-height: 90px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .iso-box .c b { color: var(--ink); font-size: 14px; font-family: var(--display); letter-spacing: -0.01em; text-transform: none; font-weight: 500; }
+  .iso-box .c b .r { color: var(--swiss); }
+
+  /* Version chip */
+  .version-chip {
+    position: fixed; bottom: 16px; right: 16px;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 12px;
+    border-radius: 2px;
+    z-index: 100;
+  }
+  .version-chip b { color: var(--swiss); }
+</style>
+</head>
+<body>
+
+<!-- ====================================================== -->
+<!-- TELEMETRY (sticky)                                      -->
+<!-- ====================================================== -->
+<div class="telemetry">
+  <div class="telemetry-row">
+    <span><span class="dot"></span>LIVE · BRAND IDENTITY · SALESBRAIN</span>
+    <span>MISSION <b>SB-02.26</b></span>
+    <span>LAT <b>47.3219° N</b></span>
+    <span>LNG <b>8.5417° E</b></span>
+    <span>VER <b>0.2 / LIGHT · SWISS</b></span>
+    <span style="text-align:right;">DIGITALE RAKETE GMBH</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ================================================== -->
+  <!-- HERO                                                -->
+  <!-- ================================================== -->
+  <div class="hero">
+    <div class="noise"></div>
+    <div class="hero-grid"></div>
+
+    <svg class="planet-hero" viewBox="0 0 540 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="pg" cx="35%" cy="35%" r="75%">
+          <stop offset="0%"  stop-color="#c4c4c8"/>
+          <stop offset="60%" stop-color="#6f6f78"/>
+          <stop offset="100%" stop-color="#2a2a30"/>
+        </radialGradient>
+        <linearGradient id="ring" x1="0" x2="1">
+          <stop offset="0%"   stop-color="#15151a" stop-opacity="0"/>
+          <stop offset="50%"  stop-color="#15151a" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#15151a" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <circle cx="270" cy="270" r="180" fill="url(#pg)"/>
+      <ellipse cx="270" cy="230" rx="175" ry="12" stroke="#3a3a40" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="260" rx="179" ry="8"  stroke="#3a3a40" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="290" rx="178" ry="10" stroke="#3a3a40" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="320" rx="170" ry="10" stroke="#3a3a40" stroke-width="1" fill="none"/>
+      <ellipse cx="270" cy="300" rx="240" ry="42" stroke="url(#ring)" stroke-width="1.5" fill="none" transform="rotate(-12 270 300)"/>
+      <ellipse cx="270" cy="300" rx="240" ry="42" stroke="#E1001A" stroke-width="2" stroke-opacity="0.95" fill="none" stroke-dasharray="140 700" transform="rotate(-12 270 300)"/>
+      <circle cx="220" cy="215" r="60" fill="white" opacity="0.15"/>
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-top">
+        <div class="label-l">
+          File /&nbsp;<b>salesbrain-brand-v0.2</b><br/>
+          Rebrand exploration · Light-primary · Swiss-red accent.<br/>
+          Prepared for the digitale rakete GmbH founding team.
+        </div>
+        <div class="crosshair"></div>
+      </div>
+
+      <h1 class="hero-title">
+        SALESBR<span class="ai">AI</span>N<br/>
+        <span class="slash">— ORBIT / 02</span>
+      </h1>
+
+      <div class="hero-bottom">
+        <div class="cell">
+          <span class="k">// DIRECTION</span>
+          <span class="v">ZERO-GRAVITY · LIGHT-PRIMARY · <span class="red">SWISS</span></span>
+        </div>
+        <div class="cell">
+          <span class="k">// PAYLOAD</span>
+          <span class="v">LOGO · TYPE · COLOR · VISUAL LANGUAGE · APPLICATIONS</span>
+        </div>
+        <div class="cell" style="text-align:right;">
+          <span class="k">// STATUS</span>
+          <span class="v">T-00:04:12 · <span class="red">IGNITION</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================== -->
+  <!-- LOGO SYSTEM — MASTER FIRST                          -->
+  <!-- ================================================== -->
+  <section class="band" style="padding-top: 120px;">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 01</div>
+      <h2 class="section-title">Logo System<br/><span class="sub">Orbital Seal — 01 × 04.</span></h2>
+      <div class="section-sub">Orbital Mark &amp; Mission Badge<br/>merged into one master</div>
+    </div>
+
+    <!-- MASTER -->
+    <div class="logo-master">
+      <div class="noise"></div>
+      <div class="logo-master-head">
+        <span>MASTER · <b>ORBITAL SEAL</b></span>
+        <span class="pill">● PRIMARY</span>
+        <span>CONCEPT 01 × 04 · MERGED</span>
+      </div>
+
+      <div class="logo-master-canvas">
+        <svg width="720" height="260" viewBox="0 0 720 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Badge: outer ring + tick marks -->
+          <g transform="translate(130,130)">
+            <!-- outer hairline ring -->
+            <circle cx="0" cy="0" r="108" stroke="#15151a" stroke-width="1" fill="none"/>
+            <!-- inner hairline ring -->
+            <circle cx="0" cy="0" r="94" stroke="#15151a" stroke-opacity="0.15" stroke-width="1" fill="none"/>
+            <!-- cardinal tick marks -->
+            <g stroke="#15151a" stroke-width="1.2">
+              <line x1="0" y1="-118" x2="0" y2="-108"/>
+              <line x1="0" y1="108"  x2="0" y2="118"/>
+              <line x1="-118" y1="0" x2="-108" y2="0"/>
+              <line x1="108" y1="0"  x2="118" y2="0"/>
+            </g>
+            <!-- small intermediate ticks -->
+            <g stroke="#15151a" stroke-opacity="0.35" stroke-width="1">
+              <line x1="76" y1="-76" x2="82" y2="-82" transform="rotate(0)"/>
+              <line x1="-76" y1="-76" x2="-82" y2="-82"/>
+              <line x1="76" y1="76" x2="82" y2="82"/>
+              <line x1="-76" y1="76" x2="-82" y2="82"/>
+            </g>
+            <!-- planet core (dark sphere) -->
+            <defs>
+              <radialGradient id="mpg" cx="35%" cy="35%" r="75%">
+                <stop offset="0%" stop-color="#6f6f78"/>
+                <stop offset="60%" stop-color="#2a2a30"/>
+                <stop offset="100%" stop-color="#08080b"/>
+              </radialGradient>
+            </defs>
+            <circle cx="0" cy="0" r="44" fill="url(#mpg)"/>
+            <!-- orbit ring: back half in mist-grey (behind planet) -->
+            <ellipse cx="0" cy="0" rx="66" ry="19" stroke="#d1d1cd" stroke-width="1.2" fill="none" transform="rotate(-22)" stroke-dasharray="0 88 132 0" stroke-dashoffset="0"/>
+            <!-- orbit ring: front half in swiss red -->
+            <ellipse cx="0" cy="0" rx="66" ry="19" stroke="#E1001A" stroke-width="2.4" fill="none" transform="rotate(-22)" stroke-dasharray="88 300"/>
+            <!-- orbit dot -->
+            <circle cx="64" cy="-7" r="4" fill="#E1001A"/>
+            <!-- arc text top -->
+            <defs>
+              <path id="arc-top" d="M -86 0 A 86 86 0 0 1 86 0" fill="none"/>
+              <path id="arc-bot" d="M -86 0 A 86 86 0 0 0 86 0" fill="none"/>
+            </defs>
+            <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="5" fill="#5f5f66">
+              <textPath href="#arc-top" startOffset="50%" text-anchor="middle">MISSION · SB-02.26</textPath>
+            </text>
+            <text font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="5" fill="#5f5f66">
+              <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">MADE IN SWITZERLAND</textPath>
+            </text>
+          </g>
+
+          <!-- Divider -->
+          <line x1="260" y1="60" x2="260" y2="200" stroke="#15151a" stroke-opacity="0.15" stroke-width="1"/>
+
+          <!-- Wordmark -->
+          <g transform="translate(290, 150)">
+            <text font-family="Space Grotesk, sans-serif" font-size="72" font-weight="500" fill="#15151a" letter-spacing="-3">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+            <text x="0" y="32" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="4" fill="#5f5f66">
+              KI-VERTRIEB · SEIT 2024 · ZUG CH
+            </text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="logo-master-legend">
+        <div class="legend-cell">// MARK <b>Orbital Seal</b></div>
+        <div class="legend-cell">// TYPE <b>Space Grotesk Medium</b></div>
+        <div class="legend-cell">// ACCENT <b>Swiss #E1001A</b></div>
+        <div class="legend-cell">// USE <b>All primary surfaces</b></div>
+      </div>
+    </div>
+
+    <!-- LOGO VARIANTS -->
+    <div class="logos-grid">
+
+      <!-- Horizontal lockup on light -->
+      <div class="logo-card">
+        <div class="lc-head">
+          <span>VARIANT · 01</span>
+          <span><b>HORIZONTAL</b></span>
+        </div>
+        <div class="lc-canvas">
+          <svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(40,40)">
+              <circle cx="0" cy="0" r="30" stroke="#15151a" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="14" fill="#2a2a30"/>
+              <ellipse cx="0" cy="0" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22)"/>
+              <circle cx="20" cy="-4" r="2" fill="#E1001A"/>
+            </g>
+            <text x="86" y="50" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#15151a" letter-spacing="-1">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>PRIMARY LOCKUP</span>
+          <span>LIGHT BG</span>
+        </div>
+      </div>
+
+      <!-- Dark variant -->
+      <div class="logo-card dark">
+        <div class="lc-head">
+          <span>VARIANT · 02</span>
+          <span><b>ON DARK</b></span>
+        </div>
+        <div class="lc-canvas">
+          <svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(40,40)">
+              <circle cx="0" cy="0" r="30" stroke="#fafaf7" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="14" fill="#fafaf7"/>
+              <ellipse cx="0" cy="0" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22)"/>
+              <circle cx="20" cy="-4" r="2" fill="#E1001A"/>
+            </g>
+            <text x="86" y="50" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#fafaf7" letter-spacing="-1">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>NIGHT MODE</span>
+          <span>INVERSE</span>
+        </div>
+      </div>
+
+      <!-- On red -->
+      <div class="logo-card red">
+        <div class="lc-head">
+          <span>VARIANT · 03</span>
+          <span><b>ON SWISS</b></span>
+        </div>
+        <div class="lc-canvas">
+          <svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(40,40)">
+              <circle cx="0" cy="0" r="30" stroke="#fafaf7" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="14" fill="#fafaf7"/>
+              <ellipse cx="0" cy="0" rx="22" ry="7" stroke="#fafaf7" stroke-width="2" fill="none" transform="rotate(-22)"/>
+              <circle cx="20" cy="-4" r="2" fill="#fafaf7"/>
+            </g>
+            <text x="86" y="50" font-family="Space Grotesk, sans-serif" font-size="32" font-weight="500" fill="#fafaf7" letter-spacing="-1">
+              salesbr<tspan font-weight="700">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>BRAND MOMENT</span>
+          <span>FULL BLEED</span>
+        </div>
+      </div>
+
+      <!-- Icon only -->
+      <div class="logo-card">
+        <div class="lc-head">
+          <span>VARIANT · 04</span>
+          <span><b>ICON ONLY</b></span>
+        </div>
+        <div class="lc-canvas">
+          <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(90,90)">
+              <circle cx="0" cy="0" r="72" stroke="#15151a" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="62" stroke="#15151a" stroke-opacity="0.12" stroke-width="1" fill="none"/>
+              <g stroke="#15151a" stroke-width="1.2">
+                <line x1="0" y1="-80" x2="0" y2="-72"/>
+                <line x1="0" y1="72" x2="0" y2="80"/>
+                <line x1="-80" y1="0" x2="-72" y2="0"/>
+                <line x1="72" y1="0" x2="80" y2="0"/>
+              </g>
+              <circle cx="0" cy="0" r="28" fill="#2a2a30"/>
+              <ellipse cx="0" cy="0" rx="44" ry="13" stroke="#E1001A" stroke-width="2.2" fill="none" transform="rotate(-22)"/>
+              <circle cx="42" cy="-5" r="3" fill="#E1001A"/>
+            </g>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>APP ICON · FAVICON</span>
+          <span>SQUARE</span>
+        </div>
+      </div>
+
+      <!-- Vertical stacked -->
+      <div class="logo-card">
+        <div class="lc-head">
+          <span>VARIANT · 05</span>
+          <span><b>STACKED</b></span>
+        </div>
+        <div class="lc-canvas">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(100,70)">
+              <circle cx="0" cy="0" r="36" stroke="#15151a" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="17" fill="#2a2a30"/>
+              <ellipse cx="0" cy="0" rx="26" ry="8" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22)"/>
+              <circle cx="24" cy="-5" r="2.5" fill="#E1001A"/>
+            </g>
+            <text x="100" y="155" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="26" font-weight="500" fill="#15151a" letter-spacing="-0.5">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+            <text x="100" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#5f5f66" letter-spacing="3">KI-VERTRIEB · ZUG CH</text>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>VERTICAL LOCKUP</span>
+          <span>CARDS · BADGES</span>
+        </div>
+      </div>
+
+      <!-- Mini / small sizes -->
+      <div class="logo-card">
+        <div class="lc-head">
+          <span>VARIANT · 06</span>
+          <span><b>CLEAR SPACE</b></span>
+        </div>
+        <div class="lc-canvas" style="flex-direction:column; gap: 24px;">
+          <svg width="260" height="40" viewBox="0 0 260 40" fill="none">
+            <g transform="translate(20,20)">
+              <circle cx="0" cy="0" r="14" stroke="#15151a" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="6" fill="#2a2a30"/>
+              <ellipse cx="0" cy="0" rx="11" ry="3.5" stroke="#E1001A" stroke-width="1.4" fill="none" transform="rotate(-22)"/>
+            </g>
+            <text x="42" y="27" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="500" fill="#15151a" letter-spacing="-0.3">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+          </svg>
+          <svg width="200" height="24" viewBox="0 0 200 24" fill="none">
+            <g transform="translate(12,12)">
+              <circle cx="0" cy="0" r="8" stroke="#15151a" stroke-width="1" fill="none"/>
+              <circle cx="0" cy="0" r="3.5" fill="#2a2a30"/>
+              <ellipse cx="0" cy="0" rx="6" ry="2" stroke="#E1001A" stroke-width="1" fill="none" transform="rotate(-22)"/>
+            </g>
+            <text x="28" y="16" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" fill="#15151a">
+              salesbr<tspan font-weight="700" fill="#E1001A">AI</tspan>n
+            </text>
+          </svg>
+        </div>
+        <div class="lc-foot">
+          <span>SIZE RANGE · 12–40px</span>
+          <span>NAV · FAVICON</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- COLOR SYSTEM                                        -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 02</div>
+      <h2 class="section-title">Color System<br/><span class="sub">Signal &amp; Swiss.</span></h2>
+      <div class="section-sub">Light-primary · Monochrome base<br/>Swiss red as the spark</div>
+    </div>
+
+    <div class="palette">
+      <div class="swatch light" style="background:#fafaf7;">
+        <div class="tag prim">// 01 — PRIMARY</div>
+        <div>
+          <div class="name" style="margin-bottom:8px;">Signal Paper</div>
+          <div class="meta">
+            <span>HEX · #FAFAF7</span>
+            <span>RGB · 250 250 247</span>
+            <span>USAGE · All primary surfaces</span>
+          </div>
+        </div>
+      </div>
+      <div class="swatch light" style="background:#f2f2ef;">
+        <div class="tag">// 02</div>
+        <div><div class="name">Bone</div><div class="meta"><span>HEX · #F2F2EF</span><span>SECONDARY BG</span></div></div>
+      </div>
+      <div class="swatch light" style="background:#d1d1cd;">
+        <div class="tag">// 03</div>
+        <div><div class="name">Mist</div><div class="meta"><span>HEX · #D1D1CD</span><span>HAIRLINES</span></div></div>
+      </div>
+      <div class="swatch dark" style="background:#5f5f66;">
+        <div class="tag">// 04</div>
+        <div><div class="name">Titanium</div><div class="meta"><span>HEX · #5F5F66</span><span>LABELS · META</span></div></div>
+      </div>
+      <div class="swatch dark" style="background:#2a2a30;">
+        <div class="tag">// 05</div>
+        <div><div class="name">Graphite</div><div class="meta"><span>HEX · #2A2A30</span><span>PLANET · SURFACES</span></div></div>
+      </div>
+      <div class="swatch dark" style="background:#15151a;">
+        <div class="tag">// 06 — TEXT</div>
+        <div><div class="name">Ink</div><div class="meta"><span>HEX · #15151A</span><span>PRIMARY TYPE</span></div></div>
+      </div>
+      <div class="swatch red" style="background:#E1001A;">
+        <div class="tag prim">// 07 — ACCENT</div>
+        <div>
+          <div class="name">Swiss Red</div>
+          <div class="meta">
+            <span>HEX · #E1001A</span>
+            <span>CTA · HIGHLIGHT</span>
+            <span>USE · 3–7% SURFACE MAX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage ratio bar -->
+    <div class="ratio-bar">
+      <div class="seg" style="background:#fafaf7; color:#15151a;"><span>PAPER · 62%</span><b>Signal</b></div>
+      <div class="seg" style="background:#d1d1cd; color:#15151a;"><span>MIST · 24%</span><b>Structure</b></div>
+      <div class="seg" style="background:#15151a; color:#fafaf7;"><span>INK · 8%</span><b>Type</b></div>
+      <div class="seg" style="background:#E1001A; color:#fafaf7;"><span>SWISS · 6%</span><b>Spark</b></div>
+    </div>
+
+    <div class="iso-box">
+      <div class="c">
+        <span>RULE · 01</span>
+        <b>Light is home.<br/>Dark and red are <span class="r">accents</span>, not carriers.</b>
+      </div>
+      <div class="c">
+        <span>RULE · 02</span>
+        <b>Swiss red reserved for:<br/>CTAs · "AI" · status dots · highlights.</b>
+      </div>
+      <div class="c">
+        <span>RULE · 03</span>
+        <b>Never place red on black.<br/>Always red on paper or paper on red.</b>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- TYPOGRAPHY                                          -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 03</div>
+      <h2 class="section-title">Typography<br/><span class="sub">Precision &amp; Telemetry.</span></h2>
+      <div class="section-sub">Three voices · One system</div>
+    </div>
+
+    <div class="type-board">
+      <div class="type-card display">
+        <div class="type-head">
+          <span>// DISPLAY · HEADLINES</span>
+          <span><b>Space Grotesk</b></span>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa <span class="r">Sg</span></div>
+          <div class="mid">Dein Vertrieb. Auf Autopilot.</div>
+        </div>
+        <div class="type-head">
+          <span>300 / 400 / 500 / 700</span>
+          <span>GOOGLE FONTS</span>
+        </div>
+      </div>
+
+      <div class="type-card body">
+        <div class="type-head">
+          <span>// BODY · READING</span>
+          <span><b>Inter</b></span>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa Rn</div>
+          <div class="mid">Aktiv in 3–4 Wochen. Verkauft 24/7.</div>
+        </div>
+        <div class="type-head">
+          <span>300 / 400 / 500 / 600 / 700</span>
+          <span>GOOGLE FONTS</span>
+        </div>
+      </div>
+
+      <div class="type-card mono" style="grid-column: span 2;">
+        <div class="type-head">
+          <span>// MONO · TELEMETRY · DATA · LABELS</span>
+          <span><b>JetBrains Mono</b></span>
+        </div>
+        <div class="type-spec" style="display:grid; grid-template-columns: 1fr 1fr; gap:32px; align-items:center;">
+          <div>
+            <div class="big">01:42:08</div>
+            <div class="mid">MISSION · SB-02.26 · LAT 47.3219° N</div>
+          </div>
+          <div style="border-left:1px solid var(--hair); padding-left:32px; font-family:var(--mono);">
+            <div style="font-size:11px; letter-spacing:0.18em; color:var(--titanium); text-transform:uppercase; margin-bottom:12px;">// SAMPLES</div>
+            <div style="font-size:12px; color:var(--ink); line-height:2; letter-spacing:0.05em;">
+              → CTR <span style="color:var(--swiss);">4.82%</span> · Reply <span style="color:var(--swiss);">22.1%</span><br/>
+              → Domain warm · 94/100<br/>
+              → Next dispatch · T-00:14:20<br/>
+              → 1,284 contacts in orbit
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="type-scale">
+      <div class="scale-cell"><span>// DISPLAY XL</span><b>128px · 0.92 · -0.045</b></div>
+      <div class="scale-cell"><span>// DISPLAY</span><b>72px · 0.95 · -0.035</b></div>
+      <div class="scale-cell"><span>// H1</span><b>56px · 1.0 · -0.03</b></div>
+      <div class="scale-cell"><span>// H2</span><b>32px · 1.1 · -0.02</b></div>
+      <div class="scale-cell"><span>// BODY</span><b>16px · 1.55 · 0</b></div>
+      <div class="scale-cell"><span>// MONO / LABEL</span><b>10px · 1.8 · +0.15</b></div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- MOODBOARD                                           -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 04</div>
+      <h2 class="section-title">Moodboard<br/><span class="sub">Light Horizon.</span></h2>
+      <div class="section-sub">Drop real renders &amp;<br/>astro-photography here</div>
+    </div>
+
+    <div class="moodboard">
+      <div class="mood-tile mt-large">
+        <div class="mood-rocket">
+          <div class="trail"></div>
+        </div>
+        <div class="mt-badge red">01 · HERO</div>
+        <div class="mt-label">CORE IMAGE · <b>VERTICAL LAUNCH</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-earth"></div>
+        <div class="mt-badge">02</div>
+        <div class="mt-label">HORIZON · <b>EARTH FROM ORBIT</b></div>
+      </div>
+      <div class="mood-tile dark">
+        <div class="mood-orbit">
+          <div class="orbit-ring r1"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
+          <div class="orbit-dot d1"></div>
+          <div class="orbit-dot d2"></div>
+        </div>
+        <div class="mt-badge">03</div>
+        <div class="mt-label">DIAGRAM · <b>ORBITAL MECHANICS</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-texture"></div>
+        <div class="mt-badge">04</div>
+        <div class="mt-label">MATERIAL · <b>BRUSHED TITANIUM</b></div>
+      </div>
+      <div class="mood-tile">
+        <div class="mood-grid"></div>
+        <div class="mt-badge red">05</div>
+        <div class="mt-label">SYSTEM · <b>TELEMETRY GRID</b></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- VISUAL LANGUAGE                                     -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 05</div>
+      <h2 class="section-title">Visual Language<br/><span class="sub">Telemetry &amp; Structure.</span></h2>
+      <div class="section-sub">The vocabulary that makes it feel like a mission<br/>not a SaaS landing page</div>
+    </div>
+
+    <div class="vl-grid">
+      <div class="vl-card">
+        <div class="vl-head">
+          <span>// PATTERN · 01</span>
+          <span><b>MISSION HEADERS</b></span>
+        </div>
+        <div class="vl-body">
+          Every section opens with a mission-style label:<br/>
+          <b style="font-family:var(--mono);">MISSION&nbsp;·&nbsp;<span class="r">SB-02.26</span></b><br/>
+          Indexed, timestamped, coordinated.
+        </div>
+        <div class="vl-ticker">
+          <div class="t red"><div class="l">// T-MINUS</div><div class="v">00:14:20</div></div>
+          <div class="t"><div class="l">// ORBIT</div><div class="v">LEO · 420km</div></div>
+          <div class="t"><div class="l">// PAYLOAD</div><div class="v">1,284 leads</div></div>
+          <div class="t red"><div class="l">// VELOCITY</div><div class="v">7.8 km/s</div></div>
+        </div>
+      </div>
+
+      <div class="vl-card" style="padding:0; overflow:hidden;">
+        <div style="padding:32px 32px 0;">
+          <div class="vl-head">
+            <span>// PATTERN · 02</span>
+            <span><b>HAIRLINE GRID</b></span>
+          </div>
+        </div>
+        <div style="position:absolute; inset:70px 0 0; background:
+          linear-gradient(var(--hair) 1px, transparent 1px),
+          linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+          background-size:40px 40px;">
+          <div style="position:absolute; left:40px; top:40px; width:20px; height:20px; border:1px solid var(--ink); transform: rotate(45deg);"></div>
+          <div style="position:absolute; right:60px; top:60px; width:8px; height:8px; background:var(--swiss); border-radius:50%; box-shadow: 0 0 12px rgba(225,0,26,0.4);"></div>
+          <div style="position:absolute; right:40px; bottom:60px; width:12px; height:12px; border:1px solid var(--titanium);"></div>
+          <div style="position:absolute; left:80px; bottom:60px; font-family:var(--mono); font-size:10px; color:var(--titanium); letter-spacing:0.12em;">47.32° N · 8.54° E</div>
+          <div style="position:absolute; right:50px; top:130px; font-family:var(--mono); font-size:9px; color:var(--silver); letter-spacing:0.12em; transform: rotate(-90deg); transform-origin: right top;">GRID · 40px</div>
+        </div>
+      </div>
+
+      <div class="vl-card">
+        <div class="vl-head">
+          <span>// PATTERN · 03</span>
+          <span><b>ORBIT DIAGRAMS</b></span>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center; height:220px; position:relative;">
+          <svg width="240" height="200" viewBox="0 0 240 200" fill="none">
+            <circle cx="120" cy="100" r="16" fill="#2a2a30"/>
+            <ellipse cx="120" cy="100" rx="90" ry="28" stroke="#d1d1cd" stroke-width="1" fill="none"/>
+            <ellipse cx="120" cy="100" rx="70" ry="20" stroke="#5f5f66" stroke-width="1" fill="none"/>
+            <ellipse cx="120" cy="100" rx="50" ry="14" stroke="#15151a" stroke-width="1" fill="none"/>
+            <circle cx="210" cy="100" r="4" fill="#E1001A"/>
+            <circle cx="80" cy="85" r="2" fill="#5f5f66"/>
+            <circle cx="160" cy="115" r="2" fill="#15151a"/>
+            <text x="210" y="118" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1" fill="#E1001A">L1 · HOT</text>
+            <text x="80" y="76" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1" fill="#5f5f66">L2</text>
+          </svg>
+        </div>
+        <div class="vl-body" style="font-size:10px;">
+          Leads &amp; channels visualised as orbits.<br/>
+          <span class="r">Red</span> = hot &amp; ready to close.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================== -->
+  <!-- APPLICATIONS                                        -->
+  <!-- ================================================== -->
+  <section class="band">
+    <div class="section-head">
+      <div class="section-index"><span class="rd">●</span> SEC · 06</div>
+      <h2 class="section-title">In Anwendung<br/><span class="sub">Hero &amp; Mission Control.</span></h2>
+      <div class="section-sub">Wie sich das System anfühlt<br/>wenn es Produkt wird</div>
+    </div>
+
+    <div class="apps">
+      <!-- Hero preview -->
+      <div class="app-card">
+        <div class="preview-hero">
+          <div class="nav">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 44 44" fill="none">
+                <circle cx="22" cy="22" r="16" stroke="#15151a" stroke-width="1" fill="none"/>
+                <circle cx="22" cy="22" r="7" fill="#2a2a30"/>
+                <ellipse cx="22" cy="22" rx="12" ry="4" stroke="#E1001A" stroke-width="1.4" fill="none" transform="rotate(-22 22 22)"/>
+              </svg>
+              <span style="color:var(--ink); letter-spacing:0.04em; font-size:12px; font-family:var(--display); font-weight:500;">salesbr<b style="font-weight:700; color:var(--swiss);">AI</b>n</span>
+            </div>
+            <div class="nav-links">
+              <span>Mission</span><span>Journey</span><span>Cases</span><span>Packages</span>
+            </div>
+            <div class="nav-cta">Demo buchen →</div>
+          </div>
+
+          <h3 class="ph-title">Dein Vertrieb.<br/>Auf <b>Autopilot</b>.</h3>
+          <p class="ph-sub">Der einzige KI-Agent mit 20 Jahren Schweizer Vertriebserfahrung. Aktiv in 3–4 Wochen, verkauft 24/7. Keine IT-Kenntnisse nötig.</p>
+          <a class="ph-cta">Mission starten</a>
+
+          <svg class="ph-planet" viewBox="0 0 340 340" fill="none">
+            <defs>
+              <radialGradient id="pg2" cx="35%" cy="35%" r="75%">
+                <stop offset="0%" stop-color="#c4c4c8"/>
+                <stop offset="60%" stop-color="#5f5f66"/>
+                <stop offset="100%" stop-color="#2a2a30"/>
+              </radialGradient>
+            </defs>
+            <circle cx="170" cy="170" r="110" fill="url(#pg2)"/>
+            <ellipse cx="170" cy="190" rx="150" ry="25" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-15 170 190)" opacity="0.85" stroke-dasharray="90 500"/>
+            <ellipse cx="170" cy="190" rx="150" ry="25" stroke="#15151a" stroke-width="1" fill="none" transform="rotate(-15 170 190)" opacity="0.25"/>
+            <circle cx="140" cy="140" r="40" fill="white" opacity="0.25"/>
+          </svg>
+
+          <div style="position:absolute; bottom:20px; left:32px; right:32px; display:flex; justify-content:space-between; font-family:var(--mono); font-size:9px; letter-spacing:0.18em; color:var(--titanium); text-transform:uppercase; border-top:1px solid var(--hair); padding-top:14px;">
+            <span>Transparente Preise</span>
+            <span>Setup in 3-4 Wochen</span>
+            <span>Pay-for-Performance</span>
+            <span style="color:var(--swiss);">● Made in Switzerland</span>
+          </div>
+        </div>
+        <div class="app-label">HERO · <b>LANDING</b></div>
+      </div>
+
+      <!-- Dashboard preview -->
+      <div class="app-card">
+        <div class="preview-dash">
+          <div class="d-head">
+            <div class="d-title">Mission SB-02.26</div>
+            <div class="d-meta"><span class="dot"></span>LIVE · T+14:22:06</div>
+          </div>
+          <div class="d-stats">
+            <div class="d-stat"><div class="k">// LEADS IN ORBIT</div><div class="v">1,284</div><div class="trend up">↗ +128 · 24h</div></div>
+            <div class="d-stat"><div class="k">// REPLY RATE</div><div class="v">22.1%</div><div class="trend up">↗ +3.4pt · 7d</div></div>
+            <div class="d-stat hot"><div class="k">// HOT</div><div class="v">42</div><div class="trend">qualified</div></div>
+          </div>
+
+          <div class="d-chart">
+            <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#E1001A" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#E1001A" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 0 110 L 40 100 L 80 105 L 120 85 L 160 92 L 200 70 L 240 75 L 280 55 L 320 48 L 360 38 L 400 22 L 400 140 L 0 140 Z" fill="url(#cg)"/>
+              <path d="M 0 110 L 40 100 L 80 105 L 120 85 L 160 92 L 200 70 L 240 75 L 280 55 L 320 48 L 360 38 L 400 22" stroke="#E1001A" stroke-width="1.8" fill="none"/>
+              <circle cx="400" cy="22" r="3.5" fill="#E1001A"/>
+              <circle cx="400" cy="22" r="8" fill="none" stroke="#E1001A" stroke-opacity="0.4"/>
+            </svg>
+            <div style="position:absolute; top:8px; left:8px; font-family:var(--mono); font-size:8px; color:var(--titanium); letter-spacing:0.15em;">// TRAJECTORY · 30d</div>
+          </div>
+
+          <div class="d-table">
+            <div class="h">Contact</div><div class="h">Channel</div><div class="h">Score</div><div class="h">Status</div>
+            <div>A. Keller · Helvetia</div><div>LINKEDIN</div><div class="red">94</div><div class="red">● HOT</div>
+            <div>M. Tanner · SwissRe</div><div>EMAIL</div><div>81</div><div>WARM</div>
+            <div>R. Fischer · UBS</div><div>EMAIL</div><div>67</div><div>WARM</div>
+          </div>
+        </div>
+        <div class="app-label">DASHBOARD · <b>MISSION CONTROL</b></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOT -->
+  <div class="board-foot">
+    <span>SALESBRAIN · BRAND IDENTITY · V<span class="red">0.2</span></span>
+    <span>PREPARED BY · <b>DIGITALE RAKETE GMBH</b></span>
+    <span>2026 · MISSION <b>SB-02.26</b></span>
+  </div>
+
+</div>
+
+<div class="version-chip"><b>V0.2</b> · LIGHT · SWISS</div>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1440"/>
+<title>Salesbrain Dashboard — Hero Graphic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"/>
+<style>
+:root {
+  --paper: #fafaf7;
+  --bone: #f2f2ef;
+  --fog: #e6e6e2;
+  --mist: #d1d1cd;
+  --silver: #9a9aa0;
+  --titanium: #5f5f66;
+  --graphite: #2a2a30;
+  --ink: #15151a;
+  --swiss: #E1001A;
+  --swiss-soft: rgba(225,0,26,0.08);
+  --hair: rgba(20,20,26,0.10);
+  --display: "Space Grotesk", sans-serif;
+  --body: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --r: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+.frame {
+  width: 1200px;
+  height: 720px;
+  background: var(--bone);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  box-shadow:
+    0 4px 60px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 40px 120px rgba(225,0,26,0.08);
+  position: relative;
+}
+
+/* ---- SIDEBAR ---- */
+.sb {
+  width: 220px; flex-shrink: 0;
+  background: var(--paper);
+  border-right: 1px solid var(--hair);
+  display: flex; flex-direction: column;
+  padding: 18px 0;
+}
+.sb-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px 20px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 10px;
+}
+.sb-logo span { font-family: var(--display); font-size: 15px; font-weight: 500; color: var(--ink); }
+.sb-logo span b { color: var(--swiss); font-weight: 700; }
+
+.sb-nav { padding: 0 10px; }
+.sb-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px; border-radius: var(--r);
+  font-size: 13px; color: var(--titanium);
+  position: relative;
+}
+.sb-item.active { background: var(--swiss-soft); color: var(--swiss); font-weight: 500; }
+.sb-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+/* Feed animation */
+.sb-feed-item.new {
+  animation: feedSlideIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes feedSlideIn {
+  from { opacity: 0; transform: translateY(-16px); max-height: 0; padding: 0; }
+  to { opacity: 1; transform: translateY(0); max-height: 60px; padding: 6px 0; }
+}
+.sb-item .badge {
+  position: absolute; right: 10px;
+  background: var(--swiss); color: white;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  width: 16px; height: 16px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sb-label {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--silver);
+  padding: 16px 10px 6px;
+}
+.sb-feed { padding: 0 10px; flex: 1; overflow: hidden; }
+.sb-feed-item {
+  display: flex; gap: 8px; padding: 6px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 11px; color: var(--titanium); line-height: 1.35;
+}
+.sb-feed-item .fd { width: 5px; height: 5px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; background: var(--mist); }
+.sb-feed-item .fd.r { background: var(--swiss); }
+.sb-feed-item b { color: var(--ink); font-weight: 500; }
+.sb-feed-item .ft { font-family: var(--mono); font-size: 8px; color: var(--silver); margin-top: 1px; }
+
+.sb-user {
+  margin-top: auto;
+  padding: 14px 18px 0;
+  border-top: 1px solid var(--hair);
+  display: flex; align-items: center; gap: 8px;
+}
+.sb-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--swiss); color: white;
+  font-family: var(--display); font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.sb-uname { font-size: 12px; font-weight: 500; color: var(--ink); }
+.sb-urole { font-size: 10px; color: var(--silver); }
+
+/* ---- MAIN ---- */
+.mn { flex: 1; display: flex; flex-direction: column; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+}
+.tb-stats {
+  display: flex; gap: 16px;
+  font-family: var(--mono); font-size: 10px; color: var(--titanium);
+}
+.tb-stats .ts { display: flex; align-items: center; gap: 5px; }
+.tb-stats .dot { width: 7px; height: 7px; border-radius: 50%; }
+.tb-stats .v { color: var(--ink); font-weight: 500; }
+.tb-btn {
+  padding: 6px 12px; border-radius: var(--r);
+  border: 1px solid var(--hair); background: var(--paper);
+  font-family: var(--mono); font-size: 10px; color: var(--ink);
+}
+
+/* ---- CHAT AREA ---- */
+.chat { flex: 1; display: flex; flex-direction: column; padding: 0; position: relative; overflow: hidden; }
+.chat-body {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 32px 40px;
+  gap: 20px;
+}
+
+/* Brain greeting + conversation */
+.chat-greeting {
+  font-family: var(--display); font-size: 24px; font-weight: 400;
+  color: var(--titanium); text-align: center; margin-bottom: 8px;
+}
+
+.chat-bubble {
+  max-width: 560px;
+  padding: 18px 22px;
+  border-radius: 16px 16px 16px 4px;
+  font-size: 14px; line-height: 1.55; color: var(--ink);
+  position: relative;
+}
+.chat-bubble.brain {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  align-self: flex-start;
+}
+.chat-bubble.brain::before {
+  content: '';
+  position: absolute; left: -36px; top: 10px;
+  width: 28px; height: 28px;
+  background: var(--fog);
+  border-radius: 50%;
+}
+.chat-bubble.brain::after {
+  content: '';
+  position: absolute; left: -30px; top: 16px;
+  width: 16px; height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%235f5f66' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 5c-2 0-3.8.8-5 2-1-.6-2.2-.7-3.3 0C6.2 8 6 9.8 6.5 11c-1 1.2-1.5 2.8-1 4.5.3 1 .9 1.7 1.5 2.2-.1 1.4.4 2.8 1.5 3.8 1.2 1.2 3 1.6 4.5 1.2.6.8 1.6 1.3 3 1.3'/%3E%3Cpath d='M16 5c2 0 3.8.8 5 2 1-.6 2.2-.7 3.3 0 1.5 1 1.7 2.8 1.2 4-.3.4.5 2 0 3.5-.3 1-.9 2.7-1.5 3.2.1 1.4-.4 2.8-1.5 3.8-1.2 1.2-3 1.6-4.5 1.2-.6.8-1.6 1.3-3 1.3'/%3E%3Cpath d='M16 5v19'/%3E%3Cpath d='M7 12c2.5.5 4 2 4.5 4'/%3E%3Cpath d='M25 12c-2.5.5-4 2-4.5 4'/%3E%3Cpath d='M8 18.5c2 0 3.5-1.2 4-3'/%3E%3Cpath d='M24 18.5c-2 0-3.5-1.2-4-3'/%3E%3C/svg%3E");
+  background-size: contain; background-repeat: no-repeat;
+}
+.chat-bubble.user {
+  background: var(--ink);
+  color: var(--paper);
+  align-self: flex-end;
+  border-radius: 16px 16px 4px 16px;
+}
+.chat-bubble .cb-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--swiss); margin-bottom: 8px;
+}
+.chat-bubble.user .cb-label { color: rgba(225,100,120,0.8); }
+
+/* Inline data card inside chat */
+.chat-data {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: var(--hair);
+  border-radius: var(--r); overflow: hidden;
+  margin-top: 12px;
+}
+.cd-cell {
+  background: var(--bone); padding: 12px;
+  text-align: center;
+}
+.cd-cell .cd-v {
+  font-family: var(--display); font-size: 22px; font-weight: 500;
+  color: var(--swiss); letter-spacing: -0.02em;
+}
+.cd-cell .cd-k {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--titanium); margin-top: 3px;
+}
+
+/* Typing indicator */
+.chat-typing {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 18px;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: 16px 16px 16px 4px;
+  align-self: flex-start;
+  max-width: 120px;
+}
+.typing-dots { display: flex; gap: 4px; }
+.typing-dots span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--silver);
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Chat input */
+.chat-input-bar {
+  padding: 12px 24px 16px;
+  border-top: 1px solid var(--hair);
+  background: var(--paper);
+}
+.chat-input {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bone); border: 1px solid var(--hair);
+  border-radius: 10px; padding: 12px 14px;
+}
+.chat-input svg { color: var(--silver); flex-shrink: 0; }
+.chat-input .ci-text {
+  flex: 1; font-size: 13px; color: var(--silver);
+}
+.chat-input .ci-send {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--swiss); display: flex; align-items: center; justify-content: center;
+}
+.chat-input .ci-send svg { color: white; }
+
+/* Chips */
+.chat-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border: 1px solid var(--hair);
+  border-radius: 30px; font-size: 12px; color: var(--ink);
+  background: var(--paper);
+}
+.chip .cd { width: 6px; height: 6px; border-radius: 50%; }
+
+/* Glow overlay on frame */
+.frame::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 30% 40% at 70% 60%, rgba(225,0,26,0.04), transparent),
+    radial-gradient(ellipse 40% 30% at 30% 30%, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
+  border-radius: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-logo">
+      <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span>salesbr<b>AI</b>n</span>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-item active">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5c-2 0-3.8.8-5 2-1-.6-2.2-.7-3.3 0C6.2 8 6 9.8 6.5 11c-1 1.2-1.5 2.8-1 4.5.3 1 .9 1.7 1.5 2.2-.1 1.4.4 2.8 1.5 3.8 1.2 1.2 3 1.6 4.5 1.2.6.8 1.6 1.3 3 1.3"/><path d="M16 5c2 0 3.8.8 5 2 1-.6 2.2-.7 3.3 0 1.5 1 1.7 2.8 1.2 4-.3.4.5 2 0 3.5-.3 1-.9 2.7-1.5 3.2.1 1.4-.4 2.8-1.5 3.8-1.2 1.2-3 1.6-4.5 1.2-.6.8-1.6 1.3-3 1.3"/><path d="M16 5v19"/><path d="M7 12c2.5.5 4 2 4.5 4"/><path d="M25 12c-2.5.5-4 2-4.5 4"/><path d="M8 18.5c2 0 3.5-1.2 4-3"/><path d="M24 18.5c-2 0-3.5-1.2-4-3"/></svg>
+        The Brain
+      </div>
+      <div class="sb-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3l2 5h5l-4 3 1.5 5L10 13l-4.5 3L7 11 3 8h5z"/></svg>
+        Chancen
+        <span class="badge" id="chancenBadge" style="display:none;">0</span>
+      </div>
+      <div class="sb-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3.5"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6"/></svg>
+        Kontakte
+      </div>
+      <div class="sb-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14"/><path d="M7 4v4"/></svg>
+        Posteingang
+        <span class="badge" id="postBadge">8</span>
+      </div>
+      <div class="sb-item">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="5" height="7" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="13" width="5" height="4" rx="1"/><rect x="12" y="11" width="5" height="6" rx="1"/></svg>
+        Kampagnen
+      </div>
+    </div>
+
+    <div class="sb-label">Aktivitätsverlauf</div>
+    <div class="sb-feed" id="activityFeed">
+      <div class="sb-feed-item"><div class="fd r"></div><div>Nachricht an <b>M. Keller</b> gesendet<div class="ft">vor 7 Stunden</div></div></div>
+      <div class="sb-feed-item"><div class="fd"></div><div><b>R. Brunner</b> hat Profil besucht<div class="ft">vor 1 Tag</div></div></div>
+      <div class="sb-feed-item"><div class="fd r"></div><div>Nachricht an <b>S. Meier</b> gesendet<div class="ft">vor 2 Tagen</div></div></div>
+      <div class="sb-feed-item"><div class="fd"></div><div>Antwort von <b>S. Meier</b><div class="ft">vor 3 Tagen</div></div></div>
+      <div class="sb-feed-item"><div class="fd"></div><div>LinkedIn-Besuch: <b>T. Fischer</b><div class="ft">vor 3 Tagen</div></div></div>
+    </div>
+
+    <div class="sb-user">
+      <div class="sb-avatar">MK</div>
+      <div>
+        <div class="sb-uname">Max Keller</div>
+        <div class="sb-urole">Administrator</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="mn">
+    <div class="topbar">
+      <div class="tb-stats">
+        <div class="ts"><div class="dot" style="background:#ea9f28;"></div><span class="v">12</span> Hot</div>
+        <div class="ts"><div class="dot" style="background:var(--swiss);"></div><span class="v">34</span> Kontakte</div>
+        <div class="ts"><div class="dot" style="background:#4a9a5a;"></div><span class="v">8</span> Won</div>
+        <div class="ts">↗ <span class="v">22%</span></div>
+        <div class="ts">⌀ <span class="v">4.2d</span></div>
+      </div>
+      <div class="tb-btn">⊞ Analysen</div>
+    </div>
+
+    <div class="chat">
+      <div class="chat-body">
+        <!-- User message -->
+        <div class="chat-bubble user">
+          <div class="cb-label">// Du · gerade eben</div>
+          Zeig mir die Kampagnen-Performance dieser Woche.
+        </div>
+
+        <!-- Brain response with data -->
+        <div class="chat-bubble brain" style="margin-left: 36px;">
+          <div class="cb-label">// SalesbrAIn · Mission Control</div>
+          Hier ist dein Wochenrapport. Die E-Mail-Kampagne «Q1 Schweiz» performt überdurchschnittlich — die Reply-Rate liegt 3.4 Punkte über dem Benchmark.
+          <div class="chat-data">
+            <div class="cd-cell"><div class="cd-v">1'284</div><div class="cd-k">Kontakte</div></div>
+            <div class="cd-cell"><div class="cd-v">22.1%</div><div class="cd-k">Reply-Rate</div></div>
+            <div class="cd-cell"><div class="cd-v">42</div><div class="cd-k">Hot Leads</div></div>
+          </div>
+        </div>
+
+        <!-- User follow-up -->
+        <div class="chat-bubble user">
+          <div class="cb-label">// Du</div>
+          Welche Kontakte sind am heissesten?
+        </div>
+
+        <!-- Brain typing... -->
+        <div style="margin-left: 36px; display: flex; align-items: center; gap: 10px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--fog);display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#5f5f66" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5c-2 0-3.8.8-5 2-1-.6-2.2-.7-3.3 0C6.2 8 6 9.8 6.5 11c-1 1.2-1.5 2.8-1 4.5.3 1 .9 1.7 1.5 2.2-.1 1.4.4 2.8 1.5 3.8 1.2 1.2 3 1.6 4.5 1.2.6.8 1.6 1.3 3 1.3"/><path d="M16 5c2 0 3.8.8 5 2 1-.6 2.2-.7 3.3 0 1.5 1 1.7 2.8 1.2 4-.3.4.5 2 0 3.5-.3 1-.9 2.7-1.5 3.2.1 1.4-.4 2.8-1.5 3.8-1.2 1.2-3 1.6-4.5 1.2-.6.8-1.6 1.3-3 1.3"/><path d="M16 5v19"/><path d="M7 12c2.5.5 4 2 4.5 4"/><path d="M25 12c-2.5.5-4 2-4.5 4"/><path d="M8 18.5c2 0 3.5-1.2 4-3"/><path d="M24 18.5c-2 0-3.5-1.2-4-3"/></svg>
+          </div>
+          <div class="chat-typing">
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-bar">
+        <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:10px;">
+          <div class="chip"><span class="cd" style="background:var(--swiss);"></span>Kampagnen Performance</div>
+          <div class="chip"><span class="cd" style="background:#ea9f28;"></span>Heisse Kontakte</div>
+          <div class="chip"><span class="cd" style="background:#4a9a5a;"></span>E-Mail Statistiken</div>
+          <div class="chip"><span class="cd" style="background:#5a8aca;"></span>Opportunities</div>
+          <div class="chip"><span class="cd" style="background:var(--titanium);"></span>Vergleichsrapport</div>
+        </div>
+        <div class="chat-input">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M7 10h6"/><path d="M10 7v6"/></svg>
+          <div class="ci-text">Fragen Sie den Brain nach Ihren Kampagnen, Kontakten oder Strategien...</div>
+          <div class="ci-send">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="2"><path d="M10 16V4M10 4l-5 5M10 4l5 5"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const postBadge = document.getElementById('postBadge');
+  const chancenBadge = document.getElementById('chancenBadge');
+  const feed = document.getElementById('activityFeed');
+  
+  let postCount = 8;
+  let chancenCount = 0;
+  
+  const names = ['A. Hofer','L. Baumann','K. Frei','P. Gerber','T. Widmer','R. Schmid','D. Roth','M. Zürcher','S. Keller','N. Weber','C. Brunner','J. Meier','F. Steiner','H. Müller','V. Bianchi','O. Huber','E. Graf','U. Fischer','B. Wyss','G. Berger','I. Sutter','W. Hug','Y. Ammann','Z. Bühler','Q. Lanz','X. Rüegg'];
+  const actions = [
+    {tpl: 'E-Mail von <b>%</b> gelesen', red: true},
+    {tpl: '<b>%</b> hat Website besucht', red: false},
+    {tpl: 'Formular ausgefüllt: <b>%</b>', red: true},
+    {tpl: '<b>%</b> LinkedIn Profil besucht', red: false},
+    {tpl: 'Antwort erhalten: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Demo-Link geklickt', red: false},
+    {tpl: 'E-Mail geöffnet: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Pricing besucht', red: false},
+    {tpl: 'Neue Anfrage: <b>%</b>', red: true},
+    {tpl: '<b>%</b> LinkedIn Nachricht gelesen', red: false},
+    {tpl: 'Landing Page besucht: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Case Study gelesen', red: false},
+    {tpl: 'E-Mail beantwortet: <b>%</b>', red: true},
+    {tpl: '<b>%</b> LinkedIn Connection', red: false},
+    {tpl: 'Kalender-Link geklickt: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Whitepaper geladen', red: false},
+    {tpl: 'Follow-up geöffnet: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Blog besucht', red: false},
+    {tpl: 'Kontaktformular: <b>%</b>', red: true},
+    {tpl: '<b>%</b> hat Video angesehen', red: false},
+  ];
+  const times = ['gerade eben','vor 1 Min.','vor 2 Min.','vor 3 Min.','vor 5 Min.','vor 8 Min.','vor 10 Min.','vor 12 Min.','vor 15 Min.','vor 20 Min.'];
+  
+  let lastNameIdx = -1, lastActionIdx = -1;
+  function randExcept(arr, lastIdx) { let i; do { i = Math.floor(Math.random() * arr.length); } while (i === lastIdx); return i; }
+  
+  let actCount = 0;
+  
+  function addActivity() {
+    const ni = randExcept(names, lastNameIdx); lastNameIdx = ni;
+    const ai = randExcept(actions, lastActionIdx); lastActionIdx = ai;
+    const act = actions[ai];
+    const ti = Math.min(actCount, times.length - 1);
+    
+    const el = document.createElement('div');
+    el.className = 'sb-feed-item new';
+    el.innerHTML = `<div class="fd ${act.red ? 'r' : ''}"></div><div>${act.tpl.replace('%', names[ni])}<div class="ft">${times[ti]}</div></div>`;
+    feed.insertBefore(el, feed.firstChild);
+    
+    // Increment post badge
+    if (postCount < 40) {
+      postCount++;
+      postBadge.textContent = postCount;
+    }
+    
+    // Increment chancen badge
+    if (actCount % 3 === 0 && chancenCount < 5) {
+      chancenCount++;
+      chancenBadge.style.display = 'flex';
+      chancenBadge.textContent = chancenCount;
+    }
+    
+    // Remove overflow items
+    while (feed.children.length > 8) {
+      feed.lastChild.style.opacity = '0';
+      feed.lastChild.style.transition = 'opacity 0.3s';
+      setTimeout(() => { if (feed.children.length > 8) feed.removeChild(feed.lastChild); }, 300);
+    }
+    
+    actCount++;
+  }
+  
+  // Start animations after 2s, then every 2.5s
+  setTimeout(() => {
+    addActivity();
+    setInterval(addActivity, 1200);
+  }, 1500);
+})();
+</script>
+
+</body>
+</html>

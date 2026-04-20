@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Case Studies | Salesbrain</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+/* ---- CASE STUDIES PAGE ---- */
+.cs-hero {
+  position: relative;
+  padding: 160px 0 100px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 50% 40% at 80% 50%, rgba(225,0,26,0.04), transparent 70%),
+    var(--paper);
+}
+.cs-hero canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
+}
+.cs-hero .container { position: relative; z-index: 2; }
+.cs-hero h1 {
+  font-size: 64px;
+  max-width: 800px;
+}
+.cs-hero h1 .dim { color: var(--silver); font-weight: 400; }
+.cs-hero .hero-sub {
+  font-size: 18px; color: var(--titanium); margin-top: 24px;
+  max-width: 640px; line-height: 1.6;
+}
+.cs-hero .hero-stats-row {
+  display: flex; gap: 32px; margin-top: 48px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--titanium);
+}
+.cs-hero .hero-stats-row .stat-val {
+  color: var(--ink); font-family: var(--display); font-size: 14px;
+  letter-spacing: -0.01em; font-weight: 500; margin-top: 4px; display: block;
+}
+
+/* Section shared */
+.cs-section {
+  padding: 100px 0;
+  border-top: 1px solid var(--hair);
+}
+.cs-section.dark {
+  background: var(--ink);
+  color: var(--paper);
+  border-top-color: rgba(255,255,255,0.06);
+}
+.cs-section-head {
+  margin-bottom: 64px;
+}
+.cs-section-head .section-tag { margin-bottom: 16px; }
+.cs-section-head h2 { margin-bottom: 12px; }
+.cs-section-head p { color: var(--titanium); font-size: 17px; max-width: 640px; line-height: 1.6; }
+.cs-section.dark .cs-section-head p { color: var(--silver); }
+
+/* ---- METHODOLOGY CARDS (3 Bausteine) ---- */
+.method-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+}
+.method-card {
+  background: var(--paper);
+  padding: 48px 36px;
+  position: relative;
+}
+.method-card .mc-num {
+  font-family: var(--display); font-size: 72px; font-weight: 300;
+  color: var(--fog); line-height: 1; margin-bottom: 16px;
+}
+.method-card h3 {
+  font-family: var(--display); font-size: 24px; font-weight: 500;
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.method-card .mc-problem,
+.method-card .mc-solution {
+  margin-bottom: 20px;
+}
+.method-card .mc-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.method-card .mc-label.red { color: var(--swiss); }
+.method-card .mc-label.grey { color: var(--titanium); }
+.method-card p { font-size: 14px; color: var(--titanium); line-height: 1.55; }
+.method-card .mc-stat {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hair);
+  display: flex; align-items: baseline; gap: 12px;
+}
+.method-card .mc-stat .big {
+  font-family: var(--display); font-size: 48px; font-weight: 500;
+  color: var(--swiss); letter-spacing: -0.03em;
+}
+.method-card .mc-stat .label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--titanium);
+}
+.method-card .mc-example {
+  margin-top: 16px;
+  font-size: 13px; color: var(--silver); font-style: italic; line-height: 1.5;
+}
+
+/* ---- ENTERPRISE CASE CARDS ---- */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+}
+.case-card {
+  background: var(--paper);
+  padding: 48px;
+  display: flex; flex-direction: column;
+}
+.cs-section.dark .case-card { background: var(--graphite); }
+.case-card .cc-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.case-card .cc-logo {
+  font-family: var(--display); font-size: 28px; font-weight: 600;
+  color: var(--ink); letter-spacing: -0.02em;
+}
+.cs-section.dark .case-card .cc-logo { color: var(--paper); }
+.case-card .cc-badge {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--titanium);
+  border: 1px solid var(--hair);
+  padding: 4px 10px;
+}
+.cs-section.dark .case-card .cc-badge { border-color: rgba(255,255,255,0.15); color: var(--silver); }
+.case-card .cc-challenge,
+.case-card .cc-solution {
+  margin-bottom: 16px;
+}
+.case-card .cc-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.case-card .cc-label.grey { color: var(--titanium); }
+.case-card .cc-label.red { color: var(--swiss); }
+.cs-section.dark .case-card .cc-label.grey { color: var(--silver); }
+.case-card p { font-size: 14px; color: var(--titanium); line-height: 1.55; }
+.cs-section.dark .case-card p { color: var(--silver); }
+
+.case-card .cc-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--hair);
+  margin-top: auto; padding-top: 24px;
+}
+.cs-section.dark .case-card .cc-stats { background: rgba(255,255,255,0.08); }
+.cc-stat-cell {
+  background: var(--paper);
+  padding: 14px 12px;
+  text-align: center;
+}
+.cs-section.dark .cc-stat-cell { background: var(--graphite); }
+.cc-stat-cell .v {
+  font-family: var(--display); font-size: 28px; font-weight: 500;
+  color: var(--swiss); letter-spacing: -0.02em;
+}
+.cc-stat-cell .k {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--titanium); margin-top: 4px;
+}
+.cs-section.dark .cc-stat-cell .k { color: var(--silver); }
+.case-card .cc-source {
+  margin-top: 12px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+  color: var(--silver);
+}
+
+/* ---- SUMMARY TABLE ---- */
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 48px;
+}
+.cs-table th, .cs-table td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--hair);
+}
+.cs-section.dark .cs-table th,
+.cs-section.dark .cs-table td { border-bottom-color: rgba(255,255,255,0.08); }
+.cs-table th {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--titanium);
+  padding-bottom: 12px;
+}
+.cs-section.dark .cs-table th { color: var(--silver); }
+.cs-table td { color: var(--ink); }
+.cs-section.dark .cs-table td { color: var(--paper); }
+.cs-table td.highlight { color: var(--swiss); font-weight: 500; }
+
+/* ---- RESEARCH CARDS ---- */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+}
+.research-card {
+  background: var(--paper);
+  padding: 44px 40px;
+}
+.research-card .rc-source {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--swiss); margin-bottom: 10px;
+}
+.research-card h4 {
+  font-family: var(--display); font-size: 20px; font-weight: 500;
+  letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.research-card p {
+  font-size: 14px; color: var(--titanium); line-height: 1.55; margin-bottom: 20px;
+}
+.research-card .rc-stat {
+  display: flex; align-items: baseline; gap: 12px;
+  padding-top: 16px; border-top: 1px solid var(--hair);
+}
+.research-card .rc-stat .big {
+  font-family: var(--display); font-size: 44px; font-weight: 500;
+  color: var(--swiss); letter-spacing: -0.03em;
+}
+.research-card .rc-stat .label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--titanium);
+}
+
+/* ---- BENCHMARKS ---- */
+.bench-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 40px;
+}
+.bench-table th, .bench-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hair);
+}
+.bench-table th {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--titanium);
+}
+.bench-table td.val { color: var(--swiss); font-weight: 500; }
+
+/* ---- PRICING COMPARE ---- */
+.pricing-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+  margin-top: 48px;
+}
+.pc-cell {
+  background: var(--paper);
+  padding: 32px;
+}
+.pc-cell.dark { background: var(--ink); color: var(--paper); }
+.pc-cell h4 {
+  font-family: var(--display); font-size: 20px; font-weight: 500;
+  margin-bottom: 16px;
+}
+.pc-cell ul {
+  list-style: none; padding: 0;
+}
+.pc-cell ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 14px;
+  color: var(--titanium);
+  display: flex; align-items: center; gap: 10px;
+}
+.pc-cell.dark ul li { border-bottom-color: rgba(255,255,255,0.08); color: var(--silver); }
+.pc-cell ul li::before {
+  content: "→"; color: var(--swiss); font-family: var(--mono); font-size: 12px;
+}
+
+/* ---- FINAL CTA ---- */
+.cs-cta {
+  padding: 120px 0;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(225,0,26,0.05), transparent 70%),
+    var(--paper);
+  border-top: 1px solid var(--hair);
+}
+.cs-cta h2 {
+  margin-bottom: 20px;
+}
+.cs-cta p {
+  color: var(--titanium); font-size: 17px; margin-bottom: 40px;
+}
+.cs-cta .btn-row {
+  display: flex; gap: 16px; justify-content: center;
+}
+
+/* ---- COUNTER ANIMATION ---- */
+.counter { display: inline-block; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .cs-hero { padding: 130px 0 80px; }
+  .cs-hero h1 { font-size: 44px; }
+  .methods-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 640px) {
+  .cs-hero { padding: 110px 0 56px; }
+  .cs-hero h1 { font-size: 32px; line-height: 1.05; }
+  .cs-hero .hero-sub { font-size: 15px; }
+  .cs-hero .hero-stats-row { flex-direction: column; gap: 16px; align-items: flex-start; }
+
+  .cs-section-head h2 { font-size: 26px; }
+  .cs-section-head p { font-size: 15px; }
+
+  .methods-grid,
+  .cases-grid,
+  .research-grid,
+  .pricing-compare {
+    grid-template-columns: 1fr !important;
+  }
+  .method-card,
+  .case-card,
+  .research-card,
+  .pc-cell { padding: 28px 24px; }
+
+  .bench-table { display: block; overflow-x: auto; white-space: nowrap; }
+  .bench-table th, .bench-table td { padding: 10px 12px; font-size: 12px; }
+
+  .cs-cta { padding: 64px 0; }
+  .cs-cta h2 { font-size: 26px; }
+  .cs-cta .btn-row { flex-direction: column; gap: 12px; }
+  .cs-cta .btn-row .btn-primary,
+  .cs-cta .btn-row .btn-secondary,
+  .cs-cta .btn-row .btn-swiss {
+    width: 100%; justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV (same as landing) -->
+<nav>
+  <div class="nav-inner">
+    <a href="Salesbrain Landing.html" class="logo-link">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span class="logo-text">salesbr<b>AI</b>n</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="Salesbrain Landing.html#journey">Customer Journey</a></li>
+      <li><a href="#" class="active">Case Studies</a></li>
+      <li><a href="Salesbrain Landing.html#multichannel">Features</a></li>
+      <li><a href="Salesbrain Landing.html#packages">Packages</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn">Demo buchen</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="cs-hero">
+  <canvas id="rippleGrid" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
+  <div class="container">
+    <div class="section-tag"><span class="dot"></span>Erfolgsgeschichten</div>
+    <h1>Enterprise-Methoden.<br/><span class="dim">KMU-Preise.</span> Bewiesene <span class="highlight">Resultate.</span></h1>
+    <p class="hero-sub">Die Strategien, die Zoom, SAP und Snowflake nutzen – jetzt auch für Schweizer KMUs zugänglich. Keine Marketing-Versprechen, sondern verifizierte Ergebnisse.</p>
+    <div class="hero-stats-row">
+      <div><span>Datenbasis</span><span class="stat-val">10'000+ Kampagnen</span></div>
+      <div><span>Methodik</span><span class="stat-val">Peer-Reviewed</span></div>
+      <div><span>Herkunft</span><span class="stat-val">Made in Switzerland</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3 BAUSTEINE ========== -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-head">
+      <div class="section-tag"><span class="dot"></span>Die drei Bausteine</div>
+      <h2>Warum diese Methodik <span class="highlight">funktioniert</span></h2>
+      <p>Salesbrain ist kein weiteres Tool. Es ist die Kombination aus drei bewährten Strategien, die Enterprise-Konzerne seit Jahren erfolgreich einsetzen.</p>
+    </div>
+
+    <div class="method-cards">
+      <div class="method-card">
+        <div class="mc-num">1</div>
+        <h3>Multi-Channel Orchestrierung</h3>
+        <div class="mc-problem">
+          <div class="mc-label grey">// Das Problem</div>
+          <p>Die meisten Unternehmen setzen auf Email allein. 5% Antwortrate. 95 von 100 Kontakten ignorieren dich.</p>
+        </div>
+        <div class="mc-solution">
+          <div class="mc-label red">// Die Lösung</div>
+          <p>Multi-Channel-Kampagnen kombinieren Email, LinkedIn und Landing Pages – perfekt aufeinander abgestimmt.</p>
+        </div>
+        <div class="mc-stat">
+          <div class="big">287%</div>
+          <div class="label">Höhere<br/>Conversions</div>
+        </div>
+        <div class="mc-example">CrossKnowledge: Pipeline-Anteil von 35% auf 60% allein durch Multi-Channel.</div>
+      </div>
+
+      <div class="method-card">
+        <div class="mc-num">2</div>
+        <h3>Speed-to-Lead</h3>
+        <div class="mc-problem">
+          <div class="mc-label grey">// Das Problem</div>
+          <p>Durchschnittliche Antwortzeit im B2B: über 42 Stunden. 50% der Kontakte bekommen nie eine Antwort.</p>
+        </div>
+        <div class="mc-solution">
+          <div class="mc-label red">// Die Lösung</div>
+          <p>Automatisierte Sofort-Reaktion auf jedes Kaufsignal. Wer zuerst antwortet, gewinnt.</p>
+        </div>
+        <div class="mc-stat">
+          <div class="big">21×</div>
+          <div class="label">Höhere<br/>Qualifizierung</div>
+        </div>
+        <div class="mc-example">LinkedSelling: Terminquote von 82 auf 195/Monat (+138%) durch Reaktion innerhalb 24h.</div>
+      </div>
+
+      <div class="method-card">
+        <div class="mc-num">3</div>
+        <h3>Intent-basierte Priorisierung</h3>
+        <div class="mc-problem">
+          <div class="mc-label grey">// Das Problem</div>
+          <p>Du hast 1'000 Kontakte. Nur 280 suchen aktiv. Die anderen 720? Zeitverschwendung.</p>
+        </div>
+        <div class="mc-solution">
+          <div class="mc-label red">// Die Lösung</div>
+          <p>AI-gestütztes Scoring erkennt echtes Kaufinteresse – basierend auf Verhalten und Signalen.</p>
+        </div>
+        <div class="mc-stat">
+          <div class="big">59%</div>
+          <div class="label">Höhere<br/>Win-Rate</div>
+        </div>
+        <div class="mc-example">Cloudera: Cost-per-Kontakt -50% bei 30+ grossen Abschlüssen durch Fokussierung.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ENTERPRISE CASES ========== -->
+<section class="cs-section dark">
+  <div class="container">
+    <div class="cs-section-head">
+      <div class="section-tag"><span class="dot"></span>Enterprise-Erfolgsgeschichten</div>
+      <h2>So machen es die <span class="highlight">Grossen</span></h2>
+      <p>Diese Unternehmen nutzen genau die Methodik, die Salesbrain für KMUs zugänglich macht. Sie zahlen CHF 50'000–100'000+ pro Jahr dafür.</p>
+    </div>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Zoom</div>
+          <div class="cc-badge">300M+ Nutzer</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Fragmentierte Zielgruppen, isolierte Workflows, keine koordinierte Multi-Channel-Ansprache.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>Multi-Channel ABM mit Intent-Daten, integriert in Salesforce. Koordinierte Kampagnen über Email, LinkedIn und Ads.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">6.25×</div><div class="k">Opportunities</div></div>
+          <div class="cc-stat-cell"><div class="v">+48%</div><div class="k">Sales Conversion</div></div>
+          <div class="cc-stat-cell"><div class="v">+82%</div><div class="k">Engagement</div></div>
+        </div>
+        <div class="cc-source">Quelle: demandbase.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">SAP Concur</div>
+          <div class="cc-badge">10'000 Mitarbeiter</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Grosses Account-Universum, limitiertes Budget, keine klare Priorisierung kaufbereiter Accounts.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>Intent-Signale zur Priorisierung, koordinierte Multi-Channel-Kampagnen auf aktive Accounts.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">+52%</div><div class="k">Closed-Won Revenue</div></div>
+          <div class="cc-stat-cell"><div class="v">+33%</div><div class="k">Deal-Grösse</div></div>
+          <div class="cc-stat-cell"><div class="v">+60%</div><div class="k">Pipeline</div></div>
+        </div>
+        <div class="cc-source">Quelle: demandbase.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Snowflake</div>
+          <div class="cc-badge">Cloud Data</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>6-köpfiges ABM-Team, 2'000+ gleichzeitige 1:1-Kampagnen. Schwierig skalierbar.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>Orchestrierter Multi-Channel-Outreach mit Intent-Daten. Automatisierung bei persönlicher Ansprache.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">3×</div><div class="k">Meeting-Rate</div></div>
+          <div class="cc-stat-cell"><div class="v">+56%</div><div class="k">SDR-Meetings</div></div>
+          <div class="cc-stat-cell"><div class="v">+40%</div><div class="k">Intent Conversion</div></div>
+        </div>
+        <div class="cc-source">Quelle: rollworks.com, bombora.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Smartsheet</div>
+          <div class="cc-badge">80% Fortune 500</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Keine Intent-Daten, ineffiziente Kontakt-Priorisierung. Verschwendung auf nicht kaufbereite Prospects.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>ZoomInfo Intent-Daten integriert mit Salesforce und Marketo. Priorisierung nach Kaufsignalen.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">+59%</div><div class="k">Win-Rate</div></div>
+          <div class="cc-stat-cell"><div class="v">+48%</div><div class="k">Qualifizierte Leads</div></div>
+          <div class="cc-stat-cell"><div class="v">+40%</div><div class="k">Opportunities</div></div>
+        </div>
+        <div class="cc-source">Quelle: zoominfo.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Automox</div>
+          <div class="cc-badge">IT Management</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Begrenzte Ressourcen für ABM, schwierig qualifizierte Enterprise-Leads zu generieren.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>ABM-Plattform für fokussierten Account-Approach mit Multi-Channel-Strategie.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">+88%</div><div class="k">Closed-Won</div></div>
+          <div class="cc-stat-cell"><div class="v">2×</div><div class="k">Pipeline Value</div></div>
+          <div class="cc-stat-cell"><div class="v">-30%</div><div class="k">Sales Cycle</div></div>
+        </div>
+        <div class="cc-source">Quelle: rollworks.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Hushly</div>
+          <div class="cc-badge">B2B MarTech</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Niedrige Conversion bei Cold Outreach, schwierig qualifizierte B2B-Kontakte zu identifizieren.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>Intent-Daten kombiniert mit LinkedIn Outreach für präzise Zielgruppen-Ansprache.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">+414%</div><div class="k">Conversion</div></div>
+          <div class="cc-stat-cell"><div class="v">3×</div><div class="k">Qualified Leads</div></div>
+          <div class="cc-stat-cell"><div class="v">+67%</div><div class="k">Response Rate</div></div>
+        </div>
+        <div class="cc-source">Quelle: linkedin.com</div>
+      </div>
+    </div>
+
+    <table class="cs-table" style="margin-top: 56px;">
+      <thead>
+        <tr><th>Unternehmen</th><th>Methodik</th><th>Kernergebnis</th><th>Quelle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Zoom</td><td>Multi-Channel + Intent</td><td class="highlight">6.25× mehr Opportunities</td><td>Demandbase</td></tr>
+        <tr><td>SAP Concur</td><td>Intent-Priorisierung</td><td class="highlight">52% mehr Closed-Won</td><td>Demandbase</td></tr>
+        <tr><td>Snowflake</td><td>Orchestrierter Outreach</td><td class="highlight">3× höhere Meeting-Rate</td><td>RollWorks</td></tr>
+        <tr><td>Smartsheet</td><td>Intent-Daten</td><td class="highlight">59% höhere Win-Rate</td><td>ZoomInfo</td></tr>
+        <tr><td>Automox</td><td>ABM-Plattform</td><td class="highlight">88% mehr Closed-Won</td><td>RollWorks</td></tr>
+        <tr><td>Hushly</td><td>Intent + LinkedIn</td><td class="highlight">414% bessere Conversion</td><td>LinkedIn</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== MID-MARKET / KMU ========== -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-head">
+      <div class="section-tag"><span class="dot"></span>Mid-Market &amp; KMU-Erfolge</div>
+      <h2>Das funktioniert nicht nur für <span class="highlight">Konzerne</span></h2>
+      <p>Die besten Ergebnisse kommen oft von kleineren Unternehmen mit fokussierten Kampagnen.</p>
+    </div>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Healthcare Software</div>
+          <div class="cc-badge">Mittelstand</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Cold Outreach unter 2% Antwortrate, After-Event Follow-ups nur 5% Erfolgsrate. Kein Targeting, alles manuell.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>30 Zielkunden präzise definiert. Personalisierter Multi-Channel-Outreach. Budget: CHF 4'500.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">36%</div><div class="k">Antwortrate</div></div>
+          <div class="cc-stat-cell"><div class="v">270k</div><div class="k">CHF Umsatz</div></div>
+          <div class="cc-stat-cell"><div class="v">6'000%</div><div class="k">ROI</div></div>
+        </div>
+        <div class="cc-source">Quelle: fullfunnel.io</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Payscale</div>
+          <div class="cc-badge">HR-Tech</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Langsames Wachstum, hohe Akquisitionskosten, langer Sales Cycle.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>ABM-Integration mit HubSpot, fokussierte Multi-Channel-Kampagnen auf qualifizierte Zielaccounts.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">6×</div><div class="k">Umsatzsteigerung</div></div>
+          <div class="cc-stat-cell"><div class="v">+500%</div><div class="k">Traffic</div></div>
+          <div class="cc-stat-cell"><div class="v">-20%</div><div class="k">Sales Cycle</div></div>
+        </div>
+        <div class="cc-source">Quelle: rollworks.com, cxl.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Goverlan</div>
+          <div class="cc-badge">IT-Admin Software</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Begrenzte Marketing-Ressourcen, schwierig Demos zu generieren, hoher manueller Aufwand.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>ABM-Plattform integriert mit HubSpot für automatisierte Lead-Generierung und Nurturing.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">40–50</div><div class="k">Demos/Woche</div></div>
+          <div class="cc-stat-cell"><div class="v">15×</div><div class="k">ROI</div></div>
+          <div class="cc-stat-cell"><div class="v">85%</div><div class="k">Automatisierung</div></div>
+        </div>
+        <div class="cc-source">Quelle: singlegrain.com</div>
+      </div>
+
+      <div class="case-card">
+        <div class="cc-top">
+          <div class="cc-logo">Dassault Systèmes</div>
+          <div class="cc-badge">3D-Design, FR</div>
+        </div>
+        <div class="cc-challenge">
+          <div class="cc-label grey">// Herausforderung</div>
+          <p>Grosses Account-Universum in Nordamerika, Fokus unklar, zu viele kleine Opportunities.</p>
+        </div>
+        <div class="cc-solution">
+          <div class="cc-label red">// Lösung</div>
+          <p>Fokus auf nur 15–20 Zielunternehmen (Fertigung, CHF 900 Mio.+). Intensive 1:1 Betreuung.</p>
+        </div>
+        <div class="cc-stats">
+          <div class="cc-stat-cell"><div class="v">61M</div><div class="k">CHF Umsatz</div></div>
+          <div class="cc-stat-cell"><div class="v">6.5</div><div class="k">Stakeholder/Acc.</div></div>
+          <div class="cc-stat-cell"><div class="v">4.6</div><div class="k">Zufriedenheit</div></div>
+        </div>
+        <div class="cc-source">Quelle: abmagency.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESEARCH ========== -->
+<section class="cs-section" style="background: var(--bone);">
+  <div class="container">
+    <div class="cs-section-head">
+      <div class="section-tag"><span class="dot"></span>Peer-Reviewed Research</div>
+      <h2>Die Wissenschaft <span class="highlight">dahinter</span></h2>
+      <p>Diese Zahlen stammen aus peer-reviewed Studien und verifizierten Vendor Case Studies.</p>
+    </div>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="rc-source">MIT Sloan School of Management</div>
+        <h4>Dr. James Oldroyd</h4>
+        <p>15'000+ Kontakte und 100'000+ Call-Versuche über 3 Jahre analysiert. Kontakt innerhalb 5 Min vs. 30 Min erhöht die Qualifizierung massiv.</p>
+        <div class="rc-stat">
+          <div class="big">21×</div>
+          <div class="label">Höhere<br/>Qualifizierung</div>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-source">Harvard Business Review</div>
+        <h4>Reaktionszeit im B2B</h4>
+        <p>Studie mit 2'200+ US-Unternehmen. Wer innerhalb 1 Stunde antwortet, führt signifikant mehr qualifizierte Gespräche mit Entscheidern.</p>
+        <div class="rc-stat">
+          <div class="big">7×</div>
+          <div class="label">Mehr<br/>Gespräche</div>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-source">Velocify Research</div>
+        <h4>Conversion-Optimierung</h4>
+        <p>Analyse von Millionen Sales-Interaktionen. Kontakt innerhalb 1 Minute nach Erstkontakt erhöht die Conversion drastisch.</p>
+        <div class="rc-stat">
+          <div class="big">391%</div>
+          <div class="label">Höhere<br/>Conversion</div>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <div class="rc-source">Gartner / Industry Benchmarks</div>
+        <h4>Multi-Channel Marketing</h4>
+        <p>Meta-Analyse von Multi-Channel Kampagnen im B2B-Bereich. Multi-Channel erreicht deutlich höhere Kaufraten als Single-Channel.</p>
+        <div class="rc-stat">
+          <div class="big">287%</div>
+          <div class="label">Mehr<br/>Conversions</div>
+        </div>
+      </div>
+    </div>
+
+    <table class="bench-table">
+      <thead>
+        <tr><th>Kategorie</th><th>Benchmark</th><th>Quelle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Speed-to-Lead</td><td class="val">21× besser bei 5 Min vs. 30 Min</td><td>MIT Sloan</td></tr>
+        <tr><td>Multi-Channel</td><td class="val">287% mehr Conversions</td><td>Gartner</td></tr>
+        <tr><td>Intent-Daten</td><td class="val">59% höhere Win-Rate</td><td>ZoomInfo</td></tr>
+        <tr><td>Personalisierung</td><td class="val">32% mehr Antworten</td><td>Industry Average</td></tr>
+        <tr><td>A/B-Testing</td><td class="val">82% höherer ROI</td><td>Industry Studies</td></tr>
+        <tr><td>Cold Email (Durchschnitt)</td><td class="val">5% Antwortrate</td><td>Belkins Research</td></tr>
+        <tr><td>Cold Email (Top-Performer)</td><td class="val">15–25% Antwortrate</td><td>Belkins Research</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="cs-cta">
+  <div class="container">
+    <h2>Bereit, deinen Vertrieb zu <span class="highlight">automatisieren</span>?</h2>
+    <p>Buche jetzt deine kostenlose Demo und erfahre, wie Salesbrain deinen Vertrieb revolutioniert.</p>
+    <div class="btn-row">
+      <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-primary">Demo buchen</a>
+      <a href="Salesbrain Landing.html#packages" class="btn-secondary">Packages ansehen</a>
+    </div>
+    <p style="margin-top: 20px; font-size: 13px; color: var(--silver);">Unverbindliche Beratung · Antwort innerhalb von 24h</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>© 2026 Salesbrain | digitale rakete GmbH | Kilchberg/Zug, Schweiz</span>
+      <span style="color: var(--swiss);">● Made in Switzerland</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Ripple Grid (same as landing)
+(function() {
+  const canvas = document.getElementById('rippleGrid');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr;
+  let mouseX = -999, mouseY = -999;
+  const gridSize = 10;
+  const gridThickness = 1.2;
+  const gridColor = [148, 163, 184];
+  const rippleIntensity = 0.05;
+  const fadeDistance = 1.5;
+  const vignetteStrength = 2;
+  const glowIntensity = 0.1;
+  const mouseRadius = 0.8;
+  const ripples = [];
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    dpr = window.devicePixelRatio || 1;
+    w = rect.width; h = rect.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function addRipple(x, y) {
+    ripples.push({ x, y, radius: 0, maxRadius: Math.max(w, h) * mouseRadius, life: 1 });
+    if (ripples.length > 5) ripples.shift();
+  }
+
+  let lastMx = -999, lastMy = -999;
+  canvas.parentElement.addEventListener('mousemove', (e) => {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    mouseX = e.clientX - rect.left; mouseY = e.clientY - rect.top;
+    const dx = mouseX - lastMx, dy = mouseY - lastMy;
+    if (Math.sqrt(dx*dx + dy*dy) > 60) { addRipple(mouseX, mouseY); lastMx = mouseX; lastMy = mouseY; }
+  });
+  canvas.parentElement.addEventListener('mouseleave', () => { mouseX = -999; mouseY = -999; });
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const cellW = w / gridSize, cellH = h / gridSize;
+    for (let r of ripples) { r.radius += 4; r.life = Math.max(0, 1 - r.radius / r.maxRadius); }
+    for (let i = ripples.length - 1; i >= 0; i--) { if (ripples[i].life <= 0) ripples.splice(i, 1); }
+
+    for (let x = 0; x <= gridSize; x++) {
+      for (let y = 0; y <= gridSize; y++) {
+        const px = x * cellW, py = y * cellH;
+        let dx = 0, dy = 0;
+        for (const r of ripples) {
+          const dist = Math.sqrt((px - r.x) ** 2 + (py - r.y) ** 2);
+          const wave = Math.sin((dist - r.radius) * 0.04) * rippleIntensity * r.life * 100;
+          if (dist < r.radius + 100 && dist > r.radius - 100) {
+            const angle = Math.atan2(py - r.y, px - r.x);
+            dx += Math.cos(angle) * wave; dy += Math.sin(angle) * wave;
+          }
+        }
+        let glow = 0;
+        if (mouseX > 0) { const md = Math.sqrt((px - mouseX) ** 2 + (py - mouseY) ** 2); if (md < w * 0.3) glow = (1 - md / (w * 0.3)) * glowIntensity; }
+        const cx2 = w / 2, cy2 = h / 2;
+        const vDist = Math.sqrt((px - cx2) ** 2 + (py - cy2) ** 2);
+        const vignette = Math.max(0, 1 - Math.pow(vDist / Math.sqrt(cx2*cx2 + cy2*cy2), fadeDistance) * vignetteStrength);
+        const alpha = Math.min(1, (0.28 + glow) * vignette);
+        const [cr, cg, cb] = gridColor;
+
+        if (x < gridSize) {
+          const nx = (x + 1) * cellW;
+          let ndx = 0, ndy = 0;
+          for (const r of ripples) { const dist = Math.sqrt((nx - r.x) ** 2 + (py - r.y) ** 2); const wave = Math.sin((dist - r.radius) * 0.04) * rippleIntensity * r.life * 100; if (dist < r.radius + 100 && dist > r.radius - 100) { const angle = Math.atan2(py - r.y, nx - r.x); ndx += Math.cos(angle) * wave; ndy += Math.sin(angle) * wave; } }
+          ctx.beginPath(); ctx.moveTo(px + dx, py + dy); ctx.lineTo(nx + ndx, py + ndy);
+          ctx.strokeStyle = `rgba(${cr},${cg},${cb},${alpha})`; ctx.lineWidth = gridThickness; ctx.stroke();
+        }
+        if (y < gridSize) {
+          const ny = (y + 1) * cellH;
+          let ndx = 0, ndy = 0;
+          for (const r of ripples) { const dist = Math.sqrt((px - r.x) ** 2 + (ny - r.y) ** 2); const wave = Math.sin((dist - r.radius) * 0.04) * rippleIntensity * r.life * 100; if (dist < r.radius + 100 && dist > r.radius - 100) { const angle = Math.atan2(ny - r.y, px - r.x); ndx += Math.cos(angle) * wave; ndy += Math.sin(angle) * wave; } }
+          ctx.beginPath(); ctx.moveTo(px + dx, py + dy); ctx.lineTo(px + ndx, ny + ndy);
+          ctx.strokeStyle = `rgba(${cr},${cg},${cb},${alpha})`; ctx.lineWidth = gridThickness; ctx.stroke();
+        }
+        if (glow > 0.02) { ctx.beginPath(); ctx.arc(px + dx, py + dy, 1.5 + glow * 10, 0, Math.PI * 2); ctx.fillStyle = `rgba(225,0,26,${glow * 3})`; ctx.fill(); }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); window.addEventListener('resize', resize); draw();
+})();
+</script>
+
+
+<!-- Cal.com Modal -->
+<div id="calModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(5,5,7,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
+  <div style="position:relative; width:95%; max-width:1100px; height:90vh; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 20px 80px rgba(0,0,0,0.3);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--hair); background:var(--paper);">
+      <span style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--titanium);">● <span style="color:var(--swiss);">Demo buchen</span> · SalesbrAIn</span>
+      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; font-size:20px; color:var(--titanium); padding:4px 8px;">✕</button>
+    </div>
+    <iframe id="calFrame" src="" style="width:100%; height:calc(100% - 52px); border:none;" allow="payment"></iframe>
+  </div>
+</div>
+
+<script>
+function openCalModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('calFrame').src = 'https://cal.com/eduard-mirdita-7spw8u/salesbrain-info';
+  document.getElementById('calModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCalModal() {
+  document.getElementById('calModal').style.display = 'none';
+  document.getElementById('calFrame').src = '';
+  document.body.style.overflow = '';
+}
+document.getElementById('calModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCalModal();
+});
+document.querySelectorAll('a[href*="cal.com"]').forEach(a => {
+  a.addEventListener('click', openCalModal);
+});
+</script>
+</body>
+</html>
