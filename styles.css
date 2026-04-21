@@ -996,12 +996,15 @@ footer .f-right .swiss-dot { width: 6px; height: 6px; border-radius: 50%; backgr
     transform: translateY(-50%) !important;
     opacity: 0.22 !important;
   }
-  .hero { padding: 90px 0 48px; overflow: hidden; }
+  /* ~25% taller hero — more breathing room between every element */
+  .hero { padding: 140px 0 96px; overflow: hidden; min-height: 88vh; }
   .hero-content { max-width: 100% !important; }
   .hero-grid-bg { display: none !important; }
-  .hero-sub { font-size: 16px; margin-top: 24px; max-width: 100% !important; }
+  .hero-eyebrow { margin-bottom: 44px !important; }
+  .hero h1 { margin-bottom: 8px; }
+  .hero-sub { font-size: 16px; margin-top: 48px; max-width: 100% !important; }
   .hero-sub-extra { display: none !important; }
-  .hero-actions { margin-top: 28px; }
+  .hero-actions { margin-top: 64px; }
 
   /* HERO STATS — redundant on mobile (info lives in sub + pricing) */
   .hero-stats { display: none !important; }
