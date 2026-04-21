@@ -986,36 +986,45 @@ footer .f-right .swiss-dot { width: 6px; height: 6px; border-radius: 50%; backgr
 }
 
 @media (max-width: 640px) {
-  /* HERO — planet 2x bigger, positioned left behind text */
+  /* HERO — planet smaller, shifted further off-canvas, more atmospheric */
   .hero-seal {
-    width: 320px !important;
-    height: 320px !important;
-    top: 40% !important;
-    right: -80px !important;
+    width: 200px !important;
+    height: 200px !important;
+    top: 42% !important;
+    right: -100px !important;
     left: auto !important;
     transform: translateY(-50%) !important;
-    opacity: 0.4 !important;
+    opacity: 0.22 !important;
   }
   .hero { padding: 90px 0 48px; overflow: hidden; }
   .hero-content { max-width: 100% !important; }
-  .hero-sub { font-size: 16px; margin-top: 32px; }
+  .hero-grid-bg { display: none !important; }
+  .hero-sub { font-size: 16px; margin-top: 24px; max-width: 100% !important; }
+  .hero-sub-extra { display: none !important; }
   .hero-actions { margin-top: 28px; }
 
-  /* HERO STATS — horizontal row, compact */
-  .hero-stats {
-    flex-direction: row !important;
-    gap: 12px !important;
-    flex-wrap: nowrap;
-    margin-top: 36px;
-    padding-top: 20px;
-    font-size: 8px !important;
-    letter-spacing: 0.1em;
-  }
-  .hero-stats > div { flex: 1 1 0; min-width: 0; }
-  .hero-stats .stat-val {
+  /* HERO STATS — redundant on mobile (info lives in sub + pricing) */
+  .hero-stats { display: none !important; }
+
+  /* Case Studies → ghost text link, not a heavy outlined button */
+  .hero-actions .btn-secondary {
+    width: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 8px 0 !important;
+    justify-content: flex-start !important;
+    color: var(--titanium) !important;
     font-size: 11px !important;
-    letter-spacing: -0.01em;
-    margin-top: 6px;
+    letter-spacing: 0.14em !important;
+  }
+  .hero-actions .btn-secondary::after {
+    content: " →";
+    margin-left: 6px;
+    color: var(--swiss);
+  }
+  .hero-actions .btn-secondary:hover {
+    color: var(--ink) !important;
+    background: transparent !important;
   }
 
   /* DASHBOARD IFRAMES — left-aligned, 2x scale, only ~50% visible */
