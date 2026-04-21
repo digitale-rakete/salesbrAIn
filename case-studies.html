@@ -315,8 +315,15 @@
 @media (max-width: 1024px) {
   .cs-hero { padding: 130px 0 80px; }
   .cs-hero h1 { font-size: 44px; }
-  .methods-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .method-cards { grid-template-columns: repeat(2, 1fr) !important; }
+  .case-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 768px) {
+  nav .nav-inner { flex-wrap: nowrap; justify-content: space-between; padding: 12px 20px; height: 64px; gap: 8px; }
+  nav .nav-links { display: none !important; }
+  nav .nav-cta-desktop { display: none !important; }
+  .nav-burger { display: block !important; }
+  .mobile-menu { display: block; }
 }
 @media (max-width: 640px) {
   .cs-hero { padding: 110px 0 56px; }
@@ -327,19 +334,25 @@
   .cs-section-head h2 { font-size: 26px; }
   .cs-section-head p { font-size: 15px; }
 
-  .methods-grid,
-  .cases-grid,
+  .method-cards,
+  .case-grid,
   .research-grid,
   .pricing-compare {
     grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    background: transparent !important;
+    border: 0 !important;
   }
   .method-card,
   .case-card,
   .research-card,
-  .pc-cell { padding: 28px 24px; }
+  .pc-cell {
+    padding: 24px 20px !important;
+    border: 1px solid var(--hair) !important;
+  }
 
-  .bench-table { display: block; overflow-x: auto; white-space: nowrap; }
-  .bench-table th, .bench-table td { padding: 10px 12px; font-size: 12px; }
+  .bench-table { display: block; overflow-x: auto; }
+  .bench-table th, .bench-table td { padding: 10px 12px; font-size: 12px; white-space: nowrap; }
 
   .cs-cta { padding: 64px 0; }
   .cs-cta h2 { font-size: 26px; }
@@ -349,6 +362,9 @@
   .cs-cta .btn-row .btn-swiss {
     width: 100%; justify-content: center;
   }
+
+  /* Prevent page-level horizontal scroll */
+  body { overflow-x: hidden; }
 }
 </style>
 </head>
@@ -372,9 +388,44 @@
       <li><a href="/#multichannel">Features</a></li>
       <li><a href="/#packages">Packages</a></li>
     </ul>
-    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn">Demo buchen</a>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn nav-cta-desktop">Demo buchen</a>
+    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/#journey">Customer Journey</a></li>
+      <li><a href="/#multichannel">Features</a></li>
+      <li><a href="/#packages">Packages</a></li>
+      <li><a href="/case-studies">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
   </div>
 </nav>
+<script>
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const close = () => {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
+})();
+</script>
 
 <!-- ========== HERO ========== -->
 <section class="cs-hero">
