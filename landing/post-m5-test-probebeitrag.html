@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>M5-Test: Probebeitrag | SalesbrAIn</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.blog-hero {
+  padding: 140px 0 80px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.blog-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(225,0,26,0.04), transparent 70%);
+  pointer-events: none;
+}
+.blog-hero .hero-eyebrow {
+  margin-bottom: 20px;
+}
+.blog-hero h1 {
+  margin-bottom: 20px;
+}
+.blog-hero .hero-sub {
+  max-width: 560px;
+}
+
+.blog-divider {
+  width: 40px;
+  height: 3px;
+  background: var(--swiss);
+  margin: 20px 0 0;
+}
+
+.blog-section {
+  padding: 80px 0 100px;
+  background: var(--bone);
+}
+
+.post-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--swiss);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.post-meta span {
+  color: var(--titanium);
+}
+
+.post-body {
+  max-width: 720px;
+  color: var(--titanium);
+  font-size: 16px;
+  line-height: 1.75;
+}
+.post-body p {
+  margin-bottom: 24px;
+}
+.post-body h2 {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 40px 0 16px;
+}
+.post-body h3 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 32px 0 12px;
+}
+.post-body ul,
+.post-body ol {
+  padding-left: 20px;
+  margin-bottom: 24px;
+}
+.post-body li {
+  margin-bottom: 8px;
+}
+
+.back-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--swiss);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--swiss);
+  padding-bottom: 2px;
+  margin-top: 48px;
+  transition: opacity 0.2s;
+}
+.back-link:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span class="logo-text">salesbr<b>AI</b>n</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#journey">Customer Journey</a></li>
+      <li><a href="index.html#multichannel">Features</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html" target="_blank">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn nav-cta-desktop">Demo buchen</a>
+    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#journey">Customer Journey</a></li>
+      <li><a href="index.html#multichannel">Features</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
+  </div>
+</nav>
+
+<!-- ========== POST HERO ========== -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Ratgeber &amp; Insights
+      </div>
+      <h1>M5-Test: Probebeitrag</h1>
+      <div class="post-meta">
+        Test <span>· 16. Juni 2026</span>
+      </div>
+      <div class="blog-divider"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== POST CONTENT ========== -->
+<section class="blog-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="post-body">
+        <p>Dies ist ein Probetext für den Freigabe-Test.</p>
+        <a href="blog.html" class="back-link">← Zurück zum Blog</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta" id="cta">
+  <div class="container reveal">
+    <div class="section-tag" style="justify-content:center;"><span class="dot"></span>Bereit?</div>
+    <h2>Dein Vertrieb auf<br/><span class="highlight">Autopilot</span> stellen?</h2>
+    <p>Erlebe in einem persönlichen Gespräch, wie SalesbrAIn deinen Vertrieb konkret und praxisnah automatisiert – ohne Umwege, ohne versteckte Kosten.</p>
+    <div class="actions">
+      <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss">Demo buchen</a>
+      <a href="index.html#packages" class="btn-secondary">Pakete ansehen</a>
+    </div>
+    <div class="note">Unverbindliche Beratung · Antwort innerhalb von 24h</div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
+    <div class="f-right"><span class="swiss-dot"></span>Made in Switzerland</div>
+  </div>
+</footer>
+
+<!-- ========== JS ========== -->
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const close = () => {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
+})();
+</script>
+
+<!-- Cal.com Modal -->
+<div id="calModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(5,5,7,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
+  <div style="position:relative; width:95%; max-width:1100px; height:90vh; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 20px 80px rgba(0,0,0,0.3);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--hair); background:var(--paper);">
+      <span style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--titanium);">● <span style="color:var(--swiss);">Demo buchen</span> · SalesbrAIn</span>
+      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; font-size:20px; color:var(--titanium); padding:4px 8px;">✕</button>
+    </div>
+    <iframe id="calFrame" src="" style="width:100%; height:calc(100% - 52px); border:none;" allow="payment"></iframe>
+  </div>
+</div>
+
+<script>
+function openCalModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('calFrame').src = 'https://cal.com/eduard-mirdita-7spw8u/salesbrain-info';
+  document.getElementById('calModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCalModal() {
+  document.getElementById('calModal').style.display = 'none';
+  document.getElementById('calFrame').src = '';
+  document.body.style.overflow = '';
+}
+document.getElementById('calModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCalModal();
+});
+document.querySelectorAll('a[href*="cal.com"]').forEach(a => {
+  a.addEventListener('click', openCalModal);
+});
+</script>
+
+</body>
+</html>
