@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ratgeber | SalesbrAIn</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.blog-hero {
+  padding: 140px 0 80px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.blog-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(225,0,26,0.04), transparent 70%);
+  pointer-events: none;
+}
+.blog-hero .hero-eyebrow {
+  margin-bottom: 20px;
+}
+.blog-hero h1 {
+  margin-bottom: 20px;
+}
+.blog-hero .hero-sub {
+  max-width: 560px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 60px;
+}
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 580px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-card {
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.blog-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  transform: translateY(-4px);
+}
+.blog-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--hair);
+  overflow: hidden;
+  position: relative;
+}
+.blog-card-img-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.blog-card-img svg {
+  opacity: 0.18;
+}
+.blog-card-img-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+.blog-card-body {
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.blog-card-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--swiss);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.blog-card-meta span {
+  color: var(--titanium);
+}
+.blog-card h3 {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.blog-card p {
+  font-size: 14px;
+  color: var(--titanium);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 24px;
+}
+.blog-card-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--swiss);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--swiss);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: opacity 0.2s;
+}
+.blog-card-link:hover {
+  opacity: 0.7;
+}
+
+.blog-divider {
+  width: 40px;
+  height: 3px;
+  background: var(--swiss);
+  margin: 20px 0 0;
+}
+
+.blog-section {
+  padding: 80px 0 100px;
+  background: var(--bone);
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span class="logo-text">salesbr<b>AI</b>n</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#journey">Customer Journey</a></li>
+      <li><a href="index.html#multichannel">Features</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html" target="_blank">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn nav-cta-desktop">Demo buchen</a>
+    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#journey">Customer Journey</a></li>
+      <li><a href="index.html#multichannel">Features</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
+  </div>
+</nav>
+
+<!-- ========== BLOG HERO ========== -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Wissen für deinen Vertriebserfolg
+      </div>
+      <h1>
+        Ratgeber &amp;<br/>
+        <span class="dim">Insights</span>
+      </h1>
+      <p class="hero-sub">
+        Praxisnahe Artikel zu B2B-Vertrieb, KI-gestütztem Outreach und moderner Sales-Automatisierung – entwickelt aus 20 Jahren Schweizer Vertriebserfahrung.
+      </p>
+      <div class="blog-divider"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BLOG GRID ========== -->
+<section class="blog-section">
+  <div class="container">
+
+    <div class="problems-header reveal" style="margin-bottom:0;">
+      <div class="section-tag"><span class="dot"></span>Alle Beiträge</div>
+      <h2>Aktuelle <span class="highlight">Artikel</span></h2>
+      <p>Fundiertes Wissen, direkt anwendbar – ohne Umwege.</p>
+    </div>
+
+    <div class="blog-grid reveal">
+
+      <!-- Card: Warum 78% der Deals -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            Vertriebsstrategie <span>· Juni 2026</span>
+          </div>
+          <h3>Warum 78% der Deals an den schnellsten Anbieter gehen – und was das für dein KMU bedeutet</h3>
+          <p>Reaktionsgeschwindigkeit entscheidet im B2B-Vertrieb über Sieg oder Niederlage. Erfahre, warum die meisten KMU wertvolle Anfragen verlieren – und wie du diesen Nachteil mit den richtigen Prozessen dauerhaft ausschaltest.</p>
+          <a href="post-warum-78-der-deals-an-den-schnellsten-anbieter-gehen-und-was.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+      <!-- Card: Follow-up Sequenzen -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            Sales-Automation <span>· Mai 2026</span>
+          </div>
+          <h3>Follow-up-Sequenzen, die wirklich konvertieren: 7 Regeln aus der Praxis</h3>
+          <p>Die meisten Deals scheitern nicht am ersten Kontakt – sondern am ausgebliebenen Nachfassen. Welche Timing-, Kanal- und Tonalitätsregeln erfahrene Sales-Teams in der Schweiz nutzen, um ihre Abschlussquote messbar zu steigern.</p>
+          <a href="post-follow-up-sequenzen-die-wirklich-konvertieren.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+      <!-- Card 0 -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            KI &amp; Vertrieb <span>· 1. März 2026</span>
+          </div>
+          <h3>Wie KI den B2B-Vertrieb 2026 verändert</h3>
+          <p>Künstliche Intelligenz verschiebt die Spielregeln im B2B-Vertrieb grundlegend – von der Lead-Qualifizierung bis zum Abschluss. Erfahre, welche Chancen und Risiken das für dein Sales-Team bedeutet.</p>
+          <a href="post-wie-ki-den-b2b-vertrieb-2026-veraendert.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+      <!-- Card 1 -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            Vertriebsstrategie <span>· 14. Januar 2026</span>
+          </div>
+          <h3>Cold Outreach 2026: Warum klassische E-Mail-Kampagnen nicht mehr ausreichen</h3>
+          <p>Die Postfächer deiner Zielkunden sind voller als je zuvor. Wer heute im B2B-Vertrieb Gehör finden will, braucht mehr als einen generischen Newsletter – er braucht einen koordinierten Multi-Channel-Ansatz mit echter Personalisierung.</p>
+          <a href="post-cold-outreach-2026-warum-klassische-email-kampagnen-nicht-mehr-ausreichen.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            LinkedIn &amp; Automation <span>· 28. Januar 2026</span>
+          </div>
+          <h3>LinkedIn-Automation richtig einsetzen: Chancen, Grenzen und Best Practices</h3>
+          <p>Automatisierte Connection Requests, InMail-Sequenzen und Profil-Besuche – richtig eingesetzt verdoppeln sie deine Antwortrate. Falsch umgesetzt, riskierst du Reputation und Account-Sperrung. Wir zeigen, wo die Grenze liegt.</p>
+          <a href="post-linkedin-automation-richtig-einsetzen-chancen-grenzen-und-best-practices.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+              <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+              <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+              <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+            </svg>
+            <span class="blog-card-img-label">Beitragsbild folgt</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            KI &amp; Sales <span>· 10. Februar 2026</span>
+          </div>
+          <h3>Speed-to-Lead: Weshalb die ersten 5 Minuten über deinen Abschluss entscheiden</h3>
+          <p>Studien belegen es eindeutig: 78 % der Käufer entscheiden sich für den Anbieter, der zuerst antwortet. Mit KI-gestützter Lead-Qualifizierung und automatisierten Follow-up-Sequenzen reagierst du in Echtzeit – rund um die Uhr.</p>
+          <a href="post-speed-to-lead-weshalb-die-ersten-5-minuten-ueber-deinen-abschluss-entscheiden.html" class="blog-card-link">Weiterlesen →</a>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta" id="cta">
+  <div class="container reveal">
+    <div class="section-tag" style="justify-content:center;"><span class="dot"></span>Bereit?</div>
+    <h2>Dein Vertrieb auf<br/><span class="highlight">Autopilot</span> stellen?</h2>
+    <p>Erlebe in einem persönlichen Gespräch, wie SalesbrAIn deinen Vertrieb konkret und praxisnah automatisiert – ohne Umwege, ohne versteckte Kosten.</p>
+    <div class="actions">
+      <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss">Demo buchen</a>
+      <a href="index.html#packages" class="btn-secondary">Pakete ansehen</a>
+    </div>
+    <div class="note">Unverbindliche Beratung · Antwort innerhalb von 24h</div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
+    <div class="f-right"><span class="swiss-dot"></span>Made in Switzerland</div>
+  </div>
+</footer>
+
+<!-- ========== JS ========== -->
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Mobile burger menu
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const close = () => {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
+})();
+</script>
+
+<!-- Cal.com Modal -->
+<div id="calModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(5,5,7,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
+  <div style="position:relative; width:95%; max-width:1100px; height:90vh; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 20px 80px rgba(0,0,0,0.3);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--hair); background:var(--paper);">
+      <span style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--titanium);">● <span style="color:var(--swiss);">Demo buchen</span> · SalesbrAIn</span>
+      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; font-size:20px; color:var(--titanium); padding:4px 8px;">✕</button>
+    </div>
+    <iframe id="calFrame" src="" style="width:100%; height:calc(100% - 52px); border:none;" allow="payment"></iframe>
+  </div>
+</div>
+
+<script>
+function openCalModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('calFrame').src = 'https://cal.com/eduard-mirdita-7spw8u/salesbrain-info';
+  document.getElementById('calModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCalModal() {
+  document.getElementById('calModal').style.display = 'none';
+  document.getElementById('calFrame').src = '';
+  document.body.style.overflow = '';
+}
+document.getElementById('calModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCalModal();
+});
+document.querySelectorAll('a[href*="cal.com"]').forEach(a => {
+  a.addEventListener('click', openCalModal);
+});
+</script>
+
+</body>
+</html>
