@@ -470,9 +470,9 @@ html, body { background: var(--ink); font-family: var(--body); -webkit-font-smoo
     
     // Remove overflow items
     while (feed.children.length > 8) {
-      feed.lastChild.style.opacity = '0';
-      feed.lastChild.style.transition = 'opacity 0.3s';
-      setTimeout(() => { if (feed.children.length > 8) feed.removeChild(feed.lastChild); }, 300);
+      feed.lastElementChild.style.opacity = '0';
+      feed.lastElementChild.style.transition = 'opacity 0.3s';
+      setTimeout(() => { if (feed.children.length > 8) feed.removeChild(feed.lastElementChild); }, 300);
     }
     
     actCount++;
