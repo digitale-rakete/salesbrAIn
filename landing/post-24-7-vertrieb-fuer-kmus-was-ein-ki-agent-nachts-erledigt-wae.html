@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>24/7 Vertrieb für KMUs | SalesbrAIn</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.blog-post-content {
+  padding: 80px 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.blog-post-content h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.blog-post-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--swiss);
+  margin-bottom: 40px;
+  display: block;
+}
+.blog-post-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--titanium);
+  margin-bottom: 24px;
+}
+.blog-post-content h2 {
+  margin: 40px 0 20px;
+}
+.back-link {
+  display: inline-block;
+  margin-top: 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--swiss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--swiss);
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="nav-inner">
+    <a href="Salesbrain Landing.html" class="logo-link">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="14" fill="#2a2a30"/>
+        <circle cx="24" cy="24" r="5" fill="white" opacity="0.12"/>
+        <ellipse cx="28" cy="28" rx="22" ry="7" stroke="#E1001A" stroke-width="2" fill="none" transform="rotate(-22 28 28)"/>
+        <circle cx="49" cy="24" r="2.5" fill="#E1001A"/>
+      </svg>
+      <span class="logo-text">salesbr<b>AI</b>n</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="Salesbrain Landing.html#journey">Customer Journey</a></li>
+      <li><a href="Salesbrain Landing.html#multichannel">Features</a></li>
+      <li><a href="Salesbrain Landing.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html" target="_blank">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn nav-cta-desktop">Demo buchen</a>
+    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="Salesbrain Landing.html#journey">Customer Journey</a></li>
+      <li><a href="Salesbrain Landing.html#multichannel">Features</a></li>
+      <li><a href="Salesbrain Landing.html#packages">Packages</a></li>
+      <li><a href="Case Studies.html">Case Studies</a></li>
+    </ul>
+    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
+  </div>
+</nav>
+
+<!-- ========== CONTENT ========== -->
+<main class="blog-post-content">
+  <div class="container">
+    <span class="blog-post-date">20.07.2026</span>
+    <h1>24/7 Vertrieb für KMUs: Was ein KI-Agent nachts erledigt, während der Chef schläft</h1>
+    
+    <p>Um 2:47 Uhr füllt ein Entscheider aus Zürich ein Kontaktformular aus. Er hat Zeit, er recherchiert, er ist kaufbereit. Bist du der Erste, der antwortet — oder schläfst du noch?</p>
+    
+    <p>Für die meisten KMUs ist die Antwort klar: Sie antworten am nächsten Morgen, irgendwann zwischen zwei Meetings. Das Problem dabei ist bekannt: 78 % der Käufer entscheiden sich für den Anbieter, der zuerst reagiert. Wer zu spät kommt, verliert den Deal — nicht wegen des Preises, sondern wegen der Reaktionszeit.</p>
+    
+    <p>Genau hier setzt ein KI-Agent an. Während du schläfst, qualifiziert er neu eingehende Interessenten, beantwortet erste Fragen, sendet personalisierte Nachrichten auf LinkedIn und pflegt Kontakte im CRM, die sonst im Posteingang verstauben würden. Er arbeitet ohne Pause, ohne Wochenende, ohne Krankheitstage.</p>
+    
+    <p>Das klingt nach Science-Fiction, ist bei Salesbrain aber Alltag. Unser System ist in 3 bis 4 Wochen aktiv — ohne IT-Projekt, ohne internes Fachwissen, ohne dass du dich um die Umsetzung kümmern musst. Du siehst morgens, was die Nacht gebracht hat: qualifizierte Interessenten, beantwortete Anfragen, gepflegte Daten.</p>
+    
+    <p>Vertrieb auf Autopilot bedeutet nicht, dass Menschen ersetzt werden. Es bedeutet, dass dein Team morgens dort weitermacht, wo der KI-Agent aufgehört hat — mit warmen Kontakten statt kalten Listen.</p>
+    
+    <p>Developed in Switzerland. Für Schweizer KMUs, die keinen Deal mehr dem Zufall überlassen wollen.</p>
+
+    <a href="blog.html" class="back-link">← Zurueck zum Blog</a>
+  </div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
+    <div class="f-right"><span class="swiss-dot"></span>Made in Switzerland</div>
+  </div>
+</footer>
+
+<script>
+// Mobile burger menu logic
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const close = () => {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
+</script>
+</body>
+</html>
