@@ -6,156 +6,46 @@
 <title>In 4 Wochen zum automatisierten Vertrieb | SalesbrAIn</title>
 <link rel="stylesheet" href="styles.css"/>
 <style>
-.blog-hero {
-  padding: 140px 0 80px;
-  background: var(--paper);
-  position: relative;
-  overflow: hidden;
-}
-.blog-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(225,0,26,0.04), transparent 70%);
-  pointer-events: none;
-}
-.blog-hero .hero-eyebrow {
-  margin-bottom: 20px;
-}
-.blog-hero h1 {
-  margin-bottom: 20px;
-}
-.blog-hero .hero-sub {
-  max-width: 560px;
-}
-
-.blog-divider {
-  width: 40px;
-  height: 3px;
-  background: var(--swiss);
-  margin: 20px 0 0;
-}
-
-.blog-post-section {
-  padding: 80px 0 100px;
-  background: var(--bone);
-}
-
-.blog-post-wrapper {
-  max-width: 760px;
+.blog-post-container {
+  max-width: 800px;
   margin: 0 auto;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  padding: 56px 64px;
+  padding: 100px 20px;
 }
-
-@media (max-width: 680px) {
-  .blog-post-wrapper {
-    padding: 36px 24px;
-  }
-}
-
 .blog-post-meta {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.blog-post-meta span {
-  color: var(--titanium);
-}
-
-.blog-post-wrapper h1 {
-  font-family: var(--display);
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  line-height: 1.25;
-  margin-bottom: 32px;
-}
-
-.blog-post-wrapper h2 {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-top: 44px;
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-
-.blog-post-wrapper p {
-  font-size: 16px;
-  color: var(--titanium);
-  line-height: 1.75;
   margin-bottom: 20px;
 }
-
-.blog-post-wrapper ul,
-.blog-post-wrapper ol {
-  margin: 0 0 24px 24px;
-  padding: 0;
+.blog-post-content h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 40px;
+  color: var(--ink);
 }
-
-.blog-post-wrapper li {
-  font-size: 16px;
+.blog-post-content p {
+  font-size: 18px;
+  line-height: 1.8;
   color: var(--titanium);
-  line-height: 1.75;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
-
-.blog-post-divider {
-  width: 40px;
-  height: 3px;
-  background: var(--swiss);
-  margin: 36px 0;
-}
-
-.blog-back-link {
+.back-link {
+  display: inline-block;
+  margin-top: 60px;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--swiss);
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   border-bottom: 1px solid var(--swiss);
-  padding-bottom: 2px;
-  margin-top: 48px;
-  transition: opacity 0.2s;
-}
-
-.blog-back-link:hover {
-  opacity: 0.7;
-}
-
-.blog-highlight-box {
-  border-left: 3px solid var(--swiss);
-  background: var(--bone);
-  padding: 20px 24px;
-  margin: 32px 0;
-}
-
-.blog-highlight-box p {
-  margin-bottom: 0;
-  font-size: 15px;
 }
 </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
 <nav>
   <div class="nav-inner">
     <a href="Salesbrain Landing.html" class="logo-link">
@@ -174,190 +64,34 @@
       <li><a href="Case Studies.html" target="_blank">Case Studies</a></li>
     </ul>
     <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="cta-btn nav-cta-desktop">Demo buchen</a>
-    <button class="nav-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <ul>
-      <li><a href="Salesbrain Landing.html#journey">Customer Journey</a></li>
-      <li><a href="Salesbrain Landing.html#multichannel">Features</a></li>
-      <li><a href="Salesbrain Landing.html#packages">Packages</a></li>
-      <li><a href="Case Studies.html">Case Studies</a></li>
-    </ul>
-    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
   </div>
 </nav>
 
-<!-- ========== BLOG POST HERO ========== -->
-<section class="blog-hero">
-  <div class="container">
-    <div class="hero-content reveal">
-      <div class="hero-eyebrow">
-        <span class="dot"></span>
-        Sales-Automation
-      </div>
-      <h1>
-        In 4 Wochen zum<br/>
-        <span class="dim">automatisierten Vertrieb</span>
-      </h1>
-      <p class="hero-sub">
-        So funktioniert es ohne IT-Kenntnisse – praxisnah, schnell und vollständig auf Schweizer Verhältnisse abgestimmt.
-      </p>
-      <div class="blog-divider"></div>
-    </div>
-  </div>
-</section>
+<main class="blog-post-container">
+  <article class="blog-post-content">
+    <div class="blog-post-meta">22.07.2026</div>
+    <h1>In 4 Wochen zum automatisierten Vertrieb: So funktioniert es ohne IT-Kenntnisse</h1>
+    
+    <p>Viele KMU-Inhaber wissen: Der Vertrieb kostet Zeit, die eigentlich ins Kerngeschäft fliesst. Leads bleiben liegen, Follow-ups werden vergessen, und qualifizierte Interessenten kaufen beim Mitbewerber — weil der schlicht schneller reagiert hat.</p>
+    
+    <p>Das muss nicht so bleiben. Mit Salesbrain ist dein Vertrieb in vier Wochen auf Autopilot — ohne eine einzige Zeile Code, ohne IT-Abteilung, ohne monatelange Einführungsprojekte.</p>
+    
+    <p>Wie das konkret aussieht: In Woche eins analysieren wir deinen bestehenden Vertriebsprozess und definieren gemeinsam, wen du ansprechen willst. In Woche zwei bauen wir die personalisierten Outreach-Sequenzen auf — abgestimmt auf Schweizer Gesprächskultur und Datenschutzvorgaben. Woche drei gehört dem Testing und der Feinjustierung. Ab Woche vier arbeitet der KI-Agent rund um die Uhr für dich: Er kontaktiert qualifizierte Interessenten, pflegt Kontakte und sorgt dafür, dass keine Anfrage unbeantwortet bleibt.</p>
+    
+    <p>78% der Käufer entscheiden sich für denjenigen, der zuerst antwortet. Salesbrain stellt sicher, dass das künftig du bist — auch nachts, auch am Wochenende.</p>
+    
+    <p>Du bringst dein Fachwissen mit. Wir bringen 20 Jahre Schweizer Vertriebserfahrung und die passende Technologie. Den Rest erledigt das System.</p>
 
-<!-- ========== BLOG POST CONTENT ========== -->
-<section class="blog-post-section">
-  <div class="container">
-    <div class="blog-post-wrapper reveal">
+    <a href="blog.html" class="back-link">← Zurueck zum Blog</a>
+  </article>
+</main>
 
-      <div class="blog-post-meta">
-        Sales-Automation <span>· 30. Juni 2026</span>
-      </div>
-
-      <h1>In 4 Wochen zum automatisierten Vertrieb: So funktioniert es ohne IT-Kenntnisse</h1>
-
-      <p>Viele KMU-Inhaber wissen: Der Vertrieb kostet Zeit, die eigentlich ins Kerngeschäft fliesst. Leads bleiben liegen, Follow-ups werden vergessen, und qualifizierte Interessenten kaufen beim Mitbewerber — weil der schlicht schneller reagiert hat.</p>
-
-      <p>Das muss nicht so bleiben. Mit SalesbrAIn ist dein Vertrieb in vier Wochen auf Autopilot — ohne eine einzige Zeile Code, ohne IT-Abteilung, ohne monatelange Einführungsprojekte.</p>
-
-      <div class="blog-post-divider"></div>
-
-      <h2>Der 4-Wochen-Plan im Überblick</h2>
-
-      <p>Der Einstieg ist strukturiert und begleitet — du weisst zu jedem Zeitpunkt, was als Nächstes passiert:</p>
-
-      <ol>
-        <li><strong>Woche 1 – Analyse &amp; Strategie:</strong> Wir analysieren deinen bestehenden Vertriebsprozess und definieren gemeinsam, wen du ansprechen willst.</li>
-        <li><strong>Woche 2 – Setup &amp; Sequenzen:</strong> Wir bauen die personalisierten Outreach-Sequenzen auf — abgestimmt auf Schweizer Gesprächskultur und Datenschutzvorgaben.</li>
-        <li><strong>Woche 3 – Testing &amp; Optimierung:</strong> Feinjustierung der Ansprache, Betreffzeilen und Timing auf Basis erster Rückmeldungen.</li>
-        <li><strong>Woche 4 – Go Live:</strong> Ab jetzt arbeitet der KI-Agent rund um die Uhr für dich: Er kontaktiert qualifizierte Interessenten, pflegt Kontakte und sorgt dafür, dass keine Anfrage unbeantwortet bleibt.</li>
-      </ol>
-
-      <div class="blog-highlight-box">
-        <p>78 % der Käufer entscheiden sich für denjenigen, der zuerst antwortet. SalesbrAIn stellt sicher, dass das künftig du bist — auch nachts, auch am Wochenende.</p>
-      </div>
-
-      <h2>Kein IT-Projekt, sondern ein Vertriebsprojekt</h2>
-
-      <p>Der häufigste Einwand lautet: „Wir haben keine IT-Ressourcen dafür." Genau deshalb wurde SalesbrAIn so konzipiert, dass du keine brauchst. Die gesamte technische Einrichtung übernehmen wir — du entscheidest, wen du ansprechen willst und wie dein Angebot klingt.</p>
-
-      <p>Du bringst dein Fachwissen mit. Wir bringen 20 Jahre Schweizer Vertriebserfahrung und die passende Technologie. Den Rest erledigt das System.</p>
-
-      <h2>Was der KI-Agent konkret übernimmt</h2>
-
-      <ul>
-        <li>Proaktiver Erstkontakt mit qualifizierten Interessenten über mehrere Kanäle</li>
-        <li>Automatisierte, persönlich wirkende Follow-up-Sequenzen</li>
-        <li>Sofortige Reaktion auf eingehende Anfragen — 24/7</li>
-        <li>Kontinuierliche Kontaktpflege, bis ein Gespräch zustande kommt</li>
-        <li>Übergabe an dich oder dein Team zum optimalen Zeitpunkt</li>
-      </ul>
-
-      <h2>Für wen ist das geeignet?</h2>
-
-      <p>SalesbrAIn ist ideal für Schweizer KMU mit erklärungsbedürftigen Produkten oder Dienstleistungen, die im B2B aktiv sind und ihren Vertrieb skalieren möchten — ohne proportional mehr Personal einzustellen. Ob Beratung, Software, Industrie oder professionelle Dienstleistungen: Das System passt sich deinem Markt an, nicht umgekehrt.</p>
-
-      <div class="blog-post-divider"></div>
-
-      <a href="blog.html" class="blog-back-link">← Zurück zum Blog</a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== FINAL CTA ========== -->
-<section class="final-cta" id="cta">
-  <div class="container reveal">
-    <div class="section-tag" style="justify-content:center;"><span class="dot"></span>Bereit?</div>
-    <h2>Dein Vertrieb auf<br/><span class="highlight">Autopilot</span> stellen?</h2>
-    <p>Erlebe in einem persönlichen Gespräch, wie SalesbrAIn deinen Vertrieb konkret und praxisnah automatisiert – ohne Umwege, ohne versteckte Kosten.</p>
-    <div class="actions">
-      <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss">Demo buchen</a>
-      <a href="Salesbrain Landing.html#packages" class="btn-secondary">Pakete ansehen</a>
-    </div>
-    <div class="note">Unverbindliche Beratung · Antwort innerhalb von 24h</div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-inner">
     <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
     <div class="f-right"><span class="swiss-dot"></span>Made in Switzerland</div>
   </div>
 </footer>
-
-<!-- ========== JS ========== -->
-<script>
-// Scroll reveal
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// Mobile burger menu
-(() => {
-  const burger = document.querySelector('.nav-burger');
-  const menu = document.getElementById('mobileMenu');
-  if (!burger || !menu) return;
-  const close = () => {
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    menu.classList.remove('open');
-    menu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menu.classList.toggle('open', open);
-    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
-})();
-</script>
-
-<!-- Cal.com Modal -->
-<div id="calModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(5,5,7,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
-  <div style="position:relative; width:95%; max-width:1100px; height:90vh; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 20px 80px rgba(0,0,0,0.3);">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--hair); background:var(--paper);">
-      <span style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--titanium);">● <span style="color:var(--swiss);">Demo buchen</span> · SalesbrAIn</span>
-      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; font-size:20px; color:var(--titanium); padding:4px 8px;">✕</button>
-    </div>
-    <iframe id="calFrame" src="" style="width:100%; height:calc(100% - 52px); border:none;" allow="payment"></iframe>
-  </div>
-</div>
-
-<script>
-function openCalModal(e) {
-  if (e) e.preventDefault();
-  document.getElementById('calFrame').src = 'https://cal.com/eduard-mirdita-7spw8u/salesbrain-info';
-  document.getElementById('calModal').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function closeCalModal() {
-  document.getElementById('calModal').style.display = 'none';
-  document.getElementById('calFrame').src = '';
-  document.body.style.overflow = '';
-}
-document.getElementById('calModal').addEventListener('click', function(e) {
-  if (e.target === this) closeCalModal();
-});
-document.querySelectorAll('a[href*="cal.com"]').forEach(a => {
-  a.addEventListener('click', openCalModal);
-});
-</script>
 
 </body>
 </html>
