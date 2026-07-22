@@ -12,27 +12,27 @@
   margin: 0 auto;
 }
 .blog-post-content h1 {
-  font-size: 3rem;
+  font-family: var(--display);
+  font-size: 48px;
   line-height: 1.1;
   margin-bottom: 20px;
-  letter-spacing: -0.03em;
 }
 .blog-post-meta {
   font-family: var(--mono);
   font-size: 12px;
-  text-transform: uppercase;
   letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--swiss);
   margin-bottom: 40px;
 }
 .blog-post-body p {
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.7;
   color: var(--titanium);
   margin-bottom: 24px;
 }
 .blog-post-body h2 {
-  font-size: 24px;
+  font-size: 28px;
   margin: 40px 0 20px;
   color: var(--ink);
 }
@@ -51,6 +51,7 @@
 </head>
 <body>
 
+<!-- ========== NAV ========== -->
 <nav>
   <div class="nav-inner">
     <a href="Salesbrain Landing.html" class="logo-link">
@@ -84,22 +85,32 @@
   </div>
 </nav>
 
-<main class="blog-post-content container">
-  <h1>Warum 78% der B2B-Deals an die Reaktionszeit verloren gehen</h1>
-  <div class="blog-post-meta">20. Juli 2026</div>
-  
-  <article class="blog-post-body">
-    <p>Ein qualifizierter Interessent füllt dein Kontaktformular aus, lädt ein Whitepaper herunter oder reagiert auf eine LinkedIn-Nachricht. Du antwortest — 43 Stunden später. Das Geschäft ist längst weg.</p>
-    <p>Das ist keine Ausnahme. Das ist Alltag in vielen Schweizer KMUs. Studien zeigen: 78% der B2B-Käufer entscheiden sich für das Unternehmen, das als Erstes antwortet. Nicht für das günstigste. Nicht für das bekannteste. Für das schnellste.</p>
-    <p>Das Problem liegt selten am fehlenden Willen. Es liegt an Strukturen, die für manuellen Vertrieb gebaut wurden. Vertriebsmitarbeitende priorisieren bestehende Kunden, Meetings und Angebote — ein neuer Interessent wartet. Bis jemand antwortet, hat der Mitbewerber bereits ein Erstgespräch geführt.</p>
-    <p>Die Lösung ist keine Frage von mehr Personal. Sie ist eine Frage des richtigen Systems. Ein KI-gestützter Vertriebsprozess erkennt neue Interessenten in Echtzeit und antwortet automatisiert — rund um die Uhr, auch nachts, auch am Wochenende. Nicht mit generischen Templates, sondern mit personalisierten Nachrichten, die auf den Kontext des Interessenten eingehen.</p>
-    <p>Bei Salesbrain bauen wir genau dieses System für Schweizer KMUs: auf Basis von 20 Jahren lokalem Vertriebswissen, ohne IT-Aufwand auf deiner Seite, aktiv in drei bis vier Wochen. Dein Vertrieb läuft weiter — auch wenn dein Team schläft.</p>
-    <p>Reaktionszeit ist kein Komfortthema. Es ist ein Umsatzthema.</p>
-  </article>
+<!-- ========== POST CONTENT ========== -->
+<main class="blog-post-content">
+  <div class="container">
+    <div class="blog-post-meta">22.07.2026 · Vertriebsstrategie</div>
+    <h1>Warum 78% der B2B-Deals an die Reaktionszeit verloren gehen</h1>
+    
+    <div class="blog-post-body">
+      <p>Ein qualifizierter Interessent füllt dein Kontaktformular aus, lädt ein Whitepaper herunter oder reagiert auf eine LinkedIn-Nachricht. Du antwortest — 43 Stunden später. Das Geschäft ist längst weg.</p>
+      
+      <p>Das ist keine Ausnahme. Das ist Alltag in vielen Schweizer KMUs. Studien zeigen: 78% der B2B-Käufer entscheiden sich für das Unternehmen, das als Erstes antwortet. Nicht für das günstigste. Nicht für das bekannteste. Für das schnellste.</p>
+      
+      <p>Das Problem liegt selten am fehlenden Willen. Es liegt an Strukturen, die für manuellen Vertrieb gebaut wurden. Vertriebsmitarbeitende priorisieren bestehende Kunden, Meetings und Angebote — ein neuer Interessent wartet. Bis jemand antwortet, hat der Mitbewerber bereits ein Erstgespräch geführt.</p>
+      
+      <h2>Die Lösung: System statt Zufall</h2>
+      <p>Die Lösung ist keine Frage von mehr Personal. Sie ist eine Frage des richtigen Systems. Ein KI-gestützter Vertriebsprozess erkennt neue Interessenten in Echtzeit und antwortet automatisiert — rund um die Uhr, auch nachts, auch am Wochenende. Nicht mit generischen Templates, sondern mit personalisierten Nachrichten, die auf den Kontext des Interessenten eingehen.</p>
+      
+      <p>Bei Salesbrain bauen wir genau dieses System für Schweizer KMUs: auf Basis von 20 Jahren lokalem Vertriebswissen, ohne IT-Aufwand auf deiner Seite, aktiv in drei bis vier Wochen. Dein Vertrieb läuft weiter — auch wenn dein Team schläft.</p>
+      
+      <p>Reaktionszeit ist kein Komfortthema. Es ist ein Umsatzthema.</p>
+    </div>
 
-  <a href="blog.html" class="back-link">← Zurück zum Blog</a>
+    <a href="blog.html" class="back-link">← Zurück zum Blog</a>
+  </div>
 </main>
 
+<!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-inner">
     <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
@@ -108,6 +119,7 @@
 </footer>
 
 <script>
+// Mobile burger menu
 (() => {
   const burger = document.querySelector('.nav-burger');
   const menu = document.getElementById('mobileMenu');
