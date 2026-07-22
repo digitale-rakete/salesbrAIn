@@ -7,38 +7,47 @@
 <link rel="stylesheet" href="styles.css"/>
 <style>
 .blog-post-content {
-  padding: 80px 0;
-  max-width: 800px;
+  padding: 80px 0 100px;
+  background: var(--paper);
+}
+.post-container {
+  max-width: 720px;
   margin: 0 auto;
 }
-.blog-post-content h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-.blog-post-date {
+.post-date {
   font-family: var(--mono);
   font-size: 12px;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: block;
 }
-.blog-post-content p {
-  font-size: 1.1rem;
+h1 {
+  font-family: var(--display);
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 40px;
+  color: var(--ink);
+}
+.post-body p {
+  font-size: 18px;
   line-height: 1.8;
   color: var(--titanium);
   margin-bottom: 24px;
 }
-.blog-post-content h2 {
+.post-body h2 {
+  font-size: 24px;
   margin: 40px 0 20px;
+  color: var(--ink);
 }
 .back-link {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 60px;
   font-family: var(--mono);
   font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--swiss);
   text-decoration: none;
   border-bottom: 1px solid var(--swiss);
@@ -47,7 +56,6 @@
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
 <nav>
   <div class="nav-inner">
     <a href="Salesbrain Landing.html" class="logo-link">
@@ -81,29 +89,24 @@
   </div>
 </nav>
 
-<!-- ========== CONTENT ========== -->
 <main class="blog-post-content">
-  <div class="container">
-    <span class="blog-post-date">20.07.2026</span>
+  <div class="container post-container">
+    <span class="post-date">22.07.2026</span>
     <h1>24/7 Vertrieb für KMUs: Was ein KI-Agent nachts erledigt, während der Chef schläft</h1>
     
-    <p>Um 2:47 Uhr füllt ein Entscheider aus Zürich ein Kontaktformular aus. Er hat Zeit, er recherchiert, er ist kaufbereit. Bist du der Erste, der antwortet — oder schläfst du noch?</p>
-    
-    <p>Für die meisten KMUs ist die Antwort klar: Sie antworten am nächsten Morgen, irgendwann zwischen zwei Meetings. Das Problem dabei ist bekannt: 78 % der Käufer entscheiden sich für den Anbieter, der zuerst reagiert. Wer zu spät kommt, verliert den Deal — nicht wegen des Preises, sondern wegen der Reaktionszeit.</p>
-    
-    <p>Genau hier setzt ein KI-Agent an. Während du schläfst, qualifiziert er neu eingehende Interessenten, beantwortet erste Fragen, sendet personalisierte Nachrichten auf LinkedIn und pflegt Kontakte im CRM, die sonst im Posteingang verstauben würden. Er arbeitet ohne Pause, ohne Wochenende, ohne Krankheitstage.</p>
-    
-    <p>Das klingt nach Science-Fiction, ist bei Salesbrain aber Alltag. Unser System ist in 3 bis 4 Wochen aktiv — ohne IT-Projekt, ohne internes Fachwissen, ohne dass du dich um die Umsetzung kümmern musst. Du siehst morgens, was die Nacht gebracht hat: qualifizierte Interessenten, beantwortete Anfragen, gepflegte Daten.</p>
-    
-    <p>Vertrieb auf Autopilot bedeutet nicht, dass Menschen ersetzt werden. Es bedeutet, dass dein Team morgens dort weitermacht, wo der KI-Agent aufgehört hat — mit warmen Kontakten statt kalten Listen.</p>
-    
-    <p>Developed in Switzerland. Für Schweizer KMUs, die keinen Deal mehr dem Zufall überlassen wollen.</p>
+    <article class="post-body">
+      <p>Um 2:47 Uhr füllt ein Entscheider aus Zürich ein Kontaktformular aus. Er hat Zeit, er recherchiert, er ist kaufbereit. Bist du der Erste, der antwortet — oder schläfst du noch?</p>
+      <p>Für die meisten KMUs ist die Antwort klar: Sie antworten am nächsten Morgen, irgendwann zwischen zwei Meetings. Das Problem dabei ist bekannt: 78 % der Käufer entscheiden sich für den Anbieter, der zuerst reagiert. Wer zu spät kommt, verliert den Deal — nicht wegen des Preises, sondern wegen der Reaktionszeit.</p>
+      <p>Genau hier setzt ein KI-Agent an. Während du schläfst, qualifiziert er neu eingehende Interessenten, beantwortet erste Fragen, sendet personalisierte Nachrichten auf LinkedIn und pflegt Kontakte im CRM, die sonst im Posteingang verstauben würden. Er arbeitet ohne Pause, ohne Wochenende, ohne Krankheitstage.</p>
+      <p>Das klingt nach Science-Fiction, ist bei Salesbrain aber Alltag. Unser System ist in 3 bis 4 Wochen aktiv — ohne IT-Projekt, ohne internes Fachwissen, ohne dass du dich um die Umsetzung kümmern musst. Du siehst morgens, was die Nacht gebracht hat: qualifizierte Interessenten, beantwortete Anfragen, gepflegte Daten.</p>
+      <p>Vertrieb auf Autopilot bedeutet nicht, dass Menschen ersetzt werden. Es bedeutet, dass dein Team morgens dort weitermacht, wo der KI-Agent aufgehört hat — mit warmen Kontakten statt kalten Listen.</p>
+      <p>Developed in Switzerland. Für Schweizer KMUs, die keinen Deal mehr dem Zufall überlassen wollen.</p>
+    </article>
 
-    <a href="blog.html" class="back-link">← Zurueck zum Blog</a>
+    <a href="blog.html" class="back-link">← Zurück zum Blog</a>
   </div>
 </main>
 
-<!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-inner">
     <div class="f-left">© 2026 Salesbrain · digitale rakete GmbH · Kilchberg/Zug, Schweiz</div>
@@ -112,7 +115,6 @@
 </footer>
 
 <script>
-// Mobile burger menu logic
 (() => {
   const burger = document.querySelector('.nav-burger');
   const menu = document.getElementById('mobileMenu');
@@ -132,7 +134,9 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
 })();
 </script>
+
 </body>
 </html>
