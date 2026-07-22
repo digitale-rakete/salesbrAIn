@@ -6,39 +6,31 @@
 <title>B2B Leadgenerierung Schweiz: 5 Methoden im Praxisvergleich | SalesbrAIn</title>
 <link rel="stylesheet" href="styles.css"/>
 <style>
-.blog-post-content {
-  padding: 80px 0 100px;
+.blog-post-section {
+  padding: 100px 0;
   background: var(--paper);
 }
-.post-container {
-  max-width: 720px;
+.blog-post-container {
+  max-width: 800px;
   margin: 0 auto;
 }
-.post-meta {
+.blog-post-date {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
   margin-bottom: 20px;
+  display: block;
 }
-h1 {
-  font-family: var(--display);
-  font-size: 42px;
-  line-height: 1.1;
-  margin-bottom: 40px;
-  color: var(--ink);
+.blog-post-content h2 {
+  margin: 40px 0 20px;
 }
-.post-body p {
+.blog-post-content p {
   font-size: 18px;
   line-height: 1.7;
   color: var(--titanium);
   margin-bottom: 24px;
-}
-.post-body h2 {
-  font-size: 24px;
-  margin: 40px 0 20px;
-  color: var(--ink);
 }
 .back-link {
   display: inline-block;
@@ -77,33 +69,23 @@ h1 {
       <span></span><span></span><span></span>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <ul>
-      <li><a href="Salesbrain Landing.html#journey">Customer Journey</a></li>
-      <li><a href="Salesbrain Landing.html#multichannel">Features</a></li>
-      <li><a href="Salesbrain Landing.html#packages">Packages</a></li>
-      <li><a href="Case Studies.html">Case Studies</a></li>
-    </ul>
-    <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss mm-cta">Demo buchen</a>
-  </div>
 </nav>
 
-<section class="blog-post-content">
-  <div class="container post-container">
-    <div class="post-meta">Vertriebsstrategie · 20. Juli 2026</div>
+<section class="blog-post-section">
+  <div class="container blog-post-container">
+    <span class="blog-post-date">22.07.2026</span>
     <h1>B2B Leadgenerierung Schweiz: 5 Methoden im Praxisvergleich</h1>
-    
-    <div class="post-body">
+    <div class="blog-post-content">
       <p>Qualifizierte Interessenten zu gewinnen ist für Schweizer KMUs eine der aufwendigsten Aufgaben im Vertrieb. Welche Methoden bringen wirklich Ergebnisse — und welche fressen nur Zeit und Budget? Hier ein ehrlicher Vergleich aus der Praxis.</p>
       
       <p>Kaltakquise per Telefon funktioniert noch immer, ist aber ressourcenintensiv und skaliert schlecht. LinkedIn-Outreach ist effektiv im B2B, erfordert aber tägliche manuelle Arbeit und eine klare Botschaft. Content-Marketing baut langfristig Vertrauen auf, braucht jedoch Monate, bis Ergebnisse sichtbar werden. Messen und Events liefern direkte Gespräche, sind aber teuer und auf wenige Daten im Jahr beschränkt. KI-gestützter Outreach kombiniert die Stärken mehrerer Methoden: Er läuft 24/7, spricht qualifizierte Interessenten systematisch an und reagiert schnell — 78% der Käufer entscheiden sich für den Erstantwortenden.</p>
       
-      <h2>Der entscheidende Faktor: Konstanz</h2>
+      <h2>Der Faktor Geschwindigkeit</h2>
       <p>Der entscheidende Unterschied liegt nicht in der Methode allein, sondern in der Reaktionsgeschwindigkeit und Konstanz. Manueller Outreach bricht ab, wenn das Team unter Druck steht. Ein automatisierter Ansatz läuft weiter — auch wenn dein Vertriebsteam im Kundengespräch ist.</p>
       
+      <h2>Fazit</h2>
       <p>Salesbrain verbindet 20 Jahre Schweizer Vertriebserfahrung mit KI-gestützter Automatisierung. Das System ist in 3 bis 4 Wochen aktiv, braucht keine IT-Kenntnisse und generiert qualifizierte Interessenten ohne Mehraufwand für dein Team. Entwickelt in der Schweiz, für den Schweizer Markt.</p>
     </div>
-
     <a href="blog.html" class="back-link">← Zurück zum Blog</a>
   </div>
 </section>
@@ -116,28 +98,16 @@ h1 {
 </footer>
 
 <script>
-// Mobile burger menu
-(() => {
-  const burger = document.querySelector('.nav-burger');
-  const menu = document.getElementById('mobileMenu');
-  if (!burger || !menu) return;
-  const close = () => {
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    menu.classList.remove('open');
-    menu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
+// Mobile burger menu logic
+const burger = document.querySelector('.nav-burger');
+const menu = document.getElementById('mobileMenu');
+if (burger) {
   burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menu.classList.toggle('open', open);
-    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.style.overflow = open ? 'hidden' : '';
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
   });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-  window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
-})();
+}
 </script>
+
 </body>
 </html>
