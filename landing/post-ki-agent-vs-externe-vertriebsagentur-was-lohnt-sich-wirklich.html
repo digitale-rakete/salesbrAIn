@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="styles.css"/>
 <style>
 .blog-post-container {
-  padding: 100px 0;
   max-width: 800px;
   margin: 0 auto;
+  padding: 80px 20px;
 }
-.post-meta {
+.blog-post-meta {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.15em;
@@ -19,23 +19,21 @@
   color: var(--swiss);
   margin-bottom: 20px;
 }
-h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  margin-bottom: 40px;
-  letter-spacing: -0.03em;
+.blog-post-content h2 {
+  margin: 40px 0 20px;
+  font-size: 24px;
 }
-.post-content p {
-  font-size: 18px;
+.blog-post-content p {
   line-height: 1.8;
   color: var(--titanium);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .back-link {
   display: inline-block;
-  margin-top: 60px;
+  margin-top: 40px;
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
   color: var(--swiss);
   text-decoration: none;
   border-bottom: 1px solid var(--swiss);
@@ -80,10 +78,10 @@ h1 {
 
 <!-- ========== POST CONTENT ========== -->
 <main class="blog-post-container">
-  <div class="post-meta">20. Juli 2026</div>
+  <div class="blog-post-meta">22.07.2026</div>
   <h1>KI-Agent vs. externe Vertriebsagentur: Was lohnt sich wirklich für Schweizer KMUs?</h1>
   
-  <div class="post-content">
+  <div class="blog-post-content">
     <p>Externe Vertriebsagenturen versprechen viel: Erfahrung, Netzwerk, sofortige Ergebnisse. Die Realität sieht oft anders aus. Du zahlst 5'000 CHF oder mehr pro Monat, verlierst die Kontrolle über deine Kundenansprache und weisst nach drei Monaten nicht genau, was mit deinem Budget passiert ist.</p>
     
     <p>Ein KI-Agent arbeitet anders. Er übernimmt repetitive Vertriebsaufgaben — LinkedIn-Outreach, Follow-ups, Datenpflege — vollständig automatisiert und rund um die Uhr. Keine Urlaubstage, keine Reaktionszeiten von 40 Stunden. Dabei behältst du jederzeit die volle Kontrolle über Botschaften, Zielgruppen und Ergebnisse.</p>
@@ -130,5 +128,6 @@ h1 {
   window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
 })();
 </script>
+
 </body>
 </html>
