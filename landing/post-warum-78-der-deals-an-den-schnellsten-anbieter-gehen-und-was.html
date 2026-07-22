@@ -6,104 +6,44 @@
 <title>Warum 78% der Deals an den schnellsten Anbieter gehen | SalesbrAIn</title>
 <link rel="stylesheet" href="styles.css"/>
 <style>
-.blog-hero {
-  padding: 140px 0 80px;
-  background: var(--paper);
-  position: relative;
-  overflow: hidden;
-}
-.blog-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(225,0,26,0.04), transparent 70%);
-  pointer-events: none;
-}
-.blog-hero .hero-eyebrow {
-  margin-bottom: 20px;
-}
-.blog-hero h1 {
-  margin-bottom: 20px;
-}
-.blog-hero .hero-sub {
-  max-width: 560px;
-}
-.blog-divider {
-  width: 40px;
-  height: 3px;
-  background: var(--swiss);
-  margin: 20px 0 0;
-}
-.blog-post-section {
-  padding: 80px 0 100px;
-  background: var(--bone);
-}
-.blog-post-body {
-  max-width: 720px;
+.blog-post-container {
+  padding: 100px 0;
+  max-width: 800px;
   margin: 0 auto;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  padding: 52px 56px;
-}
-@media (max-width: 700px) {
-  .blog-post-body {
-    padding: 32px 24px;
-  }
 }
 .blog-post-meta {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-bottom: 20px;
 }
-.blog-post-meta span {
-  color: var(--titanium);
-}
-.blog-post-body h1 {
+h1 {
   font-family: var(--display);
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 40px;
   color: var(--ink);
-  line-height: 1.25;
-  margin-bottom: 32px;
 }
-.blog-post-body p {
-  font-size: 16px;
+.post-content {
+  font-size: 18px;
+  line-height: 1.8;
   color: var(--titanium);
-  line-height: 1.75;
-  margin-bottom: 22px;
 }
-.blog-post-body p:last-of-type {
-  margin-bottom: 0;
+.post-content p {
+  margin-bottom: 24px;
 }
-.blog-post-body strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-.blog-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.back-link {
+  display: inline-block;
+  margin-top: 60px;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--swiss);
   text-decoration: none;
   border-bottom: 1px solid var(--swiss);
-  padding-bottom: 2px;
-  margin-top: 48px;
-  transition: opacity 0.2s;
-}
-.blog-back-link:hover {
-  opacity: 0.7;
 }
 </style>
 </head>
@@ -143,68 +83,22 @@
   </div>
 </nav>
 
-<!-- ========== POST HERO ========== -->
-<section class="blog-hero">
-  <div class="container">
-    <div class="hero-content reveal">
-      <div class="hero-eyebrow">
-        <span class="dot"></span>
-        Vertriebsstrategie
-      </div>
-      <h1>
-        Ratgeber &amp;<br/>
-        <span class="dim">Insights</span>
-      </h1>
-      <p class="hero-sub">
-        Praxisnahe Artikel zu B2B-Vertrieb, KI-gestütztem Outreach und moderner Sales-Automatisierung – entwickelt aus 20 Jahren Schweizer Vertriebserfahrung.
-      </p>
-      <div class="blog-divider"></div>
-    </div>
-  </div>
-</section>
-
 <!-- ========== POST CONTENT ========== -->
-<section class="blog-post-section">
-  <div class="container">
-    <div class="blog-post-body reveal">
+<main class="blog-post-container">
+  <div class="blog-post-meta">22. Juli 2026</div>
+  <h1>Warum 78% der Deals an den schnellsten Anbieter gehen – und was das für dein KMU bedeutet</h1>
+  
+  <article class="post-content">
+    <p>Stell dir vor: Ein potenzieller Kunde füllt ein Kontaktformular aus, schaut sich parallel zwei weitere Anbieter an – und kauft beim Ersten, der antwortet. Kein Vergleich, keine lange Evaluation. Einfach Tempo entscheidet.</p>
+    <p>Genau das passiert täglich. Studien zeigen: 78% der Käufer entscheiden sich für den Anbieter, der als Erstes reagiert. Der Durchschnitt im B2B? Über 40 Stunden bis zur ersten Antwort. In dieser Zeit hat der Wettbewerb längst das Gespräch eröffnet.</p>
+    <p>Für Schweizer KMUs ist das ein strukturelles Problem. Vertriebsteams sind beschäftigt, Prioritäten konkurrieren, und qualifizierte Interessenten fallen durch die Maschen – nicht weil das Angebot schlechter ist, sondern weil die Reaktion zu langsam kommt.</p>
+    <p>Der Hebel liegt nicht im grösseren Team, sondern im schnelleren System. Ein KI-gestützter Vertriebsprozess kann Interessenten innerhalb von Minuten ansprechen – rund um die Uhr, ohne manuellen Aufwand. Nicht als Ersatz für den persönlichen Vertrieb, sondern als erste Reaktionsschicht, die keine Anfrage unbeantwortet lässt.</p>
+    <p>Bei Salesbrain haben wir genau das gebaut: Eine Plattform, die auf Basis von 20 Jahren Schweizer Vertriebserfahrung automatisiert anspricht, qualifiziert und weitergibt – damit dein Team dort einsteigt, wo es wirklich zählt.</p>
+    <p>Geschwindigkeit ist kein netter Bonus. Sie ist der Unterschied zwischen gewonnen und verloren.</p>
+  </article>
 
-      <div class="blog-post-meta">
-        Vertriebsstrategie <span>· 18. Juni 2026</span>
-      </div>
-
-      <h1>Warum 78% der Deals an den schnellsten Anbieter gehen – und was das für dein KMU bedeutet</h1>
-
-      <p>Stell dir vor: Ein potenzieller Kunde füllt ein Kontaktformular aus, schaut sich parallel zwei weitere Anbieter an – und kauft beim Ersten, der antwortet. Kein Vergleich, keine lange Evaluation. Einfach Tempo entscheidet.</p>
-
-      <p>Genau das passiert täglich. Studien zeigen: <strong>78% der Käufer entscheiden sich für den Anbieter, der als Erstes reagiert.</strong> Der Durchschnitt im B2B? Über 40 Stunden bis zur ersten Antwort. In dieser Zeit hat der Wettbewerb längst das Gespräch eröffnet.</p>
-
-      <p>Für Schweizer KMUs ist das ein strukturelles Problem. Vertriebsteams sind beschäftigt, Prioritäten konkurrieren, und qualifizierte Interessenten fallen durch die Maschen – nicht weil das Angebot schlechter ist, sondern weil die Reaktion zu langsam kommt.</p>
-
-      <p>Der Hebel liegt nicht im grösseren Team, sondern im schnelleren System. Ein KI-gestützter Vertriebsprozess kann Interessenten innerhalb von Minuten ansprechen – rund um die Uhr, ohne manuellen Aufwand. Nicht als Ersatz für den persönlichen Vertrieb, sondern als erste Reaktionsschicht, die keine Anfrage unbeantwortet lässt.</p>
-
-      <p>Bei Salesbrain haben wir genau das gebaut: Eine Plattform, die auf Basis von 20 Jahren Schweizer Vertriebserfahrung automatisiert anspricht, qualifiziert und weitergibt – damit dein Team dort einsteigt, wo es wirklich zählt.</p>
-
-      <p><strong>Geschwindigkeit ist kein netter Bonus. Sie ist der Unterschied zwischen gewonnen und verloren.</strong></p>
-
-      <a href="blog.html" class="blog-back-link">← Zurück zum Blog</a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== FINAL CTA ========== -->
-<section class="final-cta" id="cta">
-  <div class="container reveal">
-    <div class="section-tag" style="justify-content:center;"><span class="dot"></span>Bereit?</div>
-    <h2>Dein Vertrieb auf<br/><span class="highlight">Autopilot</span> stellen?</h2>
-    <p>Erlebe in einem persönlichen Gespräch, wie SalesbrAIn deinen Vertrieb konkret und praxisnah automatisiert – ohne Umwege, ohne versteckte Kosten.</p>
-    <div class="actions">
-      <a href="https://cal.com/eduard-mirdita-7spw8u/salesbrain-info" target="_blank" class="btn-swiss">Demo buchen</a>
-      <a href="Salesbrain Landing.html#packages" class="btn-secondary">Pakete ansehen</a>
-    </div>
-    <div class="note">Unverbindliche Beratung · Antwort innerhalb von 24h</div>
-  </div>
-</section>
+  <a href="blog.html" class="back-link">← Zurück zum Blog</a>
+</main>
 
 <!-- ========== FOOTER ========== -->
 <footer>
@@ -214,18 +108,8 @@
   </div>
 </footer>
 
-<!-- ========== JS ========== -->
 <script>
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
+// Mobile burger menu
 (() => {
   const burger = document.querySelector('.nav-burger');
   const menu = document.getElementById('mobileMenu');
@@ -247,37 +131,6 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
   window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
 })();
-</script>
-
-<!-- Cal.com Modal -->
-<div id="calModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(5,5,7,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
-  <div style="position:relative; width:95%; max-width:1100px; height:90vh; background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 20px 80px rgba(0,0,0,0.3);">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--hair); background:var(--paper);">
-      <span style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--titanium);">● <span style="color:var(--swiss);">Demo buchen</span> · SalesbrAIn</span>
-      <button onclick="closeCalModal()" style="background:none; border:none; cursor:pointer; font-size:20px; color:var(--titanium); padding:4px 8px;">✕</button>
-    </div>
-    <iframe id="calFrame" src="" style="width:100%; height:calc(100% - 52px); border:none;" allow="payment"></iframe>
-  </div>
-</div>
-
-<script>
-function openCalModal(e) {
-  if (e) e.preventDefault();
-  document.getElementById('calFrame').src = 'https://cal.com/eduard-mirdita-7spw8u/salesbrain-info';
-  document.getElementById('calModal').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function closeCalModal() {
-  document.getElementById('calModal').style.display = 'none';
-  document.getElementById('calFrame').src = '';
-  document.body.style.overflow = '';
-}
-document.getElementById('calModal').addEventListener('click', function(e) {
-  if (e.target === this) closeCalModal();
-});
-document.querySelectorAll('a[href*="cal.com"]').forEach(a => {
-  a.addEventListener('click', openCalModal);
-});
 </script>
 
 </body>
