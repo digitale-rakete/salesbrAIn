@@ -3,13 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B2B-Vertrieb automatisieren | SalesbrAIn</title>
+<title>B2B-Vertrieb automatisieren: Was Schweizer KMUs wirklich brauchen | SalesbrAIn</title>
 <link rel="stylesheet" href="styles.css"/>
 <style>
 .blog-post-container {
-  padding: 100px 0;
   max-width: 800px;
   margin: 0 auto;
+  padding: 100px 20px;
+}
+.blog-post-container h1 {
+  font-family: var(--display);
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--ink);
 }
 .blog-post-meta {
   font-family: var(--mono);
@@ -17,27 +24,28 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
-  margin-bottom: 20px;
-}
-.blog-post-content h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .blog-post-content p {
   font-size: 18px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--titanium);
   margin-bottom: 24px;
 }
+.blog-post-content h2 {
+  font-size: 24px;
+  margin: 40px 0 20px;
+  color: var(--ink);
+}
 .back-link {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 60px;
   font-family: var(--mono);
   font-size: 12px;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--swiss);
   text-decoration: none;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--swiss);
 }
 </style>
 </head>
@@ -80,15 +88,21 @@
 <!-- ========== POST CONTENT ========== -->
 <main class="blog-post-container">
   <article>
-    <div class="blog-post-meta">20. Juli 2026</div>
+    <div class="blog-post-meta">22.07.2026 · Vertriebsstrategie</div>
     <h1>B2B-Vertrieb automatisieren: Was Schweizer KMUs wirklich brauchen</h1>
+    
     <div class="blog-post-content">
       <p>Viele Schweizer KMUs stecken im gleichen Muster fest: Der Vertrieb läuft über einzelne Personen, Kontakte versanden im CRM, und qualifizierte Interessenten warten zu lange auf eine Antwort. Dabei entscheiden sich 78% der Käufer für das Unternehmen, das als erstes antwortet.</p>
+      
       <p>Das Problem ist nicht fehlendes Engagement, sondern fehlende Kapazität. Vertrieb ist zeitintensiv — manuelle Datenpflege, LinkedIn-Outreach, Follow-up-Mails. All das kostet Stunden, die im Tagesgeschäft schlicht nicht vorhanden sind.</p>
+      
       <p>Was Schweizer KMUs brauchen, ist kein weiteres Tool, das zusätzliche Arbeit schafft. Sie brauchen ein System, das den Vertrieb übernimmt, während das Team andere Prioritäten abarbeitet. Automatisierter Outreach, sofortige Reaktionszeiten, strukturierte Nachverfolgung — 24 Stunden am Tag, 7 Tage die Woche.</p>
+      
       <p>Genau hier setzt Salesbrain an. Die Plattform wurde entwickelt in der Schweiz, für die Schweiz — mit 20 Jahren Vertriebserfahrung im lokalen Markt. Kein IT-Aufwand, kein monatelanger Implementierungsprozess. Aktiv in 3 bis 4 Wochen, ohne dass du selbst Hand anlegen musst.</p>
+      
       <p>B2B-Vertrieb automatisieren bedeutet nicht, den menschlichen Kontakt zu ersetzen. Es bedeutet, die richtigen Interessenten zur richtigen Zeit anzusprechen — und sicherzustellen, dass kein qualifizierter Kontakt mehr unbeantwortet bleibt.</p>
     </div>
+
     <a href="blog.html" class="back-link">← Zurück zum Blog</a>
   </article>
 </main>
@@ -102,7 +116,7 @@
 </footer>
 
 <script>
-// Mobile burger menu logic
+// Mobile burger menu
 (() => {
   const burger = document.querySelector('.nav-burger');
   const menu = document.getElementById('mobileMenu');
@@ -125,5 +139,6 @@
   window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
 })();
 </script>
+
 </body>
 </html>
