@@ -12,31 +12,32 @@
   padding: 80px 20px;
 }
 .blog-post-content h1 {
-  font-family: var(--display);
-  font-size: 3rem;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  line-height: 1.2;
   margin-bottom: 20px;
-  color: var(--ink);
 }
-.blog-post-meta {
+.blog-post-date {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--swiss);
   margin-bottom: 40px;
+  display: block;
 }
-.blog-post-body {
+.blog-post-body p {
   font-size: 18px;
   line-height: 1.8;
   color: var(--titanium);
-}
-.blog-post-body p {
   margin-bottom: 24px;
+}
+.blog-post-body h2 {
+  margin: 40px 0 20px;
+  font-size: 1.8rem;
 }
 .back-link {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 60px;
   font-family: var(--mono);
   font-size: 12px;
   text-transform: uppercase;
@@ -84,19 +85,26 @@
 
 <!-- ========== POST CONTENT ========== -->
 <main class="blog-post-content">
-  <div class="blog-post-meta">20.07.2026</div>
-  <h1>CRM-Friedhof reaktivieren: Wie du tote Kontakte in echten Umsatz verwandelst</h1>
-  
-  <article class="blog-post-body">
-    <p>Kennst du das? Du öffnest dein CRM und siehst hunderte von Kontakten – Unternehmen, die mal Interesse hatten, Gespräche, die irgendwo versandeten, Anfragen, die nie weiterverfolgt wurden. Ein klassischer CRM-Friedhof. Und darin schlummert unbenutztes Umsatzpotenzial.</p>
-    <p>Das Problem ist nicht, dass diese Kontakte wertlos wären. Das Problem ist, dass manuelles Nachfassen Zeit kostet, die dein Vertriebsteam nicht hat. Also passiert nichts. Die Kontakte bleiben tot.</p>
-    <p>Genau hier setzt Salesbrain an. Unser KI-Agent – entwickelt mit 20 Jahren Schweizer Vertriebserfahrung – analysiert deine bestehenden CRM-Daten und identifiziert, welche Kontakte reaktivierbar sind. Danach übernimmt das System: personalisierte Outreach-Sequenzen, automatisiert, 24/7, ohne dass dein Team einen Finger rühren muss.</p>
-    <p>Was das konkret bedeutet: Kontakte, die seit Monaten keine Bewegung gezeigt haben, erhalten zum richtigen Zeitpunkt die richtige Nachricht. Und weil 78 % der Käufer beim Erstantwortenden kaufen, zählt Geschwindigkeit – nicht Bauchgefühl.</p>
-    <p>Mit Salesbrain ist dein CRM kein Datengrab mehr, sondern ein aktiver Vertriebskanal. Du brauchst keine IT-Kenntnisse, keine aufwendige Implementierung. In 3 bis 4 Wochen läuft das System – und dein Vertrieb arbeitet auch dann, wenn du es nicht tust.</p>
-    <p>Wenn du wissen willst, wie viel Potenzial in deinem CRM noch steckt, sprich mit uns.</p>
-  </article>
+  <article>
+    <span class="blog-post-date">22.07.2026</span>
+    <h1>CRM-Friedhof reaktivieren: Wie du tote Kontakte in echten Umsatz verwandelst</h1>
+    
+    <div class="blog-post-body">
+      <p>Kennst du das? Du öffnest dein CRM und siehst hunderte von Kontakten – Unternehmen, die mal Interesse hatten, Gespräche, die irgendwo versandeten, Anfragen, die nie weiterverfolgt wurden. Ein klassischer CRM-Friedhof. Und darin schlummert unbenutztes Umsatzpotenzial.</p>
+      
+      <p>Das Problem ist nicht, dass diese Kontakte wertlos wären. Das Problem ist, dass manuelles Nachfassen Zeit kostet, die dein Vertriebsteam nicht hat. Also passiert nichts. Die Kontakte bleiben tot.</p>
+      
+      <p>Genau hier setzt Salesbrain an. Unser KI-Agent – entwickelt mit 20 Jahren Schweizer Vertriebserfahrung – analysiert deine bestehenden CRM-Daten und identifiziert, welche Kontakte reaktivierbar sind. Danach übernimmt das System: personalisierte Outreach-Sequenzen, automatisiert, 24/7, ohne dass dein Team einen Finger rühren muss.</p>
+      
+      <p>Was das konkret bedeutet: Kontakte, die seit Monaten keine Bewegung gezeigt haben, erhalten zum richtigen Zeitpunkt die richtige Nachricht. Und weil 78 % der Käufer beim Erstantwortenden kaufen, zählt Geschwindigkeit – nicht Bauchgefühl.</p>
+      
+      <p>Mit Salesbrain ist dein CRM kein Datengrab mehr, sondern ein aktiver Vertriebskanal. Du brauchst keine IT-Kenntnisse, keine aufwendige Implementierung. In 3 bis 4 Wochen läuft das System – und dein Vertrieb arbeitet auch dann, wenn du es nicht tust.</p>
+      
+      <p>Wenn du wissen willst, wie viel Potenzial in deinem CRM noch steckt, sprich mit uns.</p>
+    </div>
 
-  <a href="blog.html" class="back-link">← Zurueck zum Blog</a>
+    <a href="blog.html" class="back-link">← Zurueck zum Blog</a>
+  </article>
 </main>
 
 <!-- ========== FOOTER ========== -->
@@ -131,5 +139,6 @@
   window.addEventListener('resize', () => { if (innerWidth > 768) close(); });
 })();
 </script>
+
 </body>
 </html>
